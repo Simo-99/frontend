@@ -15,7 +15,7 @@ const Formers = () => {
         async function getData() {
 
             let data;
-            try { data = await a.get('/players?s=hidden').then(({ data }) => data) } catch (e) { console.log(e) } finally { setPlayers(data); }
+            try { data = await a.get('/players?s=hidden&o=asc').then(({ data }) => data) } catch (e) { console.log(e) } finally { setPlayers(data); }
 
         }
         getData();

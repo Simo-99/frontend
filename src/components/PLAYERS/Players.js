@@ -16,7 +16,7 @@ const Players = () => {
         async function getData() {
 
             let data;
-            try { data = await a.get('/players?s=active').then(({ data }) => data) } catch (e) { console.log(e) } finally { setActives(data); }
+            try { data = await a.get('/players?s=active&o=asc').then(({ data }) => data) } catch (e) { console.log(e) } finally { setActives(data); }
 
 
         }
