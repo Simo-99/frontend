@@ -29,11 +29,9 @@ const Login = () => {
 
             localStorage.setItem("user", JSON.stringify({ token: token, is_admin: role }));
 
+            navigate(0);
 
-            if (token) {
-                // console.log("user has Logged so I should navigate somewhere")
-                navigate("/players");
-            }
+
 
         } catch (e) { console.log(e) }
     }
