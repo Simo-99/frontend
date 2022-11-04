@@ -2,6 +2,9 @@ import React from "react";
 import { NavLink } from "react-router-dom"
 import { getUser } from "../utility";
 
+import { Image } from 'react'
+import logo from "../TRIAL.png";
+
 const Navbar = () => {
 
     const user = getUser();
@@ -15,7 +18,7 @@ const Navbar = () => {
                 </button>
                 <div className="navbar-collapse" id="navbarTogglerDemo01">
                     <NavLink className="navbar-brand text-warning mx-2" to="/">
-                        <img src="../../public/TRIAL.png" alt="" />
+                        <img src={logo} />
                     </NavLink>
                     <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
 
