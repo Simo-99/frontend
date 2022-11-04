@@ -18,7 +18,7 @@ const Navbar = () => {
                 </button>
                 <div className="navbar-collapse" id="navbarTogglerDemo01">
                     <NavLink className="navbar-brand text-warning mx-2" to="/">
-                        <img src={logo} />
+                        <img src={logo} width="50px" />
                     </NavLink>
                     <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
 
