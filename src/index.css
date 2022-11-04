@@ -1,13 +1,44 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.background {
+
+    background-color: #434a50 !important;
+
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.clickable {
+
+    cursor: pointer;
+
 }
+
+.bold {
+
+    font-weight: bold !important;
+}
+
+
+.outline,
+th {
+    text-decoration: none;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    font-weight: bold;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.outline2 {
+    text-decoration: none;
+    text-shadow: -0.8px -0.8px 0 #FFF, 0.8px -0.8px 0 #FFF, -0.8px 0.8px 0 #FFF, 0.8px 0.8px 0 #FFF;
+    font-weight: bold;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+i {
+
+    margin-left: 5px;
+
+}
+
+@import url('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.9.1/font/bootstrap-icons.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+@import url("https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css");
