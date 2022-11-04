@@ -14,7 +14,9 @@ const Navbar = () => {
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="navbar-collapse" id="navbarTogglerDemo01">
-                    <NavLink className="navbar-brand text-warning mx-2" to="/">Trial</NavLink>
+                    <NavLink className="navbar-brand text-warning mx-2" to="/">
+                        <img src="../../public/TRIAL.png" alt="" />
+                    </NavLink>
                     <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
 
                         <li className="nav-item mx-3"><NavLink className=" bold nav-link  text-success" to="/players">Our Members</NavLink></li>
