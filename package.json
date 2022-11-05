@@ -2,7 +2,6 @@
   "name": "trial_website",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://SIMO-99.github.io/trial_website/#",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
