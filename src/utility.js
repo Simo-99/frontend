@@ -6,7 +6,7 @@ import DataTable from "datatables.net"
 export function useClient() {
 
     const user = getUser();
-    let a = axios.create({ baseURL: 'https://therockisalie.duckdns.org/siti/trial2/public/api/v1' });
+    let a = axios.create({ baseURL: 'http://therockisalie.duckdns.org/siti/trial2/public/api/v1' });
 
     if (user?.token)
         a.defaults.headers.common["Authorization"] = "Bearer " + user?.token;
