@@ -21,7 +21,7 @@ const Players = () => {
 
         }
         getData();
-        renderTable();
+        // renderTable();
 
     }, []);
 
@@ -78,6 +78,8 @@ const Players = () => {
 
                     </tbody >
                 </table >
+                {renderTable()}
+
             </div >
         </>
 

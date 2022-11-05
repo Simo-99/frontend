@@ -31,7 +31,7 @@ const Hall = () => {
         }
 
         getData();
-        renderTable();
+        // renderTable();
 
 
     }, []);
@@ -71,6 +71,7 @@ const Hall = () => {
                     ))}
                 </tbody>
             </table>
+            {renderTable()}
 
 
         </div >

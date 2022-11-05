@@ -34,7 +34,7 @@ const Players_View = () => {
         }
 
         getData();
-        renderTable();
+        // renderTable();
     }, []);
 
 
@@ -111,6 +111,8 @@ const Players_View = () => {
                     </tbody >
 
                 </table >
+                {renderTable()}
+
             </div >
         </>
 

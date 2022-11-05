@@ -15,7 +15,7 @@ export function useClient() {
 
 }
 
-export function useTable() {
+export function useTable(delay = 500) {
 
 
     return () => {
@@ -33,14 +33,14 @@ export function useTable() {
 
                 });
 
-        }, 1000);
+        }, delay);
 
 
     }
 
 }
 
-export function useTableHall() {
+export function useTableHall(delay = 200) {
 
     return () => {
         setTimeout(() => {
@@ -58,7 +58,7 @@ export function useTableHall() {
 
                 });
 
-        }, 1000);
+        }, delay);
 
         $.fn.dataTableExt.oSort['pct-asc'] = function (x, y) {
             x = parseFloat(x);

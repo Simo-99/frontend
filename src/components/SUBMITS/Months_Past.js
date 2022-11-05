@@ -29,7 +29,7 @@ const Months_Past = () => {
 
         }
         getData();
-        renderTable();
+        // renderTable();
 
     }, []);
 
@@ -75,6 +75,7 @@ const Months_Past = () => {
                     </tbody>
 
                 </table >
+                {renderTable()}
 
             </div >
         </>

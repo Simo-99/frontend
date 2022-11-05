@@ -35,7 +35,7 @@ const Years_View = () => {
         }
 
         getData();
-        renderTable();
+        // renderTable();
 
     }, []);
 
@@ -78,6 +78,7 @@ const Years_View = () => {
                     </tbody>
 
                 </table>
+                {renderTable()}
 
             </div >
 

@@ -19,7 +19,7 @@ const Formers = () => {
 
         }
         getData();
-        renderTable();
+        // renderTable();
 
 
     }, []);
@@ -77,6 +77,8 @@ const Formers = () => {
 
                     </tbody >
                 </table >
+                {renderTable()}
+
             </div >
         </>
 

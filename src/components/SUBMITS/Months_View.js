@@ -45,11 +45,11 @@ const Months_View = () => {
 
         }
         getData();
+        // renderTable();
 
 
-        renderTable();
 
-    }, []);
+    }, [month]);
 
 
 
@@ -91,20 +91,21 @@ const Months_View = () => {
 
                             </th>
                         </tr>
-                        <tr>
-                            <th colSpan={4} className="text-muted">Totals</th>
+                        {submits?.length > 0 ?
+                            <tr>
+                                <th colSpan={4} className="text-muted">Totals</th>
 
-                            <th className="text-light text-start">{Intl.NumberFormat('en-GB',).format(totals.resources)}
-                            </th>
-                            <th className="text-light text-start">{Intl.NumberFormat('en-GB',).format(totals.points)}
-                            </th>
-                            <th className="text-light text-start">{Intl.NumberFormat('en-GB',).format(totals.trophies)}
-                            </th>
+                                <th className="text-light text-start">{Intl.NumberFormat('en-GB',).format(totals.resources)}
+                                </th>
+                                <th className="text-light text-start">{Intl.NumberFormat('en-GB',).format(totals.points)}
+                                </th>
+                                <th className="text-light text-start">{Intl.NumberFormat('en-GB',).format(totals.trophies)}
+                                </th>
 
-                            {user.is_admin ? <th></th> : null}
+                                {user.is_admin ? <th></th> : null}
 
 
-                        </tr >
+                            </tr > : null}
                         <tr className="text-danger clickable">
                             <th>Name</th>
                             <th>Resources</th>
@@ -120,7 +121,7 @@ const Months_View = () => {
 
                     < tbody >
                         {
-                            submits.map((submit) => (
+                            submits?.length > 0 ? submits.map((submit) => (
                                 <tr key={JSON.stringify(submit)}>
                                     <td>
                                         <NavLink className={submit.color == '#000000' ? 'outline2 nav-link' : 'outline nav-link'}
@@ -152,11 +153,12 @@ const Months_View = () => {
                                     </td > : null}
                                 </tr >
                             ))
+                                : null
                         }
                     </tbody >
 
                 </table >
-
+                {renderTable()}
             </div >
 
         </>
