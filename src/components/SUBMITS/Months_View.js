@@ -59,7 +59,7 @@ const Months_View = () => {
 
     return (
 
-        <>
+        <div>
             <div className="container my-3">
                 <table id="table" className="table table-striped table-dark">
 
@@ -161,7 +161,7 @@ const Months_View = () => {
                 {renderTable()}
             </div >
 
-        </>
+        </div>
 
     )
 
