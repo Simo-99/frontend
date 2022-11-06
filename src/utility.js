@@ -40,7 +40,7 @@ export function useTable(delay = 500) {
 
 }
 
-export function useTableHall(delay = 200) {
+export function useTableHall(delay = 400) {
 
     return () => {
         setTimeout(() => {
