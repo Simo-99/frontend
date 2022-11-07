@@ -87,8 +87,12 @@ const Players_View = () => {
                                 <td>{Intl.NumberFormat('en-GB',).format(submit.trophies)}</td>
                                 <td>
                                     {Intl.NumberFormat('en-GB',).format(submit.new_resources)}
-                                    {submit.new_resources < 280000 ? <a href="#"><i className="text-danger bi bi-emoji-angry-fill outline">
-                                    </i></a> : null}
+                                    {submit.new_resources < 280000 ?
+                                        submit.player_id == 6 ?
+                                            <a href="#"><i className="jonny">
+                                            </i></a>
+                                            : <a href="#"><a href="#"><i className="text-danger bi bi-emoji-angry-fill outline">
+                                            </i></a></a> : null}
                                     {submit.winner_r ? <i className="text-warning bi bi-trophy-fill outline"></i> : null}
                                 </td>
                                 <td>
