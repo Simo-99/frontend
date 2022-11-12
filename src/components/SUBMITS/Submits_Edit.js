@@ -33,7 +33,8 @@ const Submit_Edit = () => {
                 setSubmit(data);
                 setPlayer(data.player);
 
-                console.log(player);
+                console.log(data.player);
+
                 setResouces(data.resources);
                 setPoints(data.points);
                 setTrophies(data.trophies);

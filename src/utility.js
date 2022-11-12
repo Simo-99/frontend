@@ -15,7 +15,7 @@ export function useClient() {
 
 }
 
-export function useTable(delay = 500) {
+export function useTable(delay = 900) {
 
 
     return () => {
@@ -40,7 +40,7 @@ export function useTable(delay = 500) {
 
 }
 
-export function useTableHall(delay = 400) {
+export function useTableHall(delay = 900) {
 
     return () => {
         setTimeout(() => {
