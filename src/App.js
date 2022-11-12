@@ -27,7 +27,8 @@ import { Routes, Route } from 'react-router-dom';
 
 const ROLES = {
   'User': 0,
-  'Admin': 1
+  'Helper': 1,
+  'Admin': 2
 }
 
 function App() {
