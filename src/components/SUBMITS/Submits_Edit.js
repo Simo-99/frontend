@@ -34,12 +34,12 @@ const Submit_Edit = () => {
                 setPlayer(data.player);
 
                 setResouces(data.player.resources);
-                setPoints(data.player.points);
-                setTrophies(data.player.trophies);
+                setPoints(data.points);
+                setTrophies(data.trophies);
 
-                setNew_points(data.player.new_points);
-                setNew_resources(data.player.new_resources);
-                setNew_trophies(data.player.new_trophies);
+                setNew_points(data.new_points);
+                setNew_resources(data.new_resources);
+                setNew_trophies(data.new_trophies);
 
 
             }
