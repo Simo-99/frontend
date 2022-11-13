@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useClient, useTable } from "../../utility";
+import { useClient, useTable, canManage } from "../../utility";
 import { NavLink } from 'react-router-dom';
 
 
@@ -51,7 +51,7 @@ const Formers = () => {
                                 </td>
                                 <td>{player.color}</td>
                                 {
-                                    user.is_admin
+                                    canManage()
                                         ?
                                         <td className="text-center">
                                             <NavLink to={'/players/' + player.id + '/edit'}>
