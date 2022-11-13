@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from 'react'
-import { useClient, getUser, getNames, useTable } from "../../utility";
+import { useClient, getUser, getNames, useTable, canManage } from "../../utility";
 import { NavLink, useParams } from 'react-router-dom';
 
 const Players_View = () => {
@@ -52,7 +52,7 @@ const Players_View = () => {
                         <tr>
                             <th colSpan='9' className="text-center">
                                 <span className={player.color == "#000000" ? 'outline2' : 'outline'} style={{ color: player.color }}>{player.name}</span>
-                                {user.is_admin ? < NavLink to={'/players/' + player.id + '/edit'}>
+                                {canManage() ? < NavLink to={'/players/' + player.id + '/edit'}>
                                     <button type="button" className="btn btn-dark"><i className="bi bi-pen"></i></button>
                                 </NavLink> : null}
                             </th>
@@ -67,7 +67,7 @@ const Players_View = () => {
                             <th>New Points</th>
                             <th>New Trophies</th>
 
-                            {user.is_admin ? <th className="text-center">Actions</th> : null}
+                            {canManage() ? <th className="text-center">Actions</th> : null}
                         </tr>
                     </thead>
                     <tbody>
@@ -104,7 +104,7 @@ const Players_View = () => {
                                     {submit.winner_t && submit.new_trophies > 0 ? <i className="text-warning bi bi-trophy-fill outline"></i> : null}
                                 </td>
                                 {
-                                    user.is_admin ? <td className="text-center">
+                                    canManage() ? <td className="text-center">
                                         <NavLink to={'/submits/' + submit.id + '/edit'}>
                                             <button type="button" className="btn btn-success"><i className="bi bi-pencil-square"></i></button>
                                         </NavLink>

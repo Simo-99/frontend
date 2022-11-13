@@ -33,7 +33,7 @@ const Formers = () => {
                         <tr>
                             <th className="clickable text-danger">Name</th>
                             <th className="clickable text-danger">Color</th>
-                            {user.is_admin ? <th className="clickable text-danger text-center">Actions</th> : null}
+                            {canManage() ? <th className="clickable text-danger text-center">Actions</th> : null}
                         </tr>
                     </thead>
                     <tbody>
