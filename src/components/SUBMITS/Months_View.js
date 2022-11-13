@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from 'react'
-import { useClient, getUser, getNames, useTable } from "../../utility";
+import { useClient, getUser, getNames, useTable, canManage } from "../../utility";
 import { useNavigate, NavLink, useParams, useSearchParams } from 'react-router-dom';
 
 const Months_View = () => {
@@ -72,7 +72,7 @@ const Months_View = () => {
                                     {names[month - 1]}
                                 </NavLink> : null}
                             </th>
-                            {user.is_admin ? <th className="flex-row text-primary  text-center" colSpan={6}>
+                            {canManage() ? <th className="flex-row text-primary  text-center" colSpan={6}>
                                 <NavLink to={'/years/' + year} style={{ textDecoration: 'none' }} reloadDocument>
                                     {year}
                                 </NavLink> -
@@ -102,7 +102,7 @@ const Months_View = () => {
                                 <th className="text-light text-start">{Intl.NumberFormat('en-GB',).format(totals.trophies)}
                                 </th>
 
-                                {user.is_admin ? <th></th> : null}
+                                {canManage() ? <th></th> : null}
 
 
                             </tr > : null}
@@ -114,7 +114,7 @@ const Months_View = () => {
                             <th>New Resources</th>
                             <th>New Points</th>
                             <th>New Trophies</th>
-                            {user.is_admin ? <th className="text-center">Actions</th> : null}
+                            {canManage() ? <th className="text-center">Actions</th> : null}
                         </tr>
 
                     </thead >
@@ -151,7 +151,7 @@ const Months_View = () => {
                                         {Intl.NumberFormat('en-GB',).format(submit.new_trophies)}
                                         {submit.new_trophies > 0 && submit.player_id === winner_t.player_id ? <i className="text-warning bi bi-trophy-fill outline"> </i> : null}
                                     </td>
-                                    {user.is_admin ? <td className="text-center">
+                                    {canManage() ? <td className="text-center">
                                         <NavLink to={'/submits/' + submit.id + '/edit'}> <button type="button"
                                             className="btn btn-success"><i className="bi bi-pencil-square"> </i></button></NavLink>
                                     </td > : null}
