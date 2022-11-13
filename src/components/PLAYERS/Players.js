@@ -49,8 +49,8 @@ const Players = () => {
 
                                 <td className="clickable ">
                                     <div className="d-flex">
-                                        <i className="btn mx-1" style={{ background: player.color, minWidth: '2em', maxHeight: "2em" }}></i>
-                                        <NavLink className="nav-link" to={"/players/" + player.id + "/submits"}>{player.name}                                        </NavLink>
+                                        <span className="btn mx-1" style={{ background: player.color, minWidth: '2em', maxHeight: "2em" }}></span>
+                                        <NavLink className="nav-link" to={"/players/" + player.id + "/submits"}>{player.name}</NavLink>
                                     </div>
                                 </td>
                                 <td>{player.color}</td>

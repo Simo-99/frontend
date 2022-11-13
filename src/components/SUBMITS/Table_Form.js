@@ -136,7 +136,7 @@ const Table_Form = () => {
 
                             <tr key={JSON.stringify(table)}>
 
-                                <td className={table.color === '#000000' ? "outline2" : "outline"} style={{ color: table.color }}>{table.name}</td>
+                                <td className={table.Player.color === '#000000' ? "outline2" : "outline"} style={{ color: table.Player.color }}>{table.Player.name}</td>
                                 <td><input onChange={(e) => tables[index].resources = e.target.value}
                                     onBlur={() => saveRow(table)}
                                     type="text" className="form-control bg-secondary border-dark outline text-white" defaultValue={table.resources} />

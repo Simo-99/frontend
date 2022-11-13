@@ -17,7 +17,7 @@ export function useClient() {
 
 }
 
-export function useTable(delay = 900) {
+export function useTable(delay = 1000) {
 
 
     return () => {
