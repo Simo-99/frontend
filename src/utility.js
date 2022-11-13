@@ -11,7 +11,6 @@ export function useClient() {
 
     if (user?.token) {
         a.defaults.headers.common["Authorization"] = "Bearer " + user?.token;
-        a.defaults.headers.common["Access-Control-Allow-Origin"] = '*';
     }
     return a;
 
