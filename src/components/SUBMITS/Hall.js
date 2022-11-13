@@ -1,38 +1,17 @@
-import React from "react";
 import { useEffect, useState } from 'react'
-import { useClient, getNames, useTableHall } from "../../utility";
+import { getNames, useTableHall, UseAxios } from "../../utility";
 import { NavLink } from 'react-router-dom';
 
 const Hall = () => {
 
     const [submits, setSubmits] = useState([]);
     const renderTable = useTableHall();
-
-
     const names = getNames();
-    const a = useClient();
 
 
     useEffect(() => {
-        async function getData() {
-
-            let data;
-            try {
-
-                data = await a.get('/winners').then(({ data }) => data)
-
-
-            } catch (e) { console.log(e) } finally {
-
-                setSubmits(data);
-
-            }
-
-        }
-
+        const getData = async () => { setSubmits(await UseAxios("/winners")); }
         getData();
-        // renderTable();
-
 
     }, []);
 
