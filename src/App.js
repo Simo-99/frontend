@@ -46,7 +46,7 @@ function App() {
         <Route path="logout" element={<Logout />} />
 
         {/* PRIVATE ROUTES*/}
-        <Route element={<RequireAuth allowedRoles={[ROLES.User, ROLES.Admin]} />}>
+        <Route element={<RequireAuth allowedRoles={[ROLES.User, ROLES.Admin, ROLES.Helper]} />}>
           <Route path="/players" element={<Players />} />
           <Route path="/players/formers" element={<Formers />} />
           <Route path="/players/:id/submits" element={<Players_View />} />

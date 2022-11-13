@@ -7,7 +7,7 @@ const RequireAuth = ({ allowedRoles }) => {
     const location = useLocation();
     const user = getUser();
 
-    // console.log("checking if the route is visible by the user");
+    console.log("checking if the route is visible by the user");
     // console.log(user.token);
 
     return (
