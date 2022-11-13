@@ -34,13 +34,14 @@ const Months_View = () => {
 
             } catch (e) { console.log(e) } finally {
 
-                setWinner_p(dataP.submit);
-                setWinner_t(dataT.submit);
-                setWinner_r(dataR.submit);
+                if (data?.submit) {
+                    setWinner_p(dataP.submit);
+                    setWinner_t(dataT.submit);
+                    setWinner_r(dataR.submit);
 
-                setTotals(data.totals);
-                setSubmits(data.submits);
-
+                    setTotals(data.totals);
+                    setSubmits(data.submits);
+                }
             }
 
         }

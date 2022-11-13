@@ -6,7 +6,8 @@ import DataTable from "datatables.net"
 export function useClient() {
 
     const user = getUser();
-    let a = axios.create({ baseURL: 'https://therockisalie.cyclic.app' });
+    let a = axios.create({ baseURL: 'http://localhost:3000' });
+    //let a = axios.create({ baseURL: 'https://therockisalie.cyclic.app' });
 
     if (user?.token) {
         a.defaults.headers.common["Authorization"] = "Bearer " + user?.token;
