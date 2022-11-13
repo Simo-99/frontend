@@ -23,8 +23,8 @@ const Navbar = () => {
                         <li className="nav-item mx-3"><NavLink className=" bold nav-link  text-success" to="/players">Our Members</NavLink></li>
                         <li className="nav-item mx-3"><NavLink className="bold nav-link  text-success" to="/months">Past Months</NavLink></li>
                         <li className="nav-item mx-3"><NavLink className="bold nav-link  text-success" to="/hall">Hall <i className="bi bi-trophy-fill"></i></NavLink></li>
+                        <li className="nav-item mx-3"><NavLink className="bold nav-link  text-success" to="/players/formers">Former Members</NavLink></li>
 
-                        {canManage() ? < li className="nav-item mx-3"><NavLink className="bold nav-link  text-success" to="/players/formers">Former Members</NavLink></li> : null}
                         {canManage() ? <li className="bold nav-item mx-3"><NavLink className="nav-link active text-success" to="/players/add">Add A New Player</NavLink></li> : null}
                         {canManage() ? <li className="bold nav-item mx-3"><NavLink className="nav-link active text-success" to="/data">Add Data</NavLink></li> : null}
 

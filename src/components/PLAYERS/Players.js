@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react'
-import { useClient, getUser, useTable } from "../../utility";
+import { useClient, getUser, useTable, canManage } from "../../utility";
 import { NavLink } from 'react-router-dom';
 
 const Players = () => {
 
     const [actives, setActives] = useState([])
     const a = useClient()
-    const user = getUser();
     const renderTable = useTable();
 
 
@@ -38,7 +37,7 @@ const Players = () => {
                         <tr>
                             <th className="clickable text-danger">Name</th>
                             <th className="clickable text-danger">Color</th>
-                            {user.is_admin ? <th className="clickable text-danger text-center">Actions</th> : null}
+                            {canManage() ? <th className="clickable text-danger text-center">Actions</th> : null}
                         </tr>
                     </thead>
                     <tbody>
@@ -56,7 +55,7 @@ const Players = () => {
                                 </td>
                                 <td>{player.color}</td>
                                 {
-                                    user.is_admin
+                                    canManage()
                                         ?
                                         <td className="text-center">
                                             <NavLink to={'/players/' + player.id + '/edit'}>
