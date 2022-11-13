@@ -1,5 +1,6 @@
+import React from "react";
 import { useEffect, useState } from 'react'
-import { getNames, useTableHall, UseAxios } from "../../utility";
+import { useClient, getNames, useTableHall, UseAxios } from "../../utility";
 import { NavLink } from 'react-router-dom';
 
 const Hall = () => {
@@ -9,12 +10,7 @@ const Hall = () => {
     const names = getNames();
 
 
-    useEffect(() => {
-        const getData = async () => { setSubmits(await UseAxios("/winners")); }
-        getData();
-
-    }, []);
-
+    useEffect(() => { (async () => { setSubmits(await UseAxios("/winners")); })() }, []);
 
 
 
