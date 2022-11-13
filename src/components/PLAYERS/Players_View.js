@@ -101,7 +101,7 @@ const Players_View = () => {
                                 </td>
                                 <td>
                                     {Intl.NumberFormat('en-GB',).format(submit.new_trophies)}
-                                    {submit.winner_t ? <i className="text-warning bi bi-trophy-fill outline"></i> : null}
+                                    {submit.winner_t && submit.new_trophies > 0 ? <i className="text-warning bi bi-trophy-fill outline"></i> : null}
                                 </td>
                                 {
                                     user.is_admin ? <td className="text-center">
