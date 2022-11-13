@@ -7,12 +7,28 @@ export function useClient() {
 
     const user = getUser();
     //let a = axios.create({ baseURL: 'http://localhost:3000' });
-    let a = axios.create({ baseURL: 'https://therockisalie.cyclic.app' });
+    let a = axios.create({ baseURL: 'http://localhost:3000' });
+
+    //let a = axios.create({ baseURL: 'https://therockisalie.cyclic.app' });
 
     if (user?.token) {
         a.defaults.headers.common["Authorization"] = "Bearer " + user?.token;
     }
     return a;
+
+}
+
+export async function UseAxios(url, method = 'GET', params = {}) {
+
+    const a = useClient();
+    const returnData = await a({
+        method: method,
+        url: url,
+        data: params
+    }
+    ).then(({ data }) => data);
+
+    return returnData;
 
 }
 
