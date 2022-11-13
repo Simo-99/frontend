@@ -1,26 +1,17 @@
 import { useEffect, useState } from 'react'
-import { useClient, useTable, canManage } from "../../utility";
+import { useClient, useTable, canManage, UseAxios } from "../../utility";
 import { NavLink } from 'react-router-dom';
 
 
 const Formers = () => {
 
     const [players, setPlayers] = useState([])
-    const a = useClient()
-    const user = JSON.parse(localStorage.getItem("user"));
     const renderTable = useTable();
 
-
     useEffect(() => {
-        async function getData() {
 
-            let data;
-            try { data = await a.get('/players?s=hidden&o=asc').then(({ data }) => data) } catch (e) { console.log(e) } finally { setPlayers(data); }
-
-        }
+        async function getData() { setPlayers(await UseAxios("/players?s=hidden&o=asc")); }
         getData();
-        // renderTable();
-
 
     }, []);
 

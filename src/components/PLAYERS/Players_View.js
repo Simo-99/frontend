@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from 'react'
-import { useClient, getUser, getNames, useTable, canManage } from "../../utility";
+import { getUser, getNames, useTable, canManage, UseAxios } from "../../utility";
 import { NavLink, useParams } from 'react-router-dom';
 
 const Players_View = () => {
@@ -11,30 +11,20 @@ const Players_View = () => {
 
     const { id } = useParams();
     const names = getNames();
-    const a = useClient();
-    const user = getUser();
 
 
 
     useEffect(() => {
         async function getData() {
 
-            let data;
-
-            try {
-                data = await a.get('/players/' + id + "?s=yes").then(({ data }) => data)
-
-            } catch (e) { console.log(e) } finally {
-
-                setPlayer(data.player);
-                setSubmits(data.submits);
-
-            }
+            const data = await UseAxios("/players/" + id + "?s=yes");
+            setPlayer(data.player);
+            setSubmits(data.submits);
 
         }
 
         getData();
-        // renderTable();
+
     }, []);
 
 

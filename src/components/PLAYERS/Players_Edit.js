@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useClient } from "../../utility";
+import { UseAxios } from "../../utility";
 import React from "react";
 
 const Players_Edit = () => {
@@ -8,8 +8,6 @@ const Players_Edit = () => {
     const [color, setColor] = useState("#000000");
     const [inside, setInside] = useState(0);
     const { id } = useParams()
-
-    const a = useClient();
 
     const navigate = useNavigate()
 
@@ -19,18 +17,10 @@ const Players_Edit = () => {
         getPlayer();
         async function getPlayer() {
 
-            let data;
-            try { data = await a.get('/players/' + id).then(({ data }) => data) } catch (e) { console.log(e) } finally {
-
-
-                setInside(data.inside);
-                setColor(data.color);
-                setName(data.name);
-
-
-            }
-
-
+            const data = await UseAxios('/players/' + id);
+            setInside(data.inside);
+            setColor(data.color);
+            setName(data.name);
 
         }
 
@@ -41,7 +31,7 @@ const Players_Edit = () => {
     const handleSubmit = async (e) => {
 
         e.preventDefault();
-        await a.put("/players/" + id, { name: name, color: color, inside: inside });
+        await UseAxios("/players/" + id, "PUT", { name: name, color: color, inside: inside });
         navigate("/players/" + id + "/submits");
 
     }

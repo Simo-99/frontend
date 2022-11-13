@@ -1,11 +1,10 @@
 import { useEffect } from 'react'
-import { useClient } from "../../utility";
+import { UseAxios } from "../../utility";
 import { useNavigate, useParams } from 'react-router-dom';
 import React from "react";
 
 const Players_Delete = () => {
 
-    const a = useClient()
     const { id } = useParams()
     const navigate = useNavigate()
 
@@ -14,8 +13,8 @@ const Players_Delete = () => {
 
         async function deletePlayer() {
 
-            await a.delete('/players/' + id)
-            navigate(-1)
+            await UseAxios('/players/' + id, "DELETE");
+            navigate(-1);
         }
 
         deletePlayer()

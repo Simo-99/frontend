@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useClient } from "../../utility";
+import { useClient, UseAxios } from "../../utility";
 import React from "react";
 
 const Players_Add = () => {
@@ -14,7 +14,8 @@ const Players_Add = () => {
     const handleSubmit = async (e) => {
 
         e.preventDefault();
-        await a.post("/players", { name: username, color: color, inside: 1 });
+        await UseAxios("/players", "POST", { name: username, color: color, inside: 1 });
+
         navigate("/players");
 
     }
