@@ -1,13 +1,14 @@
 import React from "react";
 import { useEffect, useState } from 'react'
-import { getUser, getNames, useTable, canManage, UseAxios } from "../../utility";
+import { getNames, UseTable, canManage, UseAxios } from "../../utility";
 import { NavLink, useParams } from 'react-router-dom';
 
 const Players_View = () => {
 
     const [player, setPlayer] = useState({});
     const [submits, setSubmits] = useState([]);
-    const renderTable = useTable();
+
+    const [data, setData] = useState({ totals: {}, submits: {} });
 
     const { id } = useParams();
     const names = getNames();
@@ -15,15 +16,14 @@ const Players_View = () => {
 
 
     useEffect(() => {
-        async function getData() {
+        (async function getData() {
 
             const data = await UseAxios("/players/" + id + "?s=yes");
             setPlayer(data.player);
             setSubmits(data.submits);
 
-        }
+        })()
 
-        getData();
 
     }, []);
 
@@ -105,7 +105,7 @@ const Players_View = () => {
                     </tbody >
 
                 </table >
-                {renderTable()}
+                {UseTable()}
 
             </div >
         </>

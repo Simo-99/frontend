@@ -1,19 +1,13 @@
 import { useEffect, useState } from 'react'
-import { useClient, useTable, canManage, UseAxios } from "../../utility";
+import { UseTable, canManage, UseAxios } from "../../utility";
 import { NavLink } from 'react-router-dom';
 
 
 const Formers = () => {
 
     const [players, setPlayers] = useState([])
-    const renderTable = useTable();
 
-    useEffect(() => {
-
-        async function getData() { setPlayers(await UseAxios("/players?s=hidden&o=asc")); }
-        getData();
-
-    }, []);
+    useEffect(() => { (async function getData() { setPlayers(await UseAxios("/players?s=hidden&o=asc")); })() }, []);
 
     return (
 
@@ -68,7 +62,7 @@ const Formers = () => {
 
                     </tbody >
                 </table >
-                {renderTable()}
+                {UseTable()}
 
             </div >
         </>

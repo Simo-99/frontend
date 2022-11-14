@@ -1,12 +1,10 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useClient, UseAxios } from "../../utility";
-import React from "react";
+import { UseAxios } from "../../utility";
 
 const Players_Add = () => {
     const [username, setUsername] = useState("");
     const [color, setColor] = useState("#000000");
-    const a = useClient();
 
     const navigate = useNavigate()
 

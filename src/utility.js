@@ -48,8 +48,6 @@ export function useTable(delay = 1000) {
 }
 export function UseTable(delay = 1000) {
 
-
-
     setTimeout(() => {
 
         if ($.fn.dataTable.isDataTable('#table'))
