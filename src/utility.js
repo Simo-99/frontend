@@ -107,6 +107,6 @@ export function getNames() { return ["", "January", "February", "March", "April"
 export function getUser() { return JSON.parse(localStorage.getItem("user")) }
 export function getToken() { return getUser()?.token }
 export function getRole() { return getUser()?.is_admin }
-export function canManage() { return getUser()?.is_admin == 2 }
+export function canManage() { return getRole() == 2 }
 
 
