@@ -20,9 +20,7 @@ const Months_View = () => {
             setWinner_p(await UseAxios('/months/' + month + "?best=yes&o=p&y=" + year));
             setWinner_t(await UseAxios('/months/' + month + "?best=yes&o=t&y=" + year));
             setWinner_r(await UseAxios('/months/' + month + "?best=yes&o=r&y=" + year));
-
             setData(await UseAxios('/months/' + month + "?t=yes&y=" + year));
-
 
         })()
     }, [month]);
@@ -112,17 +110,17 @@ const Months_View = () => {
                                                     : <a href="#"><a href="#"><i className="text-danger bi bi-emoji-angry-fill outline">
                                                     </i></a></a> : null}
 
-                                            {submit[1].player_id === winner_r.player_id ? <i className="text-warning bi bi-trophy-fill outline"> </i> : null}
+                                            {submit[1].player_id == winner_r.player_id ? <i className="text-warning bi bi-trophy-fill outline"> </i> : null}
 
 
                                         </td>
                                         <td>
                                             {Intl.NumberFormat('en-GB',).format(submit[1].new_points)}
-                                            {submit[1].player_id === winner_p.player_id ? <i className="text-warning bi bi-trophy-fill outline"> </i> : null}
+                                            {submit[1].player_id == winner_p.player_id ? <i className="text-warning bi bi-trophy-fill outline"> </i> : null}
                                         </td>
                                         <td>
                                             {Intl.NumberFormat('en-GB',).format(submit[1].new_trophies)}
-                                            {submit[1].new_trophies > 0 && submit[1].player_id === winner_t.player_id ? <i className="text-warning bi bi-trophy-fill outline"> </i> : null}
+                                            {submit[1].new_trophies > 0 && submit[1].player_id == winner_t.player_id ? <i className="text-warning bi bi-trophy-fill outline"> </i> : null}
                                         </td>
                                         {canManage() ? <td className="text-center">
                                             <NavLink to={'/submits/' + submit[1].id + '/edit'}> <button type="button"

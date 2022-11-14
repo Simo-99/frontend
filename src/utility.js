@@ -20,37 +20,12 @@ export async function UseAxios(url, method = 'GET', params = {}) {
     return await useClient()({ method: method, url: url, data: params }).then(({ data }) => data);
 }
 
-export function useTable(delay = 1000) {
 
-
-    return () => {
-        setTimeout(() => {
-
-            if ($.fn.dataTable.isDataTable('#table'))
-                $('#table').DataTable();
-            else
-                $('#table').DataTable({
-
-                    paging: false,
-                    searching: false,
-                    "bInfo": false,
-                    "order": [],
-
-                });
-
-        }, delay);
-
-
-    }
-
-}
 export function UseTable(delay = 1000) {
 
     setTimeout(() => {
 
-        if ($.fn.dataTable.isDataTable('#table'))
-            $('#table').DataTable();
-        else
+        if (!$.fn.dataTable.isDataTable('#table'))
             $('#table').DataTable({
 
                 paging: false,

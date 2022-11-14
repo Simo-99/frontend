@@ -11,7 +11,9 @@ const Players_View = () => {
 
 
 
-    useEffect(() => { (async function getData() { setData(await UseAxios("/players/" + id + "?s=yes")); })() }, []);
+    useEffect(() => {
+        (async function getData() { setData(await UseAxios("/players/" + id + "?s=yes")); })()
+    }, []);
 
 
     return (
