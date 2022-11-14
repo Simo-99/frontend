@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useClient, getNames } from "../../utility";
+import { useClient, UseAxios } from "../../utility";
 
 const Table_Form = () => {
 
@@ -10,42 +10,18 @@ const Table_Form = () => {
     let [month, setMonth] = useState(day.getMonth());
     let [year, setYear] = useState(day.getFullYear());
 
-
-    const names = getNames();
     const Navigate = useNavigate();
     const a = useClient();
 
+    useEffect(() => { (async function getPlayer() { setTables(await UseAxios("/tables")) })() }, []);
 
-    useEffect(() => {
-        getPlayer();
-        async function getPlayer() {
-
-            let data
-            try { data = await a.get('/tables').then(({ data }) => data) } catch (e) { console.log(e) } finally { setTables(data); }
-        }
-    }, []);
-
-    function timeout(delay) {
-        return new Promise(res => setTimeout(res, delay));
-    }
     const save = async (e) => {
 
         e.preventDefault();
         tables.map(async (table) => {
 
-            try {
-                if (table.resources > 0 || table.points > 0 || table.trophies > 0)
-                    await a.put("/tables/" + table.player, {
-
-                        resources: table.resources,
-                        points: table.points,
-                        trophies: table.trophies,
-
-                    })
-
-            } catch (err) { console.log(err) }
-
-
+            if (table.resources > 0 || table.points > 0 || table.trophies > 0)
+                await UseAxios("/tables/" + table.player, "PUT", { resources: table.resources, points: table.points, trophies: table.trophies });
 
         });
 
@@ -55,54 +31,25 @@ const Table_Form = () => {
         e.preventDefault();
         save(e)
 
-
-
         if (window.confirm("these data will be added into the DB, are you sure?")) {
-            await timeout(1000);
             tables.map(async (table) => {
 
                 if (table.resources > 0 || table.points > 0 || table.trophies > 0)
-                    try {
-                        console.log(table);
-                        await a.post("/submits", {
-
-                            resources: table.resources,
-                            points: table.points,
-                            trophies: table.trophies,
-                            player_id: table.player,
-                            month: month,
-                            year: year
-                        })
-
-
-
-                    } catch (err) { console.log(err) }
-
+                    await UseAxios("/submits/", "POST", {
+                        resources: table.resources, points: table.points, trophies: table.trophies,
+                        player_id: table.player, month: month, year: year
+                    });
 
 
             });
 
-            //Navigate("/months/" + month + "?y=" + year);
+            Navigate("/months/" + month + "?y=" + year);
         }
 
 
     }
 
-    const saveRow = async (table) => {
-
-        try {
-
-            await a.put("/tables/" + table.id, {
-
-                resources: table.resources,
-                points: table.points,
-                trophies: table.trophies,
-
-            })
-
-        } catch (err) { console.log(err) }
-
-    }
+    const saveRow = async (table) => await UseAxios("/tables/" + table.player, "PUT", { resources: table.resources, points: table.points, trophies: table.trophies })
 
     return (
         <>

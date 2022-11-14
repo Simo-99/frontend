@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useClient, useTable, getNames } from "../../utility";
+import { UseAxios, useTable, getNames } from "../../utility";
 import { NavLink, useParams } from 'react-router-dom';
 import React from "react";
 
@@ -7,39 +7,21 @@ const Years_View = () => {
 
     const [totals, setTotals] = useState({});
     const [submits, setSubmits] = useState([]);
+    const [data, setData] = useState({});
+
     const renderTable = useTable();
 
     const { year } = useParams();
     const names = getNames();
-    const a = useClient();
-
 
 
     useEffect(() => {
+        (async () => {
 
-        async function getData() {
+            setData(await UseAxios('/years/' + year + "?t=yes"))
 
-            let data;
-
-            try {
-                data = await a.get('/years/' + year + "?t=yes").then(({ data }) => data)
-
-            } catch (e) { console.log(e) } finally {
-
-                setTotals(data.totals);
-                setSubmits(data.submits);
-
-
-            }
-
-        }
-
-        getData();
-        // renderTable();
-
-    }, []);
-
-
+        })();
+    }, [year]);
 
 
     return (
@@ -53,8 +35,8 @@ const Years_View = () => {
                     <thead>
                         <tr>
                             <th className="text-primary">{year}</th>
-                            <th className="text-warning">{Intl.NumberFormat('en-GB',).format(totals.resources)}</th>
-                            <th className="text-warning">{Intl.NumberFormat('en-GB',).format(totals.points)}</th>
+                            <th className="text-warning">{Intl.NumberFormat('en-GB',).format(data.totals.resources)}</th>
+                            <th className="text-warning">{Intl.NumberFormat('en-GB',).format(data.totals.points)}</th>
                         </tr>
                         <tr className="clickable text-danger">
                             <th>Month</th>
@@ -63,7 +45,7 @@ const Years_View = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {submits.map((submit) => (
+                        {data.submits.map((submit) => (
 
                             <tr key={submit.month}>
                                 <td>

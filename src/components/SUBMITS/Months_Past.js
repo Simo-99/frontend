@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useClient, getNames, useTable } from "../../utility";
+import { UseAxios, getNames, useTable } from "../../utility";
 import { NavLink } from 'react-router-dom';
 import React from "react";
 
@@ -9,33 +9,8 @@ const Months_Past = () => {
     const renderTable = useTable();
 
     const names = getNames();
-    const a = useClient();
 
-
-
-    useEffect(() => {
-        async function getData() {
-
-            let data;
-
-            try {
-                data = await a.get('/months').then(({ data }) => data)
-
-            } catch (e) { console.log(e) } finally {
-
-                setSubmits(data);
-
-            }
-
-        }
-        getData();
-        // renderTable();
-
-    }, []);
-
-
-
-
+    useEffect(() => { (async () => { setSubmits(await UseAxios("/months")); })() }, []);
 
     return (
 

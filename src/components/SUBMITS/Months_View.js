@@ -1,6 +1,5 @@
-import React from "react";
 import { useEffect, useState } from 'react'
-import { useClient, getUser, getNames, useTable, canManage } from "../../utility";
+import { useClient, getUser, getNames, useTable, canManage, UseAxios } from "../../utility";
 import { useNavigate, NavLink, useParams, useSearchParams } from 'react-router-dom';
 
 const Months_View = () => {
@@ -17,42 +16,23 @@ const Months_View = () => {
     const [search,] = useSearchParams();
     const names = getNames();
     const year = search.get("y");
-    const a = useClient();
-    const user = getUser();
+
 
 
     useEffect(() => {
-        async function getData() {
+        (async () => {
 
-            let data; let dataR; let dataP; let dataT;
-            try {
-                dataR = await a.get('/months/' + month + "?best=yes&o=r&y=" + year).then(({ data }) => data)
-                dataP = await a.get('/months/' + month + "?best=yes&o=p&y=" + year).then(({ data }) => data)
-                dataT = await a.get('/months/' + month + "?best=yes&o=t&y=" + year).then(({ data }) => data)
-                data = await a.get('/months/' + month + "?t=yes&y=" + year).then(({ data }) => data)
+            setWinner_p(await UseAxios('/months/' + month + "?best=yes&o=p&y=" + year));
+            setWinner_t(await UseAxios('/months/' + month + "?best=yes&o=t&y=" + year));
+            setWinner_r(await UseAxios('/months/' + month + "?best=yes&o=r&y=" + year));
 
-
-            } catch (e) { console.log(e) } finally {
-
-                setWinner_p(dataP.submit);
-                setWinner_t(dataT.submit);
-                setWinner_r(dataR.submit);
-
-                setTotals(data.totals);
-                setSubmits(data.submits);
-            }
-
-        }
-        getData();
-        // renderTable();
+            let data = await UseAxios('/months/' + month + "?t=yes&y=" + year);
+            setTotals(data.totals);
+            setSubmits(data.submits);
 
 
-
+        })()
     }, [month]);
-
-
-
-
 
 
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useClient, getNames } from "../../utility";
+import { useClient, getNames, UseAxios } from "../../utility";
 
 const Submit_Edit = () => {
     const [submit, setSubmit] = useState({});
@@ -24,28 +24,21 @@ const Submit_Edit = () => {
 
 
     useEffect(() => {
-        getPlayer();
-        async function getPlayer() {
 
-            let data
-            try { data = await a.get('/submits/' + id + "?p=yes").then(({ data }) => data) } catch (e) { console.log(e) } finally {
+        (async function getPlayer() {
 
-                setSubmit(data);
-                setPlayer(data.player);
+            const data = await UseAxios('/submits/' + id + "?p=yes");
+            setSubmit(data);
+            setPlayer(data.player);
+            setResouces(data.resources);
+            setPoints(data.points);
+            setTrophies(data.trophies);
 
-                console.log(data);
+            setNew_points(data.new_points);
+            setNew_resources(data.new_resources);
+            setNew_trophies(data.new_trophies);
 
-                setResouces(data.resources);
-                setPoints(data.points);
-                setTrophies(data.trophies);
-
-                setNew_points(data.new_points);
-                setNew_resources(data.new_resources);
-                setNew_trophies(data.new_trophies);
-
-
-            }
-        }
+        })()
     }, []);
 
 
@@ -53,9 +46,7 @@ const Submit_Edit = () => {
     const handleSubmit = async (e) => {
 
         e.preventDefault();
-        await a.put("/submits/" + id + "?_method=PUT",
-            { resources: resources, new_resources: new_resources, points: points, new_points: new_points, trophies: trophies, new_trophies: new_trophies });
-
+        await UseAxios('/submits/' + id + "?p=yes", "PUT", { resources: resources, new_resources: new_resources, points: points, new_points: new_points, trophies: trophies, new_trophies: new_trophies });
         navigate(-1);
 
     }
