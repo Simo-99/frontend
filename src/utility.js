@@ -6,9 +6,9 @@ import DataTable from "datatables.net"
 export function useClient() {
 
     //# for just local testing
-    //let a = axios.create({ baseURL: 'http://localhost:3000' }); 
+    let a = axios.create({ baseURL: 'http://localhost:3000' });
 
-    let a = axios.create({ baseURL: 'https://therockisalie.cyclic.app' });
+    //let a = axios.create({ baseURL: 'https://therockisalie.cyclic.app' });
 
     if (getToken()) {
         a.defaults.headers.common["Authorization"] = "Bearer " + getToken();
@@ -19,9 +19,9 @@ export function useClient() {
 
 export async function UseAxios(url, method = 'GET', params = {}) {
 
-    console.log(url);
-    return await useClient()({ method: method, url: url, data: params }).then(({ data }) => data);
+    //console.log(method + " - " + url);
 
+    return await useClient()({ method: method, url: url, data: params }).then(({ data }) => data);
 }
 
 export function useTable(delay = 1000) {
