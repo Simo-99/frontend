@@ -7,27 +7,9 @@ const Players_Show = () => {
     const { id } = useParams()
     const navigate = useNavigate()
 
-    useEffect(() => {
-        async function showPlayer() {
+    useEffect(() => { (async () => { await UseAxios("/players/" + id, "PUT", { inside: 1 }); navigate(-1); })() }, []);
 
-            await UseAxios("/players/" + id, "PUT", { inside: 1 });
-            navigate(-1);
-        }
-        showPlayer();
-    }, []);
-
-
-
-
-
-
-    return (
-
-        <>
-
-        </>
-
-    )
+    return (<></>)
 
 }
 export default Players_Show

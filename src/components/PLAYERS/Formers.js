@@ -7,7 +7,7 @@ const Formers = () => {
 
     const [players, setPlayers] = useState([])
 
-    useEffect(() => { (async function getData() { setPlayers(await UseAxios("/players?s=hidden&o=asc")); })() }, []);
+    useEffect(() => { (async () => { setPlayers(await UseAxios("/players?s=hidden&o=asc")); })() }, []);
 
     return (
 

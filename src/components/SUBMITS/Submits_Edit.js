@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useClient, getNames, UseAxios } from "../../utility";
+import { getName, UseAxios } from "../../utility";
 
 const Submit_Edit = () => {
     const [submit, setSubmit] = useState({});
@@ -15,10 +15,8 @@ const Submit_Edit = () => {
     const [new_trophies, setNew_trophies] = useState();
 
 
-    const names = getNames();
     const { id } = useParams();
 
-    const a = useClient();
 
     const navigate = useNavigate()
 
@@ -60,7 +58,7 @@ const Submit_Edit = () => {
 
                     <thead>
                         <tr>
-                            <td className='text-primary'>{submit.year} - {names[submit.month]}</td>
+                            <td className='text-primary'>{submit.year} - {getName(submit.month)}</td>
                             <td className='text-center' style={{ color: player.color }} colSpan={10}>{player.name}</td>
                         </tr >
                         <tr className='text-danger'>

@@ -14,15 +14,13 @@ const Players_Edit = () => {
 
     useEffect(() => {
 
-        getPlayer();
-        async function getPlayer() {
-
+        (async () => {
             const data = await UseAxios('/players/' + id);
             setInside(data.inside);
             setColor(data.color);
             setName(data.name);
 
-        }
+        })()
 
 
     }, []);

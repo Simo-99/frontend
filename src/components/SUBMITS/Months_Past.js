@@ -1,14 +1,11 @@
 import { useEffect, useState } from 'react'
-import { UseAxios, getNames, useTable } from "../../utility";
+import { UseAxios, getName, UseTable } from "../../utility";
 import { NavLink } from 'react-router-dom';
-import React from "react";
 
 const Months_Past = () => {
 
     const [submits, setSubmits] = useState([]);
-    const renderTable = useTable();
 
-    const names = getNames();
 
     useEffect(() => { (async () => { setSubmits(await UseAxios("/months")); })() }, []);
 
@@ -38,7 +35,7 @@ const Months_Past = () => {
                                     <NavLink className="nav-link outline" to={'/years/' + month.year}>{month.year}</NavLink>
                                 </td>
                                 <td>
-                                    <NavLink className="nav-link outline" to={'/months/' + month.month + '?y=' + month.year}>{names[month.month]}</NavLink>
+                                    <NavLink className="nav-link outline" to={'/months/' + month.month + '?y=' + month.year}>{getName(month.month)}</NavLink>
                                 </td>
                                 <td> {Intl.NumberFormat('en-GB',).format(month.resources)}</td>
                                 <td>{Intl.NumberFormat('en-GB',).format(month.points)}</td>
@@ -50,7 +47,7 @@ const Months_Past = () => {
                     </tbody>
 
                 </table >
-                {renderTable()}
+                {UseTable()}
 
             </div >
         </>

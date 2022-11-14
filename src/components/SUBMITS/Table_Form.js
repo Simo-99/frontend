@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useClient, UseAxios } from "../../utility";
+import { UseAxios } from "../../utility";
 
 const Table_Form = () => {
 
@@ -11,7 +11,7 @@ const Table_Form = () => {
     let [year, setYear] = useState(day.getFullYear());
 
     const Navigate = useNavigate();
-    const a = useClient();
+
 
     useEffect(() => { (async function getPlayer() { setTables(await UseAxios("/tables")) })() }, []);
 

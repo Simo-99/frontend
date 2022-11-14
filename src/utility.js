@@ -66,43 +66,43 @@ export function UseTable(delay = 1000) {
 
 
 }
-export function useTableHall(delay = 900) {
+export function UseTableHall(delay = 900) {
 
-    return () => {
-        setTimeout(() => {
+    setTimeout(() => {
 
-            if ($.fn.dataTable.isDataTable('#table'))
-                $('#table').DataTable();
-            else
-                $('#table').DataTable({
+        if ($.fn.dataTable.isDataTable('#table'))
+            $('#table').DataTable();
+        else
+            $('#table').DataTable({
 
-                    paging: false,
-                    searching: false,
-                    "bInfo": false,
-                    "order": [],
-                    "aoColumnDefs": [{ "sType": "pct", "aTargets": [3] }]
+                paging: false,
+                searching: false,
+                "bInfo": false,
+                "order": [],
+                "aoColumnDefs": [{ "sType": "pct", "aTargets": [3] }]
 
-                });
+            });
 
-        }, delay);
+    }, delay);
 
-        $.fn.dataTableExt.oSort['pct-asc'] = function (x, y) {
-            x = parseFloat(x);
-            y = parseFloat(y);
+    $.fn.dataTableExt.oSort['pct-asc'] = function (x, y) {
+        x = parseFloat(x);
+        y = parseFloat(y);
 
-            return ((x < y) ? -1 : ((x > y) ? 1 : 0));
-        };
+        return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+    };
 
-        $.fn.dataTableExt.oSort['pct-desc'] = function (x, y) {
-            x = parseFloat(x);
-            y = parseFloat(y);
+    $.fn.dataTableExt.oSort['pct-desc'] = function (x, y) {
+        x = parseFloat(x);
+        y = parseFloat(y);
 
-            return ((x < y) ? 1 : ((x > y) ? -1 : 0));
-        };
-    }
+        return ((x < y) ? 1 : ((x > y) ? -1 : 0));
+    };
+
 }
 
 
+export function getName(month) { return getNames()[month] }
 export function getNames() { return ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"] }
 export function getUser() { return JSON.parse(localStorage.getItem("user")) }
 export function getToken() { return getUser()?.token }

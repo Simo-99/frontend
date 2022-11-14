@@ -1,19 +1,12 @@
-import React from "react";
 import { useEffect, useState } from 'react'
-import { getNames, useTableHall, UseAxios } from "../../utility";
+import { getName, UseTableHall, UseAxios } from "../../utility";
 import { NavLink } from 'react-router-dom';
 
 const Hall = () => {
 
     const [submits, setSubmits] = useState([]);
-    const renderTable = useTableHall();
-    const names = getNames();
-
 
     useEffect(() => { (async () => { setSubmits(await UseAxios("/winners")); })() }, []);
-
-
-
 
     return (
 
@@ -33,7 +26,7 @@ const Hall = () => {
                     {submits.map((submit) => (
                         < tr key={JSON.stringify(submit)} >
                             <td><NavLink className="nav-link outline" to={"/years/" + submit.year}>{submit.year}</NavLink></td>
-                            <td><NavLink className="nav-link outline" to={"/months/" + submit.month + "?y=" + submit.year}>{names[submit.month]}</NavLink></td>
+                            <td><NavLink className="nav-link outline" to={"/months/" + submit.month + "?y=" + submit.year}>{getName(submit.month)}</NavLink></td>
                             <td>
                                 {Intl.NumberFormat('en-GB',).format(submit.res.new_resources)}
                                 <NavLink to={"/players/" + submit.res.player_id + "/submits"} className={submit.res.player.color == '#000000' ? 'outline2' : 'outline'} style={{ color: submit.res.player.color, textDecoration: 'none' }}>{submit.res.player.name}</NavLink>
@@ -46,7 +39,7 @@ const Hall = () => {
                     ))}
                 </tbody>
             </table>
-            {renderTable()}
+            {UseTableHall()}
 
 
         </div >

@@ -1,35 +1,17 @@
-import React from "react";
 import { useEffect, useState } from 'react'
 import { getNames, UseTable, canManage, UseAxios } from "../../utility";
 import { NavLink, useParams } from 'react-router-dom';
 
 const Players_View = () => {
 
-    const [player, setPlayer] = useState({});
-    const [submits, setSubmits] = useState([]);
 
-    const [data, setData] = useState({ totals: {}, submits: {} });
-
+    const [data, setData] = useState({ player: {}, submits: {} });
     const { id } = useParams();
     const names = getNames();
 
 
 
-    useEffect(() => {
-        (async function getData() {
-
-            setData(await UseAxios("/players/" + id + "?s=yes"));
-
-            setPlayer(data.player);
-            setSubmits(data.submits);
-
-        })()
-
-
-    }, []);
-
-
-
+    useEffect(() => { (async function getData() { setData(await UseAxios("/players/" + id + "?s=yes")); })() }, []);
 
 
     return (
@@ -42,8 +24,8 @@ const Players_View = () => {
                     <thead>
                         <tr>
                             <th colSpan='9' className="text-center">
-                                <span className={player.color == "#000000" ? 'outline2' : 'outline'} style={{ color: player.color }}>{player.name}</span>
-                                {canManage() ? < NavLink to={'/players/' + player.id + '/edit'}>
+                                <span className={data.player.color == "#000000" ? 'outline2' : 'outline'} style={{ color: data.player.color }}>{data.player.name}</span>
+                                {canManage() ? < NavLink to={'/players/' + data.player.id + '/edit'}>
                                     <button type="button" className="btn btn-dark"><i className="bi bi-pen"></i></button>
                                 </NavLink> : null}
                             </th>
@@ -96,7 +78,7 @@ const Players_View = () => {
                                 </td>
                                 {
                                     canManage() ? <td className="text-center">
-                                        <NavLink to={'/submits/' + submit[0] + '/edit'}>
+                                        <NavLink to={'/submits/' + submit[1].id + '/edit'}>
                                             <button type="button" className="btn btn-success"><i className="bi bi-pencil-square"></i></button>
                                         </NavLink>
                                     </td> : null
