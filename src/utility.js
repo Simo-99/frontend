@@ -5,14 +5,12 @@ import DataTable from "datatables.net"
 
 export function useClient() {
 
-    //# for just local testing
     //let a = axios.create({ baseURL: 'http://localhost:3000' });
 
     let a = axios.create({ baseURL: 'https://therockisalie.cyclic.app' });
 
-    if (getToken()) {
-        a.defaults.headers.common["Authorization"] = "Bearer " + getToken();
-    }
+    if (getToken()) a.defaults.headers.common["Authorization"] = "Bearer " + getToken();
+
     return a;
 
 }
