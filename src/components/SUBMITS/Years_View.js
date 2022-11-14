@@ -1,31 +1,14 @@
 import { useEffect, useState } from 'react'
-import { UseAxios, useTable, getNames } from "../../utility";
+import { UseAxios, UseTable, getNames } from "../../utility";
 import { NavLink, useParams } from 'react-router-dom';
 
 const Years_View = () => {
 
-    const [totals, setTotals] = useState({});
-    const [submits, setSubmits] = useState([]);
-
-    const renderTable = useTable();
-
+    const [data, setData] = useState({ totals: {}, submits: {} });
     const { year } = useParams();
     const names = getNames();
 
-    useEffect(() => {
-        (async () => {
-
-            const data = await UseAxios('/years/' + year + "?t=yes");
-            setTotals(data.totals);
-            setSubmits(data.submits);
-
-        })()
-
-    }, [])
-
-
-
-
+    useEffect(() => { (async () => { setData(await UseAxios('/years/' + year + "?t=yes")); })() }, [])
 
     return (
 
@@ -38,8 +21,8 @@ const Years_View = () => {
                     <thead>
                         <tr>
                             <th className="text-primary">{year}</th>
-                            <th className="text-warning">{Intl.NumberFormat('en-GB').format(totals.resources)}</th>
-                            <th className="text-warning">{Intl.NumberFormat('en-GB').format(totals.points)}</th>
+                            <th className="text-warning">{Intl.NumberFormat('en-GB').format(data.totals.resources)}</th>
+                            <th className="text-warning">{Intl.NumberFormat('en-GB').format(data.totals.points)}</th>
                         </tr>
                         <tr className="clickable text-danger">
                             <th>Month</th>
@@ -48,22 +31,22 @@ const Years_View = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {submits.map((submit) => (
+                        {Object.entries(data.submits).map((submit) => (
 
-                            <tr key={submit.month}>
+                            <tr key={submit[0]}>
                                 <td>
-                                    <NavLink className="nav-link outline" to={'/months/' + submit.month + '?y=' + submit.year}>
-                                        {names[submit.month]} {submit.id}</NavLink>
+                                    <NavLink className="nav-link outline" to={'/months/' + submit[1].month + '?y=' + submit[1].year}>
+                                        {names[submit[1].month]} {submit[0].id}</NavLink>
                                 </td>
-                                <td>{Intl.NumberFormat('en-GB').format(submit.resources)}</td>
-                                <td>{Intl.NumberFormat('en-GB').format(submit.points)}</td>
+                                <td>{Intl.NumberFormat('en-GB').format(submit[1].resources)}</td>
+                                <td>{Intl.NumberFormat('en-GB').format(submit[1].points)}</td>
                             </tr>
 
                         ))}
                     </tbody>
 
                 </table>
-                {renderTable()}
+                {UseTable()}
 
             </div >
 
