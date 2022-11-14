@@ -46,7 +46,28 @@ export function useTable(delay = 1000) {
     }
 
 }
+export function UseTable(delay = 1000) {
 
+
+
+    setTimeout(() => {
+
+        if ($.fn.dataTable.isDataTable('#table'))
+            $('#table').DataTable();
+        else
+            $('#table').DataTable({
+
+                paging: false,
+                searching: false,
+                "bInfo": false,
+                "order": [],
+
+            });
+
+    }, delay);
+
+
+}
 export function useTableHall(delay = 900) {
 
     return () => {
