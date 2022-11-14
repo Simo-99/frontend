@@ -18,7 +18,8 @@ const Players_View = () => {
     useEffect(() => {
         (async function getData() {
 
-            const data = await UseAxios("/players/" + id + "?s=yes");
+            setData(await UseAxios("/players/" + id + "?s=yes"));
+
             setPlayer(data.player);
             setSubmits(data.submits);
 
@@ -61,41 +62,41 @@ const Players_View = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {submits.map((submit) => (
-                            < tr key={submit.id} >
+                        {Object.entries(data.submits).map((submit) => (
+                            < tr key={submit[0]} >
                                 <td>
-                                    <NavLink className="nav-link outline" to={'/years/' + submit.year}>
-                                        {submit.year}
+                                    <NavLink className="nav-link outline" to={'/years/' + submit[1].year}>
+                                        {submit[1].year}
                                     </NavLink>
                                 </td>
                                 <td>
-                                    <NavLink className="nav-link outline" to={'/months/' + submit.month + '?y=' + submit.year}>
-                                        {names[submit.month]}</NavLink>
+                                    <NavLink className="nav-link outline" to={'/months/' + submit[1].month + '?y=' + submit[1].year}>
+                                        {names[submit[1].month]}</NavLink>
                                 </td>
-                                <td>{Intl.NumberFormat('en-GB',).format(submit.resources)}</td>
-                                <td>{Intl.NumberFormat('en-GB',).format(submit.points)}</td>
-                                <td>{Intl.NumberFormat('en-GB',).format(submit.trophies)}</td>
+                                <td>{Intl.NumberFormat('en-GB',).format(submit[1].resources)}</td>
+                                <td>{Intl.NumberFormat('en-GB',).format(submit[1].points)}</td>
+                                <td>{Intl.NumberFormat('en-GB',).format(submit[1].trophies)}</td>
                                 <td>
-                                    {Intl.NumberFormat('en-GB',).format(submit.new_resources)}
-                                    {submit.new_resources < 280000 ?
-                                        submit.player_id == 6 ?
+                                    {Intl.NumberFormat('en-GB',).format(submit[1].new_resources)}
+                                    {submit[1].new_resources < 280000 ?
+                                        submit[1].player_id == 6 ?
                                             <a href="#"><i className="jonny">
                                             </i></a>
                                             : <a href="#"><a href="#"><i className="text-danger bi bi-emoji-angry-fill outline">
                                             </i></a></a> : null}
-                                    {submit.winner_r ? <i className="text-warning bi bi-trophy-fill outline"></i> : null}
+                                    {submit[1].winner_r ? <i className="text-warning bi bi-trophy-fill outline"></i> : null}
                                 </td>
                                 <td>
-                                    {Intl.NumberFormat('en-GB',).format(submit.new_points)}
-                                    {submit.winner_p ? <i className="text-warning bi bi-trophy-fill outline"></i> : null}
+                                    {Intl.NumberFormat('en-GB',).format(submit[1].new_points)}
+                                    {submit[1].winner_p ? <i className="text-warning bi bi-trophy-fill outline"></i> : null}
                                 </td>
                                 <td>
-                                    {Intl.NumberFormat('en-GB',).format(submit.new_trophies)}
-                                    {submit.winner_t && submit.new_trophies > 0 ? <i className="text-warning bi bi-trophy-fill outline"></i> : null}
+                                    {Intl.NumberFormat('en-GB',).format(submit[1].new_trophies)}
+                                    {submit[1].winner_t && submit[1].new_trophies > 0 ? <i className="text-warning bi bi-trophy-fill outline"></i> : null}
                                 </td>
                                 {
                                     canManage() ? <td className="text-center">
-                                        <NavLink to={'/submits/' + submit.id + '/edit'}>
+                                        <NavLink to={'/submits/' + submit[0] + '/edit'}>
                                             <button type="button" className="btn btn-success"><i className="bi bi-pencil-square"></i></button>
                                         </NavLink>
                                     </td> : null
