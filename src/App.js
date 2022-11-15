@@ -1,4 +1,3 @@
-import React from "react";
 import Login from './components/Login';
 import Logout from './components/Logout';
 
@@ -25,11 +24,7 @@ import { Routes, Route } from 'react-router-dom';
 
 
 
-const ROLES = {
-  'User': 0,
-  'Helper': 1,
-  'Admin': 2
-}
+const ROLES = { 'User': 0, 'Helper': 1, 'Admin': 2 }
 
 function App() {
 

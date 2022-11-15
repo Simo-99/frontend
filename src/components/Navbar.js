@@ -1,6 +1,5 @@
-import React from "react";
 import { NavLink } from "react-router-dom"
-import { getUser, canManage } from "../utility";
+import { getUser, canManage, getToken } from "../utility";
 import logo from "../TRIAL.png";
 
 const Navbar = () => {
@@ -31,7 +30,7 @@ const Navbar = () => {
 
                     </ul>
                     <ul className="navbar-nav mb-2 mb-lg-0">
-                        {user?.token ? <li className="nav-item mx-3"><NavLink className=" bold nav-link  text-success" to="/logout">Logout</NavLink></li> : null}
+                        {getToken() ? <li className="nav-item mx-3"><NavLink className=" bold nav-link  text-success" to="/logout">Logout</NavLink></li> : null}
                     </ul>
                 </div>
             </div >

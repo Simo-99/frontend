@@ -3,16 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import { UseAxios } from "../../utility";
 
 const Players_Add = () => {
-    const [username, setUsername] = useState("");
-    const [color, setColor] = useState("#000000");
-
+   
+    const [player, setPlayer] = useState({ username: "", color: "#000000" })
     const navigate = useNavigate()
 
 
     const handleSubmit = async (e) => {
 
         e.preventDefault();
-        await UseAxios("/players", "POST", { name: username, color: color, inside: 1 });
+        await UseAxios("/players", "POST", { name: player.username, color: player.color, inside: 1 });
 
         navigate("/players");
 
@@ -35,14 +34,14 @@ const Players_Add = () => {
                         <tr>
                             <td><input
                                 autoComplete="off"
-                                value={username}
-                                onChange={(e) => setUsername(e.target.value)}
+                                value={player.username}
+                                onChange={(e) => setPlayer(prev => ({ ...prev, username: e.target.value }))}
                                 type="text"
                                 className="form-control bg-secondary border-dark outline text-white" /></td>
                             <td>
                                 <input
-                                    value={color}
-                                    onChange={(e) => setColor(e.target.value)}
+                                    value={player.color}
+                                    onChange={(e) => setPlayer(prev => ({ ...prev, color: e.target.value }))}
                                     type="text"
                                     className="form-control bg-secondary border-dark outline text-white" /></td>
 

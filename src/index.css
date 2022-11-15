@@ -36,7 +36,6 @@ th {
 i {
 
     margin-left: 5px;
-
 }
 
 .jonny {
@@ -44,6 +43,7 @@ i {
     content: url("jonny.png");
     width: 20px;
 }
+
 
 @import url('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.9.1/font/bootstrap-icons.min.css');
 @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');

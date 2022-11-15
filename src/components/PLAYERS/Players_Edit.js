@@ -4,32 +4,19 @@ import { UseAxios } from "../../utility";
 import React from "react";
 
 const Players_Edit = () => {
-    const [name, setName] = useState("");
-    const [color, setColor] = useState("#000000");
-    const [inside, setInside] = useState(0);
-    const { id } = useParams()
 
+    const [player, setPlayer] = useState({ name: "", color: "#000000", inside: 0 })
+    const { id } = useParams()
     const navigate = useNavigate()
 
 
-    useEffect(() => {
-
-        (async () => {
-            const data = await UseAxios('/players/' + id);
-            setInside(data.inside);
-            setColor(data.color);
-            setName(data.name);
-
-        })()
-
-
-    }, []);
+    useEffect(() => { (async () => { setPlayer(await UseAxios('/players/' + id)); })() }, []);
 
 
     const handleSubmit = async (e) => {
 
         e.preventDefault();
-        await UseAxios("/players/" + id, "PUT", { name: name, color: color, inside: inside });
+        await UseAxios("/players/" + id, "PUT", { name: player.name, color: player.color, inside: player.inside });
         navigate("/players/" + id + "/submits");
 
     }
@@ -51,20 +38,20 @@ const Players_Edit = () => {
                         <tr>
                             <td><input
                                 autoComplete="off"
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
+                                value={player.name}
+                                onChange={(e) => setPlayer(prev => ({ ...prev, name: e.target.value }))}
                                 type="text"
                                 className="form-control bg-secondary border-dark outline text-white" /></td>
                             <td>
                                 <input
-                                    value={color}
-                                    onChange={(e) => setColor(e.target.value)}
+                                    value={player.color}
+                                    onChange={(e) => setPlayer(prev => ({ ...prev, color: e.target.value }))}
                                     type='text'
                                     className="form-control bg-secondary border-dark outline text-white" /></td>
                             <td>
                                 <input
-                                    value={inside}
-                                    onChange={(e) => setInside(e.target.value)}
+                                    value={player.inside}
+                                    onChange={(e) => setPlayer(prev => ({ ...prev, inside: e.target.value }))}
                                     type="text"
                                     className="form-control bg-secondary border-dark outline text-white" /></td>
                         </tr>

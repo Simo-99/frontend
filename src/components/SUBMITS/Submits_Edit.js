@@ -3,48 +3,19 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { getName, UseAxios } from "../../utility";
 
 const Submit_Edit = () => {
-    const [submit, setSubmit] = useState({});
-    const [player, setPlayer] = useState({});
-
-    const [resources, setResouces] = useState();
-    const [points, setPoints] = useState();
-    const [trophies, setTrophies] = useState();
-
-    const [new_resources, setNew_resources] = useState();
-    const [new_points, setNew_points] = useState();
-    const [new_trophies, setNew_trophies] = useState();
-
-
+    const [submit, setSubmit] = useState({ player: {}, submit: {} });
     const { id } = useParams();
 
 
     const navigate = useNavigate()
 
 
-    useEffect(() => {
-
-        (async function getPlayer() {
-
-            const data = await UseAxios('/submits/' + id + "?p=yes");
-            setSubmit(data);
-            setPlayer(data.player);
-            setResouces(data.resources);
-            setPoints(data.points);
-            setTrophies(data.trophies);
-
-            setNew_points(data.new_points);
-            setNew_resources(data.new_resources);
-            setNew_trophies(data.new_trophies);
-
-        })()
-    }, []);
-
-
+    useEffect(() => { (async function getPlayer() { setSubmit(await UseAxios('/submits/' + id + "?p=yes")); })() }, [id]);
 
     const handleSubmit = async (e) => {
 
         e.preventDefault();
-        await UseAxios('/submits/' + id + "?p=yes", "PUT", { resources: resources, new_resources: new_resources, points: points, new_points: new_points, trophies: trophies, new_trophies: new_trophies });
+        await UseAxios('/submits/' + id, "PUT", submit);
         navigate(-1);
 
     }
@@ -59,7 +30,7 @@ const Submit_Edit = () => {
                     <thead>
                         <tr>
                             <td className='text-primary'>{submit.year} - {getName(submit.month)}</td>
-                            <td className='text-center' style={{ color: player.color }} colSpan={10}>{player.name}</td>
+                            <td className='text-center' style={{ color: submit.player.color }} colSpan={10}>{submit.player.name}</td>
                         </tr >
                         <tr className='text-danger'>
                             <th>Resources</th>
@@ -73,12 +44,18 @@ const Submit_Edit = () => {
                     <tbody>
 
                         <tr>
-                            <td><input onChange={(e) => setResouces(e.target.value)} type="text" className="form-control bg-secondary border-dark" defaultValue={submit.resources} /></td>
-                            <td><input onChange={(e) => setPoints(e.target.value)} type="text" className="form-control bg-secondary border-dark" defaultValue={submit.points} /></td>
-                            <td><input onChange={(e) => setTrophies(e.target.value)} type="text" className="form-control bg-secondary border-dark" defaultValue={submit.trophies} /></td>
-                            <td><input onChange={(e) => setNew_resources(e.target.value)} type="text" className="form-control bg-secondary border-dark" defaultValue={submit.new_resources} /></td>
-                            <td><input onChange={(e) => setNew_points(e.target.value)} type="text" className="form-control bg-secondary border-dark" defaultValue={submit.new_points} /></td>
-                            <td><input onChange={(e) => setNew_trophies(e.target.value)} type="text" className="form-control bg-secondary border-dark" defaultValue={submit.new_trophies} /></td>
+                            <td><input onChange={(e) => setSubmit(prev => ({ ...prev, resources: e.target.value }))}
+                                className="form-control bg-secondary border-dark" defaultValue={submit.resources} /></td>
+                            <td><input onChange={(e) => setSubmit(prev => ({ ...prev, points: e.target.value }))}
+                                className="form-control bg-secondary border-dark" defaultValue={submit.points} /></td>
+                            <td><input onChange={(e) => setSubmit(prev => ({ ...prev, trophies: e.target.value }))}
+                                className="form-control bg-secondary border-dark" defaultValue={submit.trophies} /></td>
+                            <td><input onChange={(e) => setSubmit(prev => ({ ...prev, new_resources: e.target.value }))}
+                                className="form-control bg-secondary border-dark" defaultValue={submit.new_resources} /></td>
+                            <td><input onChange={(e) => setSubmit(prev => ({ ...prev, new_points: e.target.value }))}
+                                className="form-control bg-secondary border-dark" defaultValue={submit.new_points} /></td>
+                            <td><input onChange={(e) => setSubmit(prev => ({ ...prev, new_trophies: e.target.value }))}
+                                className="form-control bg-secondary border-dark" defaultValue={submit.new_trophies} /></td>
 
                         </tr>
                     </tbody>
