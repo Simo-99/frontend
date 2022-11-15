@@ -17,7 +17,7 @@ export function useClient() {
 
 export async function UseAxios(url, method = 'GET', params = {}) {
 
-    return await useClient()({ method: method, url: url, data: params }).then(({ data }) => data);
+    return (await useClient()({ method: method, url: url, data: params }).then(({ data }) => data))
 }
 
 
