@@ -1,39 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useClient, getToken } from "../utility";
+import { UseAxios, getToken, setStorage } from "../utility";
 
 const Login = () => {
 
     const [username, setUsername] = useState("");
     const [pwd, setPwd] = useState("");
-    const a = useClient();
 
     const navigate = useNavigate()
 
-    useEffect(() => {
-        if (getToken() !== undefined)
-            navigate("/players");
-    });
+    useEffect(() => { if (getToken() !== undefined) navigate("/players"); }, []);
 
     const handleSubmit = async (e) => {
 
         e.preventDefault();
 
-        try {
+        const response = await UseAxios("/login", "POST", { username: username, password: pwd });
+        const token = response.token;
+        const role = response.user.is_admin;
 
-            const response = await a.post("/login", { username: username, password: pwd });
-
-            const token = response.data.token;
-            const role = response.data.user.is_admin;
-
-
-            localStorage.setItem("user", JSON.stringify({ token: token, is_admin: role }));
-
-            navigate(0);
+        setStorage("user", JSON.stringify({ token: token, is_admin: role }));
+        navigate(0);
 
 
-
-        } catch (e) { console.log(e) }
     }
 
     return (

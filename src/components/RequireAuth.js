@@ -6,7 +6,6 @@ const RequireAuth = ({ allowedRoles }) => {
     const location = useLocation();
     const user = getUser();
 
-
     return (
         allowedRoles.includes(user?.is_admin)
             ? <Outlet />

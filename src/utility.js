@@ -77,12 +77,22 @@ export function UseTableHall(delay = 900) {
 
 }
 
-
 export function getName(month) { return getNames()[month] }
 export function getNames() { return ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"] }
-export function getUser() { return JSON.parse(localStorage.getItem("user")) }
+export function getUser() { return JSON.parse(getStorage("user")) }
 export function getToken() { return getUser()?.token }
 export function getRole() { return getUser()?.is_admin }
 export function canManage() { return getRole() == 2 }
 
+export function getStorage(key) {
+    const itemStr = localStorage.getItem(key)
+    if (!itemStr) return null
 
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) { localStorage.removeItem(key); return null; }
+    return item.value
+}
+
+export function setStorage(key, value, ttl = 1000 * 60 * 59 * 2) { localStorage.setItem(key, JSON.stringify({ value: value, expiry: new Date().getTime() + ttl })) }

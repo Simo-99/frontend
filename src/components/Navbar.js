@@ -1,10 +1,9 @@
 import { NavLink } from "react-router-dom"
-import { getUser, canManage, getToken } from "../utility";
+import { canManage, getToken } from "../utility";
 import logo from "../TRIAL.png";
 
 const Navbar = () => {
 
-    const user = getUser();
 
     return (
 
