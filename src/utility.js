@@ -21,7 +21,8 @@ export async function UseAxios(url, method = 'GET', params = {}) {
 }
 
 
-export function UseTable(delay = 1000) {
+export function UseTable(delay = 1500) {
+
 
     setTimeout(() => {
 
@@ -36,6 +37,8 @@ export function UseTable(delay = 1000) {
             });
 
     }, delay);
+
+
 
 
 }
