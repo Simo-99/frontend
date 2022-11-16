@@ -23,6 +23,8 @@ export async function UseAxios(url, method = 'GET', params = {}) {
 export function UseSort() {
 
     $(function () {
+
+        console.log("2,407,381nakedbro")
         $('.sorting > th').on("click", function () {
             var table = $(".table")
             var rows = $('.table').find('tbody').children().toArray().sort(comparer($(this).index()))
