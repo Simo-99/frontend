@@ -6,7 +6,7 @@ const Players = () => {
 
     const [actives, setActives] = useState([])
 
-    useEffect(() => { (async function getData() { setActives(await UseAxios("/players?s=active&o=asc")); })() }, []);
+    useEffect(() => { (async () => setActives(await UseAxios("/players?s=active&o=asc")))() }, []);
 
     return (
 
