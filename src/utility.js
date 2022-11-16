@@ -58,7 +58,7 @@ function parseNumeric(value) { return +value.replace(/[^-0-9.]/g, '').replace(/[
 function isNumeric2(value) { return !isNaN(+value.replace(/[$,]/g, '')); }
 function comparer(index) {
     return function (a, b) {
-        var valA = getCellValue(a, index), valB = getCellValue(b, index)
+        var valA = getCellValue(a, index).split(" ")[0], valB = getCellValue(b, index).split(" ")[0]
         return isNumeric2(valA) && isNumeric2(valB) ? parseNumeric(valA.replace(',', '')) - parseNumeric(valB.replace(',', '')) : valA.toString().localeCompare(valB)
     }
 }
