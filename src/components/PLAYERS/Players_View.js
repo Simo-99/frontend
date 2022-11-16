@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { getNames, UseTable, canManage, UseAxios } from "../../utility";
+import { getNames, canManage, UseAxios } from "../../utility";
 import { NavLink, useParams } from 'react-router-dom';
 
 const Players_View = () => {
@@ -32,7 +32,7 @@ const Players_View = () => {
                                 </NavLink> : null}
                             </th>
                         </tr>
-                        <tr className="clickable text-danger">
+                        <tr className="clickable text-danger sorting">
                             <th>Year</th>
                             <th>Month</th>
                             <th>Resources</th>
@@ -89,8 +89,6 @@ const Players_View = () => {
                     </tbody >
 
                 </table >
-                {UseTable()}
-
             </div >
         </>
 

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { UseTable, canManage, UseAxios } from "../../utility";
+import { canManage, UseAxios } from "../../utility";
 import { NavLink } from 'react-router-dom';
 
 
@@ -15,10 +15,10 @@ const Formers = () => {
             <div className="container my-4" style={{ width: '50%' }}>
                 <table id="table" className="table table-striped table-dark">
                     <thead>
-                        <tr>
-                            <th className="clickable text-danger">Name</th>
-                            <th className="clickable text-danger">Color</th>
-                            {canManage() ? <th className="clickable text-danger text-center">Actions</th> : null}
+                        <tr className=' clickable text-danger sorting'>
+                            <th >Name</th>
+                            <th >Color</th>
+                            {canManage() ? <th className="text-center">Actions</th> : null}
                         </tr>
                     </thead>
                     <tbody>
@@ -62,7 +62,6 @@ const Formers = () => {
 
                     </tbody >
                 </table >
-                {UseTable()}
 
             </div >
         </>

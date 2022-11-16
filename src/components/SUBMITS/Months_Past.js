@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { UseAxios, getName, UseTable } from "../../utility";
+import { UseAxios, getName } from "../../utility";
 import { NavLink } from 'react-router-dom';
 
 const Months_Past = () => {
@@ -18,7 +18,7 @@ const Months_Past = () => {
 
                     <thead>
 
-                        <tr className="text-danger clickable">
+                        <tr className="text-danger clickable sorting">
                             <th>Year</th>
                             <th>Month</th>
                             <th>New Resources</th>
@@ -47,8 +47,6 @@ const Months_Past = () => {
                     </tbody>
 
                 </table >
-                {UseTable()}
-
             </div >
         </>
 

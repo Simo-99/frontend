@@ -34,7 +34,7 @@ function App() {
 
     <Routes>
 
-      <Route path="/" element={<Layout />}>
+      <Route path="/">
 
         {/* PUBLIC ROUTES*/}
         <Route path="login" element={<Login />} />

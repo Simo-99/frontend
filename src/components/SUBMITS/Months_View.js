@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import { getName, UseTable, canManage, UseAxios } from "../../utility";
-import { NavLink, useParams, useSearchParams, useNavigate } from 'react-router-dom';
+import { getName, canManage, UseAxios } from "../../utility";
+import { NavLink, useParams, useSearchParams } from 'react-router-dom';
 
 const Months_View = () => {
 
@@ -13,7 +13,6 @@ const Months_View = () => {
     const { month } = useParams();
     const [search] = useSearchParams();
     const year = search.get("y");
-    const navigate = useNavigate();
 
     useEffect(() => {
         (async () => {
@@ -83,7 +82,7 @@ const Months_View = () => {
 
 
                                 </tr > : null}
-                            <tr className="text-danger clickable">
+                            <tr className="text-danger clickable sorting">
                                 <th>Name</th>
                                 <th>Resources</th>
                                 <th>Points</th>
@@ -140,10 +139,10 @@ const Months_View = () => {
                         </tbody >
 
                     </table >
-                    {UseTable()}
-                </div > : null
-            }
 
+                </div > : null
+
+            }
         </div >
 
 

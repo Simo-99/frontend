@@ -20,60 +20,18 @@ export async function UseAxios(url, method = 'GET', params = {}) {
     return (await useClient()({ method: method, url: url, data: params }).then(({ data }) => data))
 }
 
+export function UseSort() {
 
-export function UseTable(delay = 1500) {
+    $(function () {
+        $('.sorting > th').on("click", function () {
+            var table = $(".table")
+            var rows = $('.table').find('tbody').children().toArray().sort(comparer($(this).index()))
+            this.asc = !this.asc
+            if (!this.asc) { rows = rows.reverse() }
+            for (var i = 0; i < rows.length; i++) { table.append(rows[i]) }
+        })
 
-
-    setTimeout(() => {
-
-        if (!$.fn.dataTable.isDataTable('#table'))
-            $('#table').DataTable({
-
-                paging: false,
-                searching: false,
-                "bInfo": false,
-                "order": [],
-
-            });
-
-    }, delay);
-
-
-
-
-}
-export function UseTableHall(delay = 1500) {
-
-    setTimeout(() => {
-
-        if ($.fn.dataTable.isDataTable('#table'))
-            $('#table').DataTable();
-        else
-            $('#table').DataTable({
-
-                paging: false,
-                searching: false,
-                "bInfo": false,
-                "order": [],
-                "aoColumnDefs": [{ "sType": "pct", "aTargets": [3] }]
-
-            });
-
-    }, delay);
-
-    $.fn.dataTableExt.oSort['pct-asc'] = function (x, y) {
-        x = parseFloat(x);
-        y = parseFloat(y);
-
-        return ((x < y) ? -1 : ((x > y) ? 1 : 0));
-    };
-
-    $.fn.dataTableExt.oSort['pct-desc'] = function (x, y) {
-        x = parseFloat(x);
-        y = parseFloat(y);
-
-        return ((x < y) ? 1 : ((x > y) ? -1 : 0));
-    };
+    });
 
 }
 
@@ -83,6 +41,7 @@ export function getUser() { return JSON.parse(getStorage("user")) }
 export function getToken() { return getUser()?.token }
 export function getRole() { return getUser()?.role }
 export function canManage() { return getRole() == 2 }
+export function setStorage(key, value, ttl = 1000 * 60 * 59 * 2) { localStorage.setItem(key, JSON.stringify({ value: value, expiry: new Date().getTime() + ttl })) }
 export function getStorage(key) {
     const itemStr = localStorage.getItem(key)
     if (!itemStr) return null
@@ -94,4 +53,12 @@ export function getStorage(key) {
     return item.value
 }
 
-export function setStorage(key, value, ttl = 1000 * 60 * 59 * 2) { localStorage.setItem(key, JSON.stringify({ value: value, expiry: new Date().getTime() + ttl })) }
+function getCellValue(row, index) { return $(row).children('td').eq(index).text() }
+function parseNumeric(value) { return +value.replace(/[^-0-9.]/g, '').replace(/[,]/g, '') }
+function isNumeric2(value) { return !isNaN(+value.replace(/[$,]/g, '')); }
+function comparer(index) {
+    return function (a, b) {
+        var valA = getCellValue(a, index), valB = getCellValue(b, index)
+        return isNumeric2(valA) && isNumeric2(valB) ? parseNumeric(valA.replace(',', '')) - parseNumeric(valB.replace(',', '')) : valA.toString().localeCompare(valB)
+    }
+}

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { UseAxios, UseTable, getName } from "../../utility";
+import { UseAxios, getName } from "../../utility";
 import { NavLink, useParams } from 'react-router-dom';
 
 const Years_View = () => {
@@ -23,7 +23,7 @@ const Years_View = () => {
                             <th className="text-warning">{Intl.NumberFormat('en-GB').format(data.totals.resources)}</th>
                             <th className="text-warning">{Intl.NumberFormat('en-GB').format(data.totals.points)}</th>
                         </tr>
-                        <tr className="clickable text-danger">
+                        <tr className="clickable text-danger sorting">
                             <th>Month</th>
                             <th>New Resources</th>
                             <th>New Points</th>
@@ -45,7 +45,6 @@ const Years_View = () => {
                     </tbody>
 
                 </table>
-                {UseTable()}
 
             </div >
 

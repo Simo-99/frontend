@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { getName, UseTableHall, UseAxios } from "../../utility";
+import { getName, UseAxios } from "../../utility";
 import { NavLink } from 'react-router-dom';
 
 const Hall = () => {
@@ -15,7 +15,7 @@ const Hall = () => {
             <table id="table" className="table table-striped table-dark">
 
                 <thead>
-                    <tr className="clickable text-danger">
+                    <tr className="clickable text-danger sorting">
                         <th>Year</th>
                         <th>Month</th>
                         <th>New Resources</th>
@@ -39,7 +39,6 @@ const Hall = () => {
                     ))}
                 </tbody>
             </table>
-            {UseTableHall()}
 
 
         </div >
