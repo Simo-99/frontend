@@ -7,7 +7,7 @@ const RequireAuth = ({ allowedRoles }) => {
     const user = getUser();
 
     return (
-        allowedRoles.includes(user?.is_admin)
+        allowedRoles.includes(user?.role)
             ? <Outlet />
             : user?.token
                 ? <Navigate to="/players" state={{ from: location }} replace />

@@ -81,7 +81,7 @@ export function getName(month) { return getNames()[month] }
 export function getNames() { return ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"] }
 export function getUser() { return JSON.parse(getStorage("user")) }
 export function getToken() { return getUser()?.token }
-export function getRole() { return getUser()?.is_admin }
+export function getRole() { return getUser()?.role }
 export function canManage() { return getRole() == 2 }
 
 export function getStorage(key) {

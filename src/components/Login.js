@@ -17,9 +17,9 @@ const Login = () => {
 
         const response = await UseAxios("/login", "POST", { username: username, password: pwd });
         const token = response.token;
-        const role = response.user.is_admin;
+        const role = response.user.role;
 
-        setStorage("user", JSON.stringify({ token: token, is_admin: role }));
+        setStorage("user", JSON.stringify({ token: token, role: role }));
         navigate(0);
 
 
