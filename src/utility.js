@@ -42,7 +42,7 @@ export function UseTable(delay = 1500) {
 
 
 }
-export function UseTableHall(delay = 900) {
+export function UseTableHall(delay = 1500) {
 
     setTimeout(() => {
 
@@ -83,7 +83,6 @@ export function getUser() { return JSON.parse(getStorage("user")) }
 export function getToken() { return getUser()?.token }
 export function getRole() { return getUser()?.role }
 export function canManage() { return getRole() == 2 }
-
 export function getStorage(key) {
     const itemStr = localStorage.getItem(key)
     if (!itemStr) return null
