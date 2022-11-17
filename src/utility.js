@@ -5,7 +5,7 @@ import DataTable from "datatables.net"
 
 export function useClient() {
 
-    UseSort()
+    //UseSort()
     //let a = axios.create({ baseURL: 'http://localhost:3000' });
 
     let a = axios.create({ baseURL: 'https://therockisalie.cyclic.app' });
