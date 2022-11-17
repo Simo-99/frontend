@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { UseAxios, getToken, setStorage } from "../utility";
+import { UseAxios, getToken } from "../utility";
+import { setStorage } from '../storage';
 
 const Login = () => {
 
@@ -9,19 +10,15 @@ const Login = () => {
 
     const navigate = useNavigate()
 
-    useEffect(() => { if (getToken() !== undefined) navigate("/players"); }, []);
+    useEffect(() => { if (getToken() !== undefined) navigate("/players") }, []);
 
     const handleSubmit = async (e) => {
 
         e.preventDefault();
 
         const response = await UseAxios("/login", "POST", { username: username, password: pwd });
-        const token = response.token;
-        const role = response.user.role;
-
-        setStorage("user", JSON.stringify({ token: token, role: role }));
+        setStorage("user", JSON.stringify({ token: response.token, role: response.user.role }));
         navigate(0);
-
 
     }
 
