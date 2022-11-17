@@ -24,8 +24,8 @@ export async function UseAxios(url, method = 'GET', params = {}) {
 export function UseSort() {
 
     $(function () {
-        $('.sorting > th').off("click")
-        $('.sorting > th').on("click", function () {
+        $('.sorting th').off("click")
+        $('.sorting th').on("click", function () {
             //console.log(this.asc);
 
             var table = $(".table")
@@ -61,9 +61,10 @@ export function getStorage(key) {
 function getCellValue(row, index) { return $(row).children('td').eq(index).text() }
 function parseNumeric(value) { return +value.replace(/[^-0-9.]/g, '').replace(/[,]/g, '') }
 function isNumeric2(value) { return !isNaN(+value.replace(/[$,]/g, '')); }
+function cleanCellValue(value) { return value.split(" ")[0] }
 function comparer(index) {
     return function (a, b) {
-        var valA = getCellValue(a, index).split(" ")[0], valB = getCellValue(b, index).split(" ")[0]
+        var valA = cleanCellValue(getCellValue(a, index)), valB = cleanCellValue(getCellValue(b, index))
         return isNumeric2(valA) && isNumeric2(valB) ? parseNumeric(valA.replace(',', '')) - parseNumeric(valB.replace(',', '')) : valA.toString().localeCompare(valB)
     }
 }
