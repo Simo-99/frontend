@@ -27,7 +27,7 @@ const Months_View = () => {
 
         })()
 
-    }, [month]);
+    }, [month, year]);
 
 
 
