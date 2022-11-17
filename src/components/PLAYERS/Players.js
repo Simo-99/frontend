@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { canManage, UseAxios } from "../../utility";
 import { NavLink } from 'react-router-dom';
 
-const Players = () => {
+const PLAYERS = () => {
 
     const [actives, setActives] = useState([])
 
@@ -64,4 +64,4 @@ const Players = () => {
     )
 
 }
-export default Players
+export default PLAYERS

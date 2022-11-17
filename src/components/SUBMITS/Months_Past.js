@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { UseAxios, getName } from "../../utility";
 import { NavLink } from 'react-router-dom';
 
-const Months_Past = () => {
+const MONTH_PAST = () => {
 
     const [submits, setSubmits] = useState([]);
 
@@ -53,4 +53,4 @@ const Months_Past = () => {
     )
 
 }
-export default Months_Past
+export default MONTH_PAST

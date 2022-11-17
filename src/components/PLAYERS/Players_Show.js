@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { UseAxios } from "../../utility";
 import { useNavigate, useParams } from 'react-router-dom';
 
-const Players_Show = () => {
+const PLAYERS_SHOW = () => {
 
     const { id } = useParams()
     const navigate = useNavigate()
@@ -12,4 +12,4 @@ const Players_Show = () => {
     return (<></>)
 
 }
-export default Players_Show
+export default PLAYERS_SHOW

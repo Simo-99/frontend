@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { getName, canManage, UseAxios } from "../../utility";
 import { NavLink, useParams } from 'react-router-dom';
 
-const Players_View = () => {
+const PLAYERS_VIEW = () => {
 
     const [data, setData] = useState({ player: {}, submits: {} });
     const { id } = useParams();
@@ -89,4 +89,4 @@ const Players_View = () => {
     )
 
 }
-export default Players_View
+export default PLAYERS_VIEW

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { getName, canManage, UseAxios } from "../../utility";
 import { NavLink, useParams, useSearchParams } from 'react-router-dom';
 
-const Months_View = () => {
+const MONTHS_VIEW = () => {
 
     const [data, setData] = useState({ totals: {}, submits: {} });
 
@@ -148,4 +148,4 @@ const Months_View = () => {
     )
 
 }
-export default Months_View
+export default MONTHS_VIEW

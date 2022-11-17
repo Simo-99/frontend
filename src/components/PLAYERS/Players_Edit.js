@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { UseAxios } from "../../utility";
 import React from "react";
 
-const Players_Edit = () => {
+const PLAYERS_EDIT = () => {
 
     const [player, setPlayer] = useState({ name: "", color: "#000000", inside: 0 })
     const { id } = useParams()
@@ -64,4 +64,4 @@ const Players_Edit = () => {
     )
 }
 
-export default Players_Edit
+export default PLAYERS_EDIT

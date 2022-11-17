@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { UseAxios } from "../../utility";
 import { useNavigate, useParams } from 'react-router-dom';
 
-const Players_Hide = () => {
+const PLAYERS_HIDE = () => {
 
     const { id } = useParams()
     const navigate = useNavigate()
@@ -12,4 +12,4 @@ const Players_Hide = () => {
     return (<></>)
 
 }
-export default Players_Hide
+export default PLAYERS_HIDE

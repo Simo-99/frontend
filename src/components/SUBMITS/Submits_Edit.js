@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getName, UseAxios } from "../../utility";
 
-const Submit_Edit = () => {
+const SUBMIT_EDIT = () => {
     const [submit, setSubmit] = useState({ player: {}, submit: {} });
     const { id } = useParams();
     const navigate = useNavigate()
@@ -63,4 +63,4 @@ const Submit_Edit = () => {
     )
 
 }
-export default Submit_Edit
+export default SUBMIT_EDIT

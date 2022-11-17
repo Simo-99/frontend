@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom"
 import { canManage, getToken, UseSort } from "../utility";
 import logo from "../assets/TRIAL.png";
 
-const Navbar = () => {
+const NAVBAR = () => {
 
 
     return (
@@ -39,4 +39,4 @@ const Navbar = () => {
     )
 }
 
-export default Navbar
+export default NAVBAR

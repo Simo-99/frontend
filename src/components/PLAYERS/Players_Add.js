@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UseAxios } from "../../utility";
 
-const Players_Add = () => {
-   
+const PLAYERS_ADD = () => {
+
     const [player, setPlayer] = useState({ username: "", color: "#000000" })
     const navigate = useNavigate()
 
@@ -56,5 +56,4 @@ const Players_Add = () => {
 
     )
 }
-
-export default Players_Add
+export default PLAYERS_ADD

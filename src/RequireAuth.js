@@ -1,5 +1,5 @@
 import { useLocation, Navigate, Outlet } from "react-router-dom";
-import { getToken, getRole, UseSort } from "../utility"
+import { getToken, getRole, UseSort } from "./utility"
 
 const RequireAuth = ({ allowedRoles }) => {
 

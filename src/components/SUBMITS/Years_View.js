@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react'
 import { UseAxios, getName } from "../../utility";
 import { NavLink, useParams } from 'react-router-dom';
 
-const Years_View = () => {
+const YEAR_VIEW = () => {
 
     const [data, setData] = useState({ totals: {}, submits: {} });
     const { year } = useParams();
 
-    useEffect(() => { (async () => { setData(await UseAxios('/years/' + year + "?t=yes")); })() }, [])
+    useEffect(() => { (async () => { setData(await UseAxios('/years/' + year + "?t=yes")); })() }, [year])
 
     return (
 
@@ -54,4 +54,4 @@ const Years_View = () => {
     )
 
 }
-export default Years_View
+export default YEAR_VIEW

@@ -1,25 +1,24 @@
-import Login from './components/Login';
-import Logout from './components/Logout';
+import Login from './components/LOGIN';
+import Logout from './components/LOGOUT';
 
-import Months_Past from './components/SUBMITS/Months_Past';
-import Months_View from './components/SUBMITS/Months_View';
-import Years_View from './components/SUBMITS/Years_View';
-import Submits_Edit from './components/SUBMITS/Submits_Edit';
-import Table_Form from './components/SUBMITS/Table_Form';
+import Months_Past from './components/SUBMITS/MONTHS_PAST';
+import Months_View from './components/SUBMITS/MONTHS_VIEW';
+import Years_View from './components/SUBMITS/YEARS_VIEW';
+import Submits_Edit from './components/SUBMITS/SUBMITS_EDIT';
+import Table_Form from './components/SUBMITS/TABLE_FORM';
 
-import Players from './components/PLAYERS/Players';
-import Formers from './components/PLAYERS/Formers';
+import PLAYERS from './components/PLAYERS/PLAYERS';
+import FORMERS from './components/PLAYERS/FORMERS';
 
-import Players_Show from './components/PLAYERS/Players_Show';
-import Players_Hide from './components/PLAYERS/Players_Hide';
-import Players_Delete from './components/PLAYERS/Players_Delete';
-import Players_Add from './components/PLAYERS/Players_Add';
-import Players_Edit from './components/PLAYERS/Players_Edit';
-import Players_View from './components/PLAYERS/Players_View';
+import PLAYERS_SHOW from './components/PLAYERS/PLAYERS_SHOW';
+import PLAYERS_HIDE from './components/PLAYERS/PLAYERS_HIDE';
+import PLAYERS_DELETE from './components/PLAYERS/PLAYERS_DELETE';
+import PLAYERS_ADD from './components/PLAYERS/PLAYERS_ADD';
+import PLAYERS_EDIT from './components/PLAYERS/PLAYERS_EDIT';
+import PLAYERS_VIEW from './components/PLAYERS/PLAYERS_VIEW';
 
-import Hall from './components/SUBMITS/Hall';
-import Layout from './components/Layout';
-import RequireAuth from './components/RequireAuth';
+import Hall from './components/SUBMITS/HALL';
+import RequireAuth from './RequireAuth';
 import { Routes, Route } from 'react-router-dom';
 
 
@@ -42,9 +41,9 @@ function App() {
 
         {/* PRIVATE ROUTES*/}
         <Route element={<RequireAuth allowedRoles={[ROLES.User, ROLES.Admin, ROLES.Helper]} />}>
-          <Route path="/players" element={<Players />} />
-          <Route path="/players/formers" element={<Formers />} />
-          <Route path="/players/:id/submits" element={<Players_View />} />
+          <Route path="/players" element={<PLAYERS />} />
+          <Route path="/players/formers" element={<FORMERS />} />
+          <Route path="/players/:id/submits" element={<PLAYERS_VIEW />} />
 
           <Route path="/hall" element={<Hall />} />
           <Route path="/months" element={<Months_Past />} />
@@ -57,11 +56,11 @@ function App() {
         {/* PROTECTED ROUTES*/}
 
         <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
-          <Route path="/players/:id/hide" element={<Players_Hide />} />
-          <Route path="/players/:id/show" element={<Players_Show />} />
-          <Route path="/players/:id/delete" element={<Players_Delete />} />
-          <Route path="/players/:id/edit" element={<Players_Edit />} />
-          <Route path="/players/add" element={<Players_Add />} />
+          <Route path="/players/:id/hide" element={<PLAYERS_HIDE />} />
+          <Route path="/players/:id/show" element={<PLAYERS_SHOW />} />
+          <Route path="/players/:id/delete" element={<PLAYERS_DELETE />} />
+          <Route path="/players/:id/edit" element={<PLAYERS_EDIT />} />
+          <Route path="/players/add" element={<PLAYERS_ADD />} />
 
           <Route path="/submits/:id/edit" element={<Submits_Edit />} />
           <Route path="/data" element={<Table_Form />} />

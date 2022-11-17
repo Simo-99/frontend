@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { UseAxios, getToken } from "../utility";
 import { setStorage } from '../storage';
 
-const Login = () => {
+const LOGIN = () => {
 
     const [username, setUsername] = useState("");
     const [pwd, setPwd] = useState("");
@@ -63,4 +63,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default LOGIN

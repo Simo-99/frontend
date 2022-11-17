@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UseAxios } from "../../utility";
 
-const Table_Form = () => {
+const TABLE_FORM = () => {
 
     const [tables, setTables] = useState([]);
     const day = new Date();
@@ -113,4 +113,4 @@ const Table_Form = () => {
     )
 
 }
-export default Table_Form
+export default TABLE_FORM

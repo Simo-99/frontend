@@ -3,7 +3,7 @@ import { canManage, UseAxios } from "../../utility";
 import { NavLink } from 'react-router-dom';
 
 
-const Formers = () => {
+const FORMERS = () => {
 
     const [players, setPlayers] = useState([])
 
@@ -69,4 +69,4 @@ const Formers = () => {
     )
 
 }
-export default Formers
+export default FORMERS

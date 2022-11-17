@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { UseAxios } from "../../utility";
 import { useNavigate, useParams } from 'react-router-dom';
 
-const Players_Delete = () => {
+const PLAYERS_DELETE = () => {
 
     const { id } = useParams()
     const navigate = useNavigate()
@@ -12,4 +12,4 @@ const Players_Delete = () => {
     return (<></>)
 
 }
-export default Players_Delete
+export default PLAYERS_DELETE

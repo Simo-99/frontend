@@ -2,7 +2,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import { useEffect } from "react"
 import { UseAxios } from "../utility"
 
-const Logout = () => {
+const LOGOUT = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -16,4 +16,4 @@ const Logout = () => {
 
 }
 
-export default Logout
+export default LOGOUT
