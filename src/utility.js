@@ -23,9 +23,9 @@ export async function UseAxios(url, method = 'GET', params = {}) {
 
 export function UseSort() {
 
-    jQuery(function () {
-        jQuery('.sorting > th').off('click');
-        jQuery('.sorting > th').on("click", function () {
+    $(function () {
+        $('.sorting > th').off('click');
+        $('.sorting > th').on("click", function () {
             console.log(this.asc);
 
             var table = $(".table")
