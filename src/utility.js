@@ -5,6 +5,7 @@ import DataTable from "datatables.net"
 
 export function useClient() {
 
+    UseSort()
     //let a = axios.create({ baseURL: 'http://localhost:3000' });
 
     let a = axios.create({ baseURL: 'https://therockisalie.cyclic.app' });
@@ -23,9 +24,9 @@ export async function UseAxios(url, method = 'GET', params = {}) {
 export function UseSort() {
 
     $(function () {
-
-        //console.log(parseNumeric("2,407,381 nakedbro".split(" ")[0]))
+        $('.sorting > th').off('click');
         $('.sorting > th').on("click", function () {
+            console.log("sorting");
             var table = $(".table")
             var rows = $('.table').find('tbody').children().toArray().sort(comparer($(this).index()))
             this.asc = !this.asc
