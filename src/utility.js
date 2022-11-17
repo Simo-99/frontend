@@ -5,7 +5,7 @@ import DataTable from "datatables.net"
 
 export function useClient() {
 
-    UseSort()
+    //UseSort()
     //let a = axios.create({ baseURL: 'http://localhost:3000' });
 
     let a = axios.create({ baseURL: 'https://therockisalie.cyclic.app' });
@@ -23,23 +23,21 @@ export async function UseAxios(url, method = 'GET', params = {}) {
 
 export function UseSort() {
 
-    $(function () {
+    $(setTimeout(() => {
+
         $('.sorting th').off("click")
         $('.sorting th').on("click", function () {
-
 
             var table = $(".table")
             var rows = table.find('tbody').children().toArray().sort(comparer($(this).index()))
 
             this.asc = !this.asc;
-            console.log(this.asc);
-
             rows = this.asc ? rows : rows.reverse()
 
             for (var i = 0; i < rows.length; i++) { table.append(rows[i]) }
         })
 
-    });
+    }, 1000));
 
 }
 
@@ -62,12 +60,13 @@ export function getStorage(key) {
 }
 
 function getCellValue(row, index) { return $(row).children('td').eq(index).text() }
-function parseNumeric(value) { return +value.replace(/[^-0-9.]/g, '').replace(/[,]/g, '') }
-function isNumeric2(value) { return !isNaN(+value.replace(/[$,]/g, '')); }
+function parseNumeric(value) { return +value.replace(/,/g, '') }
+function isNumeric2(value) { return !isNaN(+value.replace(/,/g, '')); }
 function cleanCellValue(value) { return value.split(" ")[0] }
 function comparer(index) {
     return function (a, b) {
-        var valA = cleanCellValue(getCellValue(a, index)), valB = cleanCellValue(getCellValue(b, index))
-        return isNumeric2(valA) && isNumeric2(valB) ? parseNumeric(valA.replace(',', '')) - parseNumeric(valB.replace(',', '')) : valA.toString().localeCompare(valB)
+        var valA = cleanCellValue(getCellValue(a, index))
+        var valB = cleanCellValue(getCellValue(b, index))
+        return isNumeric2(valA) && isNumeric2(valB) ? parseNumeric(valA.replace(',', '')) - parseNumeric(valB.replace(',', '')) : valA.toString().localeCompare(valB.toString())
     }
 }
