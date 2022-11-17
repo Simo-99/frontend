@@ -26,7 +26,8 @@ export function UseSort() {
     jQuery(function () {
         jQuery('.sorting > th').off('click');
         jQuery('.sorting > th').on("click", function () {
-            console.log("sorting");
+            console.log(!this.asc);
+
             var table = $(".table")
             var rows = $('.table').find('tbody').children().toArray().sort(comparer($(this).index()))
             this.asc = !this.asc
