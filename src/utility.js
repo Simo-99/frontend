@@ -31,8 +31,8 @@ export function UseSort() {
             var table = $(".table")
             var rows = table.find('tbody').children().toArray().sort(comparer($(this).index()))
 
-            $(this).asc = !$(this).asc;
-            rows = $(this).asc ? rows : rows.reverse()
+            this.asc = !this.asc;
+            rows = this.asc ? rows : rows.reverse()
 
             for (var i = 0; i < rows.length; i++) { table.append(rows[i]) }
         })
