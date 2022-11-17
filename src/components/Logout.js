@@ -5,11 +5,13 @@ import { UseAxios } from "../utility"
 const Logout = () => {
     const navigate = useNavigate();
 
-    useEffect(async () => {
-        await UseAxios("/logout", "POST");
-        localStorage.clear();
-        navigate(0);
-    }, []);
+    useEffect(() => {
+        (async () => {
+            await UseAxios("/logout", "POST");
+            localStorage.clear();
+            navigate(0);
+        })()
+    }, [navigate]);
     return (<Navigate to={{ pathname: '/login' }} />);
 
 }

@@ -7,7 +7,7 @@ const Players_View = () => {
     const [data, setData] = useState({ player: {}, submits: {} });
     const { id } = useParams();
 
-    useEffect(() => { (async () => setData(await UseAxios("/players/" + id + "?s=yes")))() }, []);
+    useEffect(() => { (async () => setData(await UseAxios("/players/" + id + "?s=yes")))() }, [id]);
 
 
     return (
@@ -20,7 +20,7 @@ const Players_View = () => {
                     <thead>
                         <tr>
                             <th colSpan='9' className="text-center">
-                                <span className={data.player.color == "#000000" ? 'outline2' : 'outline'} style={{ color: data.player.color }}>{data.player.name}</span>
+                                <span className={data.player.color === "#000000" ? 'outline2' : 'outline'} style={{ color: data.player.color }}>{data.player.name}</span>
                                 {canManage() ? < NavLink to={'/players/' + data.player.id + '/edit'}>
                                     <button type="button" className="btn btn-dark"><i className="bi bi-pen"></i></button>
                                 </NavLink> : null}
@@ -57,7 +57,7 @@ const Players_View = () => {
                                 <td>
                                     {Intl.NumberFormat('en-GB',).format(submit[1].new_resources)}
                                     {submit[1].new_resources < 280000 ?
-                                        submit[1].player_id == 6 ?
+                                        submit[1].player_id === 6 ?
                                             <i className="jonny"></i>
                                             : <i className="text-danger bi bi-emoji-angry-fill outline"></i>
                                         : null}

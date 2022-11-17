@@ -24,6 +24,6 @@ export function getName(month) { return ["", "January", "February", "March", "Ap
 export function getUser() { return JSON.parse(getStorage("user")) }
 export function getToken() { return getUser()?.token }
 export function getRole() { return getUser()?.role }
-export function canManage() { return getRole() == 2 }
+export function canManage() { return getRole() === 2 }
 
 

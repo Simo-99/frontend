@@ -10,7 +10,7 @@ const Login = () => {
 
     const navigate = useNavigate()
 
-    useEffect(() => { if (getToken() !== undefined) navigate("/players") }, []);
+    useEffect(() => { if (getToken() !== undefined) navigate("/players") }, [navigate]);
 
     const handleSubmit = async (e) => {
 

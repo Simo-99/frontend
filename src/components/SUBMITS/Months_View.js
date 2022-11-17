@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { getName, canManage, UseAxios, UseSort } from "../../utility";
+import { getName, canManage, UseAxios } from "../../utility";
 import { NavLink, useParams, useSearchParams } from 'react-router-dom';
 
 const Months_View = () => {
@@ -101,7 +101,7 @@ const Months_View = () => {
                                     Object.values(data.submits).map((submit) => (
                                         <tr key={JSON.stringify(submit)}>
                                             <td>
-                                                <NavLink className={submit.color == '#000000' ? 'outline2 nav-link' : 'outline nav-link'}
+                                                <NavLink className={submit.color === '#000000' ? 'outline2 nav-link' : 'outline nav-link'}
                                                     to={'/players/' + submit.player_id + '/submits'} style={{ color: submit.color }}>{submit.name}</NavLink>
                                             </td>
                                             <td>{Intl.NumberFormat('en-GB',).format(submit.resources)}</td>
@@ -110,23 +110,23 @@ const Months_View = () => {
                                             <td>
                                                 {Intl.NumberFormat('en-GB',).format(submit.new_resources)}
                                                 {submit.new_resources < 280000 ?
-                                                    submit.player_id == 6 ?
+                                                    submit.player_id === 6 ?
                                                         <i className="jonny"></i>
                                                         : <i className="text-danger bi bi-emoji-angry-fill outline"></i>
                                                     : null}
 
 
-                                                {submit.player_id == winner_r.player_id ? <i className="text-warning bi bi-trophy-fill outline"> </i> : null}
+                                                {submit.player_id === winner_r.player_id ? <i className="text-warning bi bi-trophy-fill outline"> </i> : null}
 
 
                                             </td>
                                             <td>
                                                 {Intl.NumberFormat('en-GB',).format(submit.new_points)}
-                                                {submit.player_id == winner_p.player_id ? <i className="text-warning bi bi-trophy-fill outline"> </i> : null}
+                                                {submit.player_id === winner_p.player_id ? <i className="text-warning bi bi-trophy-fill outline"> </i> : null}
                                             </td>
                                             <td>
                                                 {Intl.NumberFormat('en-GB',).format(submit.new_trophies)}
-                                                {submit.new_trophies > 0 && submit.player_id == winner_t.player_id ? <i className="text-warning bi bi-trophy-fill outline"> </i> : null}
+                                                {submit.new_trophies > 0 && submit.player_id === winner_t.player_id ? <i className="text-warning bi bi-trophy-fill outline"> </i> : null}
                                             </td>
                                             {canManage() ? <td className="text-center">
                                                 <NavLink to={'/submits/' + submit.id + '/edit'}> <button type="button"
