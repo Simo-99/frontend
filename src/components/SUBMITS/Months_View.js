@@ -67,21 +67,20 @@ const MONTHS_VIEW = () => {
 
                                 </th>
                             </tr>
-                            {Object.entries(data.submits)?.length > 0 ?
-                                <tr>
-                                    <th colSpan={4} className="text-muted">Totals</th>
+                            <tr>
+                                <th colSpan={4} className="text-muted">Totals</th>
 
-                                    <th className="text-light text-start">{Intl.NumberFormat('en-GB',).format(data.totals.resources)}
-                                    </th>
-                                    <th className="text-light text-start">{Intl.NumberFormat('en-GB',).format(data.totals.points)}
-                                    </th>
-                                    <th className="text-light text-start">{Intl.NumberFormat('en-GB',).format(data.totals.trophies)}
-                                    </th>
+                                <th className="text-light text-start">{Intl.NumberFormat('en-GB',).format(data.totals.resources)}
+                                </th>
+                                <th className="text-light text-start">{Intl.NumberFormat('en-GB',).format(data.totals.points)}
+                                </th>
+                                <th className="text-light text-start">{Intl.NumberFormat('en-GB',).format(data.totals.trophies)}
+                                </th>
 
-                                    {canManage() ? <th></th> : null}
+                                {canManage() ? <th></th> : null}
 
 
-                                </tr > : null}
+                            </tr >
                             <tr className="text-danger clickable sorting">
                                 <th>Name</th>
                                 <th>Resources</th>
@@ -97,44 +96,43 @@ const MONTHS_VIEW = () => {
 
                         < tbody >
                             {
-                                Object.entries(data.submits)?.length > 0 ?
-                                    Object.values(data.submits).map((submit) => (
-                                        <tr key={JSON.stringify(submit)}>
-                                            <td>
-                                                <NavLink className={submit.color === '#000000' ? 'outline2 nav-link' : 'outline nav-link'}
-                                                    to={'/players/' + submit.player_id + '/submits'} style={{ color: submit.color }}>{submit.name}</NavLink>
-                                            </td>
-                                            <td>{Intl.NumberFormat('en-GB',).format(submit.resources)}</td>
-                                            <td>{Intl.NumberFormat('en-GB',).format(submit.points)}</td>
-                                            <td>{Intl.NumberFormat('en-GB',).format(submit.trophies)}</td>
-                                            <td>
-                                                {Intl.NumberFormat('en-GB',).format(submit.new_resources)}
-                                                {submit.new_resources < 280000 ?
-                                                    submit.player_id === 6 ?
-                                                        <i className="jonny"></i>
-                                                        : <i className="text-danger bi bi-emoji-angry-fill outline"></i>
-                                                    : null}
+                                Object.values(data.submits)?.map((submit) => (
+
+                                    <tr key={JSON.stringify(submit)}>
+                                        <td>
+                                            <NavLink className={submit.color === '#000000' ? 'outline2 nav-link' : 'outline nav-link'}
+                                                to={'/players/' + submit.player_id + '/submits'} style={{ color: submit.color }}>{submit.name}</NavLink>
+                                        </td>
+                                        <td>{Intl.NumberFormat('en-GB',).format(submit.resources)}</td>
+                                        <td>{Intl.NumberFormat('en-GB',).format(submit.points)}</td>
+                                        <td>{Intl.NumberFormat('en-GB',).format(submit.trophies)}</td>
+                                        <td>
+                                            {Intl.NumberFormat('en-GB',).format(submit.new_resources)}
+                                            {submit.new_resources < 280000 ?
+                                                submit.player_id === 6 ?
+                                                    <i className="jonny"></i>
+                                                    : <i className="text-danger bi bi-emoji-angry-fill outline"></i>
+                                                : null}
 
 
-                                                {submit.player_id === winner_r.player_id ? <i className="text-warning bi bi-trophy-fill outline"> </i> : null}
+                                            {submit.player_id === winner_r.player_id ? <i className="text-warning bi bi-trophy-fill outline"> </i> : null}
 
 
-                                            </td>
-                                            <td>
-                                                {Intl.NumberFormat('en-GB',).format(submit.new_points)}
-                                                {submit.player_id === winner_p.player_id ? <i className="text-warning bi bi-trophy-fill outline"> </i> : null}
-                                            </td>
-                                            <td>
-                                                {Intl.NumberFormat('en-GB',).format(submit.new_trophies)}
-                                                {submit.new_trophies > 0 && submit.player_id === winner_t.player_id ? <i className="text-warning bi bi-trophy-fill outline"> </i> : null}
-                                            </td>
-                                            {canManage() ? <td className="text-center">
-                                                <NavLink to={'/submits/' + submit.id + '/edit'}> <button type="button"
-                                                    className="btn btn-success"><i className="bi bi-pencil-square"> </i></button></NavLink>
-                                            </td > : null}
-                                        </tr >
-                                    ))
-                                    : null
+                                        </td>
+                                        <td>
+                                            {Intl.NumberFormat('en-GB',).format(submit.new_points)}
+                                            {submit.player_id === winner_p.player_id ? <i className="text-warning bi bi-trophy-fill outline"> </i> : null}
+                                        </td>
+                                        <td>
+                                            {Intl.NumberFormat('en-GB',).format(submit.new_trophies)}
+                                            {submit.new_trophies > 0 && submit.player_id === winner_t.player_id ? <i className="text-warning bi bi-trophy-fill outline"> </i> : null}
+                                        </td>
+                                        {canManage() ? <td className="text-center">
+                                            <NavLink to={'/submits/' + submit.id + '/edit'}> <button type="button"
+                                                className="btn btn-success"><i className="bi bi-pencil-square"> </i></button></NavLink>
+                                        </td > : null}
+                                    </tr >
+                                ))
                             }
                         </tbody >
 

@@ -30,18 +30,22 @@ const YEAR_VIEW = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {Object.entries(data.submits).map((submit) => (
+                        {
+                            Object.values(data.submits)?.map((submit) => (
 
-                            <tr key={submit[0]}>
-                                <td>
-                                    <NavLink className="nav-link outline" to={'/months/' + submit[1].month + '?y=' + submit[1].year}>
-                                        {getName(submit[1].month)} {submit[0].id}</NavLink>
-                                </td>
-                                <td>{Intl.NumberFormat('en-GB').format(submit[1].resources)}</td>
-                                <td>{Intl.NumberFormat('en-GB').format(submit[1].points)}</td>
-                            </tr>
 
-                        ))}
+                                <tr key={submit.id}>
+                                    <td>
+                                        <NavLink className="nav-link outline" to={'/months/' + submit.month + '?y=' + submit.year}>
+                                            {getName(submit.month)} {submit[0].id}</NavLink>
+                                    </td>
+                                    <td>{Intl.NumberFormat('en-GB').format(submit.resources)}</td>
+                                    <td>{Intl.NumberFormat('en-GB').format(submit.points)}</td>
+                                </tr>
+
+                            ))
+
+                        }
                     </tbody>
 
                 </table>
