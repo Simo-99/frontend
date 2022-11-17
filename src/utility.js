@@ -26,11 +26,11 @@ export function UseSort() {
     $(function () {
         $('.sorting > th').off('click');
         $('.sorting > th').on("click", function () {
-            console.log(this.asc);
+            console.log(this?.asc);
 
             var table = $(".table")
             var rows = $('.table').find('tbody').children().toArray().sort(comparer($(this).index()))
-            this.asc = !this.asc || false;
+            this.asc = !this?.asc;
             if (!this.asc) { rows = rows.reverse() }
             for (var i = 0; i < rows.length; i++) { table.append(rows[i]) }
         })
