@@ -23,9 +23,9 @@ export async function UseAxios(url, method = 'GET', params = {}) {
 
 export function UseSort() {
 
-    $(function () {
-        $('.sorting > th').off('click');
-        $('.sorting > th').on("click", function () {
+    jQuery(function () {
+        jQuery('.sorting > th').off('click');
+        jQuery('.sorting > th').on("click", function () {
             console.log("sorting");
             var table = $(".table")
             var rows = $('.table').find('tbody').children().toArray().sort(comparer($(this).index()))
