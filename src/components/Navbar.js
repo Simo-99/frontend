@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom"
 import { canManage, getToken, UseSort } from "../utility";
-import logo from "../TRIAL.png";
+import logo from "../assets/TRIAL.png";
 
 const Navbar = () => {
 

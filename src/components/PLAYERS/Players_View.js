@@ -1,19 +1,13 @@
 import { useEffect, useState } from 'react'
-import { getNames, canManage, UseAxios } from "../../utility";
+import { getName, canManage, UseAxios } from "../../utility";
 import { NavLink, useParams } from 'react-router-dom';
 
 const Players_View = () => {
 
-
     const [data, setData] = useState({ player: {}, submits: {} });
     const { id } = useParams();
-    const names = getNames();
 
-
-
-    useEffect(() => {
-        (async function getData() { setData(await UseAxios("/players/" + id + "?s=yes")); })()
-    }, []);
+    useEffect(() => { (async () => setData(await UseAxios("/players/" + id + "?s=yes")))() }, []);
 
 
     return (
@@ -55,7 +49,7 @@ const Players_View = () => {
                                 </td>
                                 <td>
                                     <NavLink className="nav-link outline" to={'/months/' + submit[1].month + '?y=' + submit[1].year}>
-                                        {names[submit[1].month]}</NavLink>
+                                        {getName(submit[1].month)}</NavLink>
                                 </td>
                                 <td>{Intl.NumberFormat('en-GB',).format(submit[1].resources)}</td>
                                 <td>{Intl.NumberFormat('en-GB',).format(submit[1].points)}</td>

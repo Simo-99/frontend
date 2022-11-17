@@ -21,8 +21,7 @@ export async function UseAxios(url, method = 'GET', params = {}) {
 
 export function UseSort() { activateSorting() }
 
-export function getName(month) { return getNames()[month] }
-export function getNames() { return ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"] }
+export function getName(month) { return ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"][month] }
 export function getUser() { return JSON.parse(getStorage("user")) }
 export function getToken() { return getUser()?.token }
 export function getRole() { return getUser()?.role }

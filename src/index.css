@@ -46,7 +46,7 @@ i {
 
 .jonny {
 
-    content: url("jonny.png");
+    content: url("./assets/jonny.png");
     width: 20px;
 }
 
