@@ -1,7 +1,5 @@
 import axios from 'axios';
-
-import $ from 'jquery';
-import DataTable from "datatables.net"
+import { activateSorting } from "./sorting"
 
 export function useClient() {
 
@@ -21,25 +19,7 @@ export async function UseAxios(url, method = 'GET', params = {}) {
     return (await useClient()({ method: method, url: url, data: params }).then(({ data }) => data))
 }
 
-export function UseSort() {
-
-    $(setTimeout(() => {
-
-        $('.sorting th').off("click")
-        $('.sorting th').on("click", function () {
-
-            var table = $(".table")
-            var rows = table.find('tbody').children().toArray().sort(comparer($(this).index()))
-
-            this.asc = !this.asc;
-            rows = this.asc ? rows : rows.reverse()
-
-            for (var i = 0; i < rows.length; i++) { table.append(rows[i]) }
-        })
-
-    }, 1000));
-
-}
+export function UseSort() { activateSorting() }
 
 export function getName(month) { return getNames()[month] }
 export function getNames() { return ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"] }
@@ -59,14 +39,3 @@ export function getStorage(key) {
     return item.value
 }
 
-function getCellValue(row, index) { return $(row).children('td').eq(index).text() }
-function parseNumeric(value) { return +value.replace(/,/g, '') }
-function isNumeric2(value) { return !isNaN(+value.replace(/,/g, '')); }
-function cleanCellValue(value) { return value.split(" ")[0] }
-function comparer(index) {
-    return function (a, b) {
-        var valA = cleanCellValue(getCellValue(a, index))
-        var valB = cleanCellValue(getCellValue(b, index))
-        return isNumeric2(valA) && isNumeric2(valB) ? parseNumeric(valA.replace(',', '')) - parseNumeric(valB.replace(',', '')) : valA.toString().localeCompare(valB.toString())
-    }
-}
