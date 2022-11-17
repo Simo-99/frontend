@@ -139,8 +139,6 @@ const Months_View = () => {
                         </tbody >
 
                     </table >
-                    {//UseSort()
-                    }
                 </div > : null
 
             }
