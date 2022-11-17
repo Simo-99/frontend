@@ -23,6 +23,8 @@ th {
     margin-left: 5px;
     margin-right: 5px;
     user-select: none;
+    cursor: pointer;
+
 }
 
 .outline2 {
@@ -33,6 +35,7 @@ th {
     margin-right: 5px;
     user-select: none;
     cursor: pointer;
+
 
 }
 
