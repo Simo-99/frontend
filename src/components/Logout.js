@@ -11,7 +11,8 @@ const Logout = () => {
         navigate(0);
     }, []);
 
-    return (<Navigate to={{ pathname: '/login' }} />);
+    return (<></>)
+    //return (<Navigate to={{ pathname: '/login' }} />);
 
 }
 
