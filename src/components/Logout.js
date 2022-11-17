@@ -10,9 +10,7 @@ const Logout = () => {
         localStorage.clear();
         navigate(0);
     }, []);
-
-    return (<></>)
-    //return (<Navigate to={{ pathname: '/login' }} />);
+    return (<Navigate to={{ pathname: '/login' }} />);
 
 }
 
