@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { canManage, UseAxios } from "../../utility";
 import { NavLink } from 'react-router-dom';
+import { Icon } from '@mui/material';
 
 
 const FORMERS = () => {
@@ -40,15 +41,15 @@ const FORMERS = () => {
                                         ?
                                         <td className="text-center">
                                             <NavLink to={'/players/' + player.id + '/edit'}>
-                                                <button type="button" className="btn btn-success m-1"><i className="bi bi-pencil-square"> </i></button>
+                                                <button type="button" className="btn btn-success m-1"><Icon fontSize='small'>edit</Icon></button>
                                             </NavLink>
 
                                             <NavLink to={'/players/' + player.id + '/show'}>
-                                                <button type="button" className="btn btn-success m-1"><i className="bi bi-eye-fill"></i></button>
+                                                <button type="button" className="btn btn-success m-1"><Icon fontSize='small'>visibility</Icon></button>
                                             </NavLink>
 
                                             <NavLink to={'/players/' + player.id + '/delete'}>
-                                                <button type="button" className="btn btn-danger m-1"><i className="bi bi-trash-fill"></i></button>
+                                                <button type="button" className="btn btn-danger m-1"><Icon fontSize='small'>delete</Icon></button>
                                             </NavLink>
 
                                         </td> : null

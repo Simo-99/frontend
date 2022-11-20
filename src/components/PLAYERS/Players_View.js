@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { getName, canManage, UseAxios } from "../../utility";
 import { NavLink, useParams } from 'react-router-dom';
-
+import { Icon } from '@mui/material';
 const PLAYERS_VIEW = () => {
 
     const [data, setData] = useState({ player: {}, submits: {} });
@@ -21,7 +21,7 @@ const PLAYERS_VIEW = () => {
                         <th colSpan='9' className="text-center">
                             <span className={data.player.color === "#000000" ? 'outline2' : 'outline'} style={{ color: data.player.color }}>{data.player.name}</span>
                             {canManage() ? < NavLink to={'/players/' + data.player.id + '/edit'}>
-                                <button type="button" className="btn btn-dark"><i className="bi bi-pen"></i></button>
+                                <button type="button" className="btn btn-dark"><Icon fontSize='small'>edit</Icon></button>
                             </NavLink> : null}
                         </th>
                     </tr>
@@ -74,7 +74,7 @@ const PLAYERS_VIEW = () => {
                                 {
                                     canManage() ? <td className="text-center">
                                         <NavLink to={'/submits/' + submit.id + '/edit'}>
-                                            <button type="button" className="btn btn-success"><i className="bi bi-pencil-square"></i></button>
+                                            <button type="button" className="btn btn-success"><Icon fontSize='small'>edit</Icon></button>
                                         </NavLink>
                                     </td> : null
                                 }

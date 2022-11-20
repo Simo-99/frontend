@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { UseAxios } from "../../utility";
-import React from "react";
 
 const PLAYERS_EDIT = () => {
 

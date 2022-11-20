@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { getName, canManage, UseAxios } from "../../utility";
 import { NavLink, useParams, useSearchParams } from 'react-router-dom';
+import { Icon } from '@mui/material';
 
 const MONTHS_VIEW = () => {
 
@@ -129,7 +130,7 @@ const MONTHS_VIEW = () => {
                                         </td>
                                         {canManage() ? <td className="text-center">
                                             <NavLink to={'/submits/' + submit.id + '/edit'}> <button type="button"
-                                                className="btn btn-success"><i className="bi bi-pencil-square"> </i></button></NavLink>
+                                                className="btn btn-success"><Icon fontSize='small'>edit</Icon></button></NavLink>
                                         </td > : null}
                                     </tr >
                                 ))

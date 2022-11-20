@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { canManage, UseAxios } from "../../utility";
 import { NavLink } from 'react-router-dom';
+import { Icon } from '@mui/material';
 
 const PLAYERS = () => {
 
@@ -39,11 +40,11 @@ const PLAYERS = () => {
                                         ?
                                         <td className="text-center">
                                             <NavLink to={'/players/' + player.id + '/edit'}>
-                                                <button type="button" className="btn btn-success"><i className="bi bi-pencil-square"> </i></button>
+                                                <button type="button" className="btn btn-success"><Icon fontSize='small'>edit</Icon></button>
                                             </NavLink>
 
                                             <NavLink to={'/players/' + player.id + '/hide'}>
-                                                <button type="button" className="btn btn-success m-2"><i className="bi bi-eye-slash-fill"></i></button>
+                                                <button type="button" className="btn btn-success mx-1"><Icon fontSize='small'>visibility_off</Icon></button>
                                             </NavLink>
 
                                         </td> : null
