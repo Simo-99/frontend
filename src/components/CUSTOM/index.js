@@ -1,6 +1,11 @@
 export { default as NumericCell } from "./NumericCell"
 export { default as CanManage } from "./CanManage"
 export { default as True } from "./True"
-export { default as Icon2 } from "./Icon2"
+export { default as Icon } from "./Icon2"
 export { default as Number } from "./Number"
-
+export { default as AngryFace } from "./AngryFace"
+export { default as Trophy } from "./Trophy"
+export { default as PlayerName } from "./PlayerName"
+export { default as MonthCell } from "./MonthCell"
+export { default as YearCell } from "./YearCell"
+export { default as PlayerWithSquareCell } from "./PlayerWithSquare"

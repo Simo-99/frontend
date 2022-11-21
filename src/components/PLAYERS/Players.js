@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react'
-import { canManage, UseAxios } from "../../utility";
-import { NavLink } from 'react-router-dom';
-
-import { Icon } from '@mui/material';
+import { UseAxios } from "../../utility";
+import * as Util from "../CUSTOM"
 
 const PLAYERS = () => {
 
@@ -16,10 +14,12 @@ const PLAYERS = () => {
             <div className="container my-4" style={{ width: '50%' }}>
                 <table id="table" className="table table-striped table-dark">
                     <thead>
-                        <tr className="clickable text-danger sorting">
+                        <tr className="text-danger sorting">
                             <th >Name</th>
                             <th >Color</th>
-                            {canManage() ? <th className="text-center">Actions</th> : null}
+                            <Util.CanManage>
+                                <th className="text-center">Actions</th>
+                            </Util.CanManage>
                         </tr>
                     </thead>
                     <tbody>
@@ -28,30 +28,15 @@ const PLAYERS = () => {
 
                             <tr key={player.id}>
 
-
-                                <td className="clickable ">
-                                    <div className="d-flex">
-                                        <span className="btn mx-1" style={{ background: player.color, minWidth: '2em', maxHeight: "2em" }}></span>
-                                        <NavLink className="nav-link" to={"/players/" + player.id + "/submits"}>{player.name}</NavLink>
-                                    </div>
-                                </td>
+                                <Util.PlayerWithSquareCell player={player} />
                                 <td>{player.color}</td>
-                                {
-                                    canManage()
-                                        ?
-                                        <td className="text-center">
-                                            <NavLink to={'/players/' + player.id + '/edit'}>
-                                                <button type="button" className="btn btn-success"><Icon fontSize='small'>edit</Icon></button>
-                                            </NavLink>
-
-                                            <NavLink to={'/players/' + player.id + '/hide'}>
-                                                <button type="button" className="btn btn-success mx-1"><Icon fontSize='small'>visibility_off</Icon></button>
-                                            </NavLink>
-
-                                        </td> : null
-                                }
+                                <Util.CanManage>
+                                    <td className="text-center">
+                                        <Util.Icon link={'/players/' + player.id + '/edit'} iconName="edit" />
+                                        <Util.Icon link={'/players/' + player.id + '/hide'} iconName="visibility_off" ButtonClass='btn btn-warning' />
+                                    </td>
+                                </Util.CanManage>
                             </tr >
-
 
                         ))
                         }
