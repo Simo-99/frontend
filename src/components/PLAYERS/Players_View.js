@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
-import { getName, canManage, UseAxios } from "../../utility";
+import { getName, UseAxios } from "../../utility";
 import { NavLink, useParams } from 'react-router-dom';
 import { Icon } from '@mui/material';
+import * as Util from "../CUSTOM"
+
 const PLAYERS_VIEW = () => {
 
     const [data, setData] = useState({ player: {}, submits: {} });
@@ -20,9 +22,13 @@ const PLAYERS_VIEW = () => {
                     <tr>
                         <th colSpan='9' className="text-center">
                             <span className={data.player.color === "#000000" ? 'outline2' : 'outline'} style={{ color: data.player.color }}>{data.player.name}</span>
-                            {canManage() ? < NavLink to={'/players/' + data.player.id + '/edit'}>
-                                <button type="button" className="btn btn-dark"><Icon fontSize='small'>edit</Icon></button>
-                            </NavLink> : null}
+                            <Util.CanManage>
+                                < NavLink to={'/players/' + data.player.id + '/edit'}>
+                                    <button type="button" className="btn btn-dark">
+                                        <Icon fontSize='small'>edit</Icon>
+                                    </button>
+                                </NavLink>
+                            </Util.CanManage>
                         </th>
                     </tr>
                     <tr className="clickable text-danger sorting">
@@ -34,8 +40,7 @@ const PLAYERS_VIEW = () => {
                         <th>New Resources</th>
                         <th>New Points</th>
                         <th>New Trophies</th>
-
-                        {canManage() ? <th className="text-center">Actions</th> : null}
+                        <Util.CanManage><th className="text-center">Actions</th></Util.CanManage>
                     </tr>
                 </thead>
                 <tbody>
@@ -51,33 +56,35 @@ const PLAYERS_VIEW = () => {
                                     <NavLink className="nav-link outline" to={'/months/' + submit.month + '?y=' + submit.year}>
                                         {getName(submit.month)}</NavLink>
                                 </td>
-                                <td>{Intl.NumberFormat('en-GB',).format(submit.resources)}</td>
-                                <td>{Intl.NumberFormat('en-GB',).format(submit.points)}</td>
-                                <td>{Intl.NumberFormat('en-GB',).format(submit.trophies)}</td>
+                                <Util.NumericCell value={submit.resources} />
+                                <Util.NumericCell value={submit.points} />
+                                <Util.NumericCell value={submit.trophies} />
+
                                 <td>
-                                    {Intl.NumberFormat('en-GB',).format(submit.new_resources)}
-                                    {submit.new_resources < 280000 ?
-                                        submit.player_id === 6 ?
-                                            <i className="jonny"></i>
-                                            : <i className="text-danger bi bi-emoji-angry-fill outline"></i>
-                                        : null}
-                                    {submit.winner_r ? <i className="text-warning bi bi-trophy-fill outline"></i> : null}
+                                    <Util.Number value={submit.new_resources} />
+                                    <Util.True condition={submit.new_resources < 280000}>
+                                        <i className="text-danger bi bi-emoji-angry-fill outline"></i>
+                                    </Util.True>
+
+                                    <Util.True condition={submit.winner_r}><i className="text-warning bi bi-trophy-fill outline"></i></Util.True>
                                 </td>
                                 <td>
-                                    {Intl.NumberFormat('en-GB',).format(submit.new_points)}
-                                    {submit.winner_p ? <i className="text-warning bi bi-trophy-fill outline"></i> : null}
+                                    <Util.Number value={submit.new_points} />
+                                    <Util.True condition={submit.winner_p}><i className="text-warning bi bi-trophy-fill outline"></i> </Util.True>
                                 </td>
                                 <td>
-                                    {Intl.NumberFormat('en-GB',).format(submit.new_trophies)}
-                                    {submit.winner_t && submit.new_trophies > 0 ? <i className="text-warning bi bi-trophy-fill outline"></i> : null}
+                                    <Util.Number value={submit.new_trophies} />
+                                    <Util.True condition={submit.winner_t && submit.new_trophies > 0}>
+                                        <i className="text-warning bi bi-trophy-fill outline"></i>
+                                    </Util.True>
                                 </td>
-                                {
-                                    canManage() ? <td className="text-center">
+                                <Util.CanManage>
+                                    <td className="text-center">
                                         <NavLink to={'/submits/' + submit.id + '/edit'}>
                                             <button type="button" className="btn btn-success"><Icon fontSize='small'>edit</Icon></button>
                                         </NavLink>
-                                    </td> : null
-                                }
+                                    </td>
+                                </Util.CanManage>
                             </tr>
                         ))
                     }

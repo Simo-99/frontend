@@ -37,7 +37,7 @@ const MONTH_PAST = () => {
                                 <td>
                                     <NavLink className="nav-link outline" to={'/months/' + month.month + '?y=' + month.year}>{getName(month.month)}</NavLink>
                                 </td>
-                                <td> {Intl.NumberFormat('en-GB',).format(month.resources)}</td>
+                                <td>{Intl.NumberFormat('en-GB',).format(month.resources)}</td>
                                 <td>{Intl.NumberFormat('en-GB',).format(month.points)}</td>
                                 <td>{Intl.NumberFormat('en-GB',).format(month.trophies)}</td>
 
