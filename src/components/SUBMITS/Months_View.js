@@ -82,7 +82,7 @@ const MONTHS_VIEW = () => {
 
 
                             </tr >
-                            <tr className="text-danger clickable sorting">
+                            <tr className="text-danger sorting">
                                 <th>Name</th>
                                 <th>Resources</th>
                                 <th>Points</th>

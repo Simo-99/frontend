@@ -1,7 +1,7 @@
 import $ from 'jquery';
 
 export function activateSorting() {
-    
+
     $(setTimeout(() => {
 
         $('.sorting th').off("click")
@@ -16,7 +16,7 @@ export function activateSorting() {
             for (var i = 0; i < rows.length; i++) { table.append(rows[i]) }
         })
 
-    }, 1000));
+    }, 500));
 
 
 }
