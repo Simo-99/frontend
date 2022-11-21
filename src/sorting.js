@@ -4,16 +4,17 @@ export function activateSorting() {
 
     $(setTimeout(() => {
 
+
         $('.sorting th').off("click")
         $('.sorting th').on("click", function () {
 
-            var table = $(".table")
-            var rows = table.find('tbody').children().toArray().sort(comparer($(this).index()))
+            //console.log("sorting " + this.innerHTML + " in " + (this.asc ? "DESC" : "ASC"))
 
-            this.asc = !this.asc;
-            rows = this.asc ? rows : rows.reverse()
+            var rows = $(".table").find('tbody').children().toArray().sort(comparer($(this).index()))
 
-            for (var i = 0; i < rows.length; i++) { table.append(rows[i]) }
+            rows = (this.asc = !this.asc) ? rows : rows.reverse()
+
+            for (var i = 0; i < rows.length; i++) { $(".table").append(rows[i]) }
         })
 
     }, 500));
@@ -21,8 +22,8 @@ export function activateSorting() {
 
 }
 export function getCellValue(row, index) { return $(row).children('td').eq(index).text() }
-export function parseNumeric(value) { return +value.replace(/,/g, '') }
-export function isNumeric2(value) { return !isNaN(+value.replace(/,/g, '')); }
+export function parseNumeric(value) { return +value.toString().replace(/,/g, '') }
+export function isNumeric2(value) { return !isNaN(+(value.toString().replace(/,/g, ''))) }
 export function cleanCellValue(value) { return value.split(" ")[0] }
 export function comparer(index) {
     return function (a, b) {

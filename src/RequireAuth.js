@@ -8,7 +8,9 @@ const RequireAuth = ({ allowedRoles }) => {
     return (
 
         allowedRoles.includes(getRole())
-            ? <><Outlet /> {UseSort()}  </>
+            ? <><Outlet /> {
+                UseSort()
+            }  </>
             : getToken()
                 ? <><Navigate to="/players" state={{ from: location }} replace /> {UseSort()}</>
                 : <Navigate to="/login" state={{ from: location }} replace />

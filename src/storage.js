@@ -3,9 +3,6 @@ export function getStorage(key) {
     const itemStr = localStorage.getItem(key)
     if (!itemStr) return null
 
-    const item = JSON.parse(itemStr)
-    const now = new Date()
-
-    if (now.getTime() > item.expiry) { localStorage.removeItem(key); return null; }
-    return item.value
+    if (new Date().getTime() > JSON.parse(itemStr).expiry) { localStorage.removeItem(key); return null; }
+    return JSON.parse(itemStr).value
 }
