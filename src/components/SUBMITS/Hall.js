@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import { getName, UseAxios } from "../../utility";
-import { NavLink } from 'react-router-dom';
+import { UseAxios } from "../../utility";
+import * as Util from "../CUSTOM"
 
 const HALL = () => {
 
@@ -15,7 +15,7 @@ const HALL = () => {
             <table id="table" className="table table-striped table-dark">
 
                 <thead>
-                    <tr className="clickable text-danger sorting">
+                    <tr className="text-danger sorting">
                         <th>Year</th>
                         <th>Month</th>
                         <th>New Resources</th>
@@ -25,16 +25,17 @@ const HALL = () => {
                 <tbody>
                     {submits.map((submit) => (
                         < tr key={JSON.stringify(submit)} >
-                            <td><NavLink className="nav-link outline" to={"/years/" + submit.year}>{submit.year}</NavLink></td>
-                            <td><NavLink className="nav-link outline" to={"/months/" + submit.month + "?y=" + submit.year}>{getName(submit.month)}</NavLink></td>
+                            <Util.YearCell year={submit.year} />
+                            <Util.MonthCell month={submit.month} year={submit.year} />
                             <td>
-                                {Intl.NumberFormat('en-GB',).format(submit.res.new_resources)}
-                                <NavLink to={"/players/" + submit.res.player.id + "/submits"} className={submit.res.player.color === '#000000' ? 'outline2' : 'outline'} style={{ color: submit.res.player.color, textDecoration: 'none' }}>{" " + submit.res.player.name}</NavLink>
+                                <Util.Number value={submit.res.new_resources} />
+                                <Util.PlayerName player={submit.res.player} />
                             </td>
                             <td>
-                                {Intl.NumberFormat('en-GB',).format(submit.points.new_points)}
-                                <NavLink to={"/players/" + submit.points.player.id + "/submits"} className={submit.points.player.color === '#000000' ? 'outline2' : 'outline'} style={{ color: submit.points.player.color, textDecoration: 'none' }}>{" " + submit.points.player.name}</NavLink>
+                                <Util.Number value={submit.points.new_points} />
+                                <Util.PlayerName player={submit.points.player} />
                             </td>
+
                         </tr>
                     ))}
                 </tbody>

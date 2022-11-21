@@ -9,3 +9,6 @@ export { default as PlayerName } from "./PlayerName"
 export { default as MonthCell } from "./MonthCell"
 export { default as YearCell } from "./YearCell"
 export { default as PlayerWithSquareCell } from "./PlayerWithSquare"
+export { default as Month } from "./Month"
+export { default as Year } from "./Year"
+

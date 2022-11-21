@@ -1,7 +1,7 @@
 import { canManage } from "../../utility"
 import True from "./True"
-function CanManage(props) {
+function CanManage({ children, otherwise = null }) {
 
-    return (<True condition={canManage()}>{props.children}</True>)
+    return (<True condition={canManage()} otherwise={otherwise} >{children}</True>)
 }
 export default CanManage

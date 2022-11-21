@@ -42,7 +42,7 @@ const PLAYERS_VIEW = () => {
                         Object.values(data.submits)?.map((submit) => (
                             < tr key={submit.id} >
                                 <Util.YearCell year={submit.year} />
-                                <Util.MonthCell month={submit.month} year={submit.year} value={submit.month} />
+                                <Util.MonthCell month={submit.month} year={submit.year} />
                                 <Util.NumericCell value={submit.resources} />
                                 <Util.NumericCell value={submit.points} />
                                 <Util.NumericCell value={submit.trophies} />

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { getName, canManage, UseAxios } from "../../utility";
 import { NavLink, useParams, useSearchParams } from 'react-router-dom';
 import { Icon } from '@mui/material';
+import * as Util from "../CUSTOM"
 
 const MONTHS_VIEW = () => {
 
@@ -43,44 +44,29 @@ const MONTHS_VIEW = () => {
                         <thead>
                             <tr>
                                 <th className="text-start">
-                                    {month > 1 ? <NavLink reloadDocument
-                                        to={'/months/' + (month - 1) + '?y=' + year}
-                                        style={{ textDecoration: 'none' }} className="text-warning">
-                                        {getName(month - 1)}
-                                    </NavLink> : null}
+                                    <Util.True condition={month > 1}>
+                                        <Util.Month month={month - 1} year={year} extraClasses="text-warning" />
+                                    </Util.True>
                                 </th>
-                                {canManage() ? <th className="flex-row text-primary  text-center" colSpan={6}>
-                                    <NavLink to={'/years/' + year} style={{ textDecoration: 'none' }} reloadDocument>
+                                <th className="text-primary  text-center" colSpan={canManage() ? '6' : '5'}>
+                                    <NavLink to={'/years/' + year} style={{ textDecoration: 'none' }}>
                                         {year}
-                                    </NavLink> -
+                                    </NavLink>
+                                    -
                                     <span>{getName(month)}</span>
-                                </th> :
-                                    <th className="flex-row text-primary  text-center" colSpan={5}>
-                                        <NavLink to={'/years/' + year} style={{ textDecoration: 'none' }} reloadDocument>
-                                            {year}
-                                        </NavLink> -
-                                        <span>{" " + getName(month)}</span>
-                                    </th>}
+                                </th>
                                 <th className="text-end">
-                                    {parseInt(month) < 12 ? <NavLink reloadDocument to={'/months/' + (parseInt(month) + 1) + '?y=' + year} style={{ textDecoration: 'none' }} className="text-warning">
-                                        {getName(parseInt(month) + 1)}
-                                    </NavLink> : null}
-
+                                    <Util.True condition={month < 12}>
+                                        <Util.Month month={parseInt(month) + 1} year={year} extraClasses="text-warning" />
+                                    </Util.True>
                                 </th>
                             </tr>
-                            <tr>
+                            <tr className='text-light'>
                                 <th colSpan={4} className="text-muted">Totals</th>
-
-                                <th className="text-light text-start">{Intl.NumberFormat('en-GB',).format(data.totals.resources)}
-                                </th>
-                                <th className="text-light text-start">{Intl.NumberFormat('en-GB',).format(data.totals.points)}
-                                </th>
-                                <th className="text-light text-start">{Intl.NumberFormat('en-GB',).format(data.totals.trophies)}
-                                </th>
-
-                                {canManage() ? <th></th> : null}
-
-
+                                <th><Util.Number value={data.totals.resources} /></th>
+                                <th><Util.Number value={data.totals.points} /></th>
+                                <th><Util.Number value={data.totals.trophies} /></th>
+                                <Util.CanManage><th></th></Util.CanManage>
                             </tr >
                             <tr className="text-danger sorting">
                                 <th>Name</th>
@@ -90,7 +76,7 @@ const MONTHS_VIEW = () => {
                                 <th>New Resources</th>
                                 <th>New Points</th>
                                 <th>New Trophies</th>
-                                {canManage() ? <th className="text-center">Actions</th> : null}
+                                <Util.CanManage><th className="text-center">Actions</th></Util.CanManage>
                             </tr>
 
                         </thead >
@@ -100,38 +86,30 @@ const MONTHS_VIEW = () => {
                                 Object.values(data.submits)?.map((submit) => (
 
                                     <tr key={JSON.stringify(submit)}>
+
+                                        <td><Util.PlayerName player={{ color: submit.color, id: submit.player_id, name: submit.name }} /></td>
+
+                                        <Util.NumericCell value={submit.resources} />
+                                        <Util.NumericCell value={submit.points} />
+                                        <Util.NumericCell value={submit.trophies} />
                                         <td>
-                                            <NavLink className={submit.color === '#000000' ? 'outline2 nav-link' : 'outline nav-link'}
-                                                to={'/players/' + submit.player_id + '/submits'} style={{ color: submit.color }}>{submit.name}</NavLink>
-                                        </td>
-                                        <td>{Intl.NumberFormat('en-GB',).format(submit.resources)}</td>
-                                        <td>{Intl.NumberFormat('en-GB',).format(submit.points)}</td>
-                                        <td>{Intl.NumberFormat('en-GB',).format(submit.trophies)}</td>
-                                        <td>
-                                            {Intl.NumberFormat('en-GB',).format(submit.new_resources)}
-                                            {submit.new_resources < 280000 ?
-                                                submit.player_id === 6 ?
-                                                    <i className="jonny"></i>
-                                                    : <i className="text-danger bi bi-emoji-angry-fill outline"></i>
-                                                : null}
-
-
-                                            {submit.player_id === winner_r.player_id ? <i className="text-warning bi bi-trophy-fill outline"> </i> : null}
-
-
+                                            <Util.Number value={submit.new_resources} />
+                                            <Util.True condition={submit.new_resources < 280000}><Util.AngryFace /></Util.True>
+                                            <Util.True condition={submit.player_id === winner_r.player_id}><Util.Trophy /></Util.True>
                                         </td>
                                         <td>
-                                            {Intl.NumberFormat('en-GB',).format(submit.new_points)}
-                                            {submit.player_id === winner_p.player_id ? <i className="text-warning bi bi-trophy-fill outline"> </i> : null}
+                                            <Util.Number value={submit.new_points} />
+                                            <Util.True condition={submit.player_id === winner_p.player_id}><Util.Trophy /></Util.True>
                                         </td>
                                         <td>
-                                            {Intl.NumberFormat('en-GB',).format(submit.new_trophies)}
-                                            {submit.new_trophies > 0 && submit.player_id === winner_t.player_id ? <i className="text-warning bi bi-trophy-fill outline"> </i> : null}
+                                            <Util.Number value={submit.new_trophies} />
+                                            <Util.True condition={submit.player_id === winner_t.player_id}><Util.Trophy /></Util.True>
                                         </td>
-                                        {canManage() ? <td className="text-center">
+                                        <Util.CanManage><td className="text-center">
                                             <NavLink to={'/submits/' + submit.id + '/edit'}> <button type="button"
                                                 className="btn btn-success"><Icon fontSize='small'>edit</Icon></button></NavLink>
-                                        </td > : null}
+                                        </td >
+                                        </Util.CanManage>
                                     </tr >
                                 ))
                             }

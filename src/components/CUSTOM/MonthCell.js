@@ -1,8 +1,8 @@
-import { NavLink } from 'react-router-dom';
-import { getName } from "../../utility";
+import Month from './Month'
 
-function MonthCell({ month, year, value }) {
-    return (<td><NavLink className="nav-link outline" to={'/months/' + month + '?y=' + year}>{getName(value)}</NavLink></td>)
+function MonthCell({ month, year, extraClasses = "" }) {
+    return (<td><Month month={month} year={year} extraClasses={extraClasses} /></td>)
 }
 
 export default MonthCell
+

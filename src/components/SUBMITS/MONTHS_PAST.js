@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import { UseAxios, getName } from "../../utility";
-import { NavLink } from 'react-router-dom';
+import { UseAxios } from "../../utility";
+import * as Util from "../CUSTOM"
 
 const MONTH_PAST = () => {
 
@@ -31,18 +31,12 @@ const MONTH_PAST = () => {
                     <tbody>
                         {submits.map((month) => (
                             <tr key={JSON.stringify(month)}>
-                                <td>
-                                    <NavLink className="nav-link outline" to={'/years/' + month.year}>{month.year}</NavLink>
-                                </td>
-                                <td>
-                                    <NavLink className="nav-link outline" to={'/months/' + month.month + '?y=' + month.year}>{getName(month.month)}</NavLink>
-                                </td>
-                                <td>{Intl.NumberFormat('en-GB',).format(month.resources)}</td>
-                                <td>{Intl.NumberFormat('en-GB',).format(month.points)}</td>
-                                <td>{Intl.NumberFormat('en-GB',).format(month.trophies)}</td>
-
+                                <Util.YearCell year={month.year} />
+                                <Util.MonthCell month={month.month} year={month.year} />
+                                <Util.NumericCell value={month.resources} />
+                                <Util.NumericCell value={month.points} />
+                                <Util.NumericCell value={month.trophies} />
                             </tr>
-
                         ))}
                     </tbody>
 
