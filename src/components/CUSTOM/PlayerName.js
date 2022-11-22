@@ -4,9 +4,9 @@ function PlayerName({ player }) {
     return (
 
         <NavLink to={"/players/" + player.id + "/submits"} style={{ textDecoration: 'none' }}>
-            <span className={player.color === "#000000" ? 'outline2' : 'outline'} style={{ color: player.color, display: "inline" }} >
+            <em className={player.color === "#000000" ? 'outline2' : 'outline'} style={{ color: player.color, display: "inline" }} >
                 {" " + player.name}
-            </ span >
+            </ em >
         </NavLink>
     )
 }
