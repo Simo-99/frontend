@@ -1,11 +1,12 @@
 import Login from './components/LOGIN';
 import Logout from './components/LOGOUT';
+import Home from './components/HOME';
 
-import Months_Past from './components/SUBMITS/MONTHS_PAST';
-import Months_View from './components/SUBMITS/MONTHS_VIEW';
-import Years_View from './components/SUBMITS/YEARS_VIEW';
-import Submits_Edit from './components/SUBMITS/SUBMITS_EDIT';
-import Table_Form from './components/SUBMITS/TABLE_FORM';
+import MONTHS_PAST from './components/SUBMITS/MONTHS_PAST';
+import MONTHS_VIEW from './components/SUBMITS/MONTHS_VIEW';
+import YEARS_VIEW from './components/SUBMITS/YEARS_VIEW';
+import SUBMITS_EDIT from './components/SUBMITS/SUBMITS_EDIT';
+import TABLE_FORM from './components/SUBMITS/TABLE_FORM';
 
 import PLAYERS from './components/PLAYERS/PLAYERS';
 import FORMERS from './components/PLAYERS/FORMERS';
@@ -17,9 +18,9 @@ import PLAYERS_ADD from './components/PLAYERS/PLAYERS_ADD';
 import PLAYERS_EDIT from './components/PLAYERS/PLAYERS_EDIT';
 import PLAYERS_VIEW from './components/PLAYERS/PLAYERS_VIEW';
 
-import Hall from './components/SUBMITS/HALL';
 import RequireAuth from './RequireAuth';
 import { Routes, Route } from 'react-router-dom';
+import HALL from './components/SUBMITS/HALL';
 
 
 
@@ -36,6 +37,7 @@ function App() {
       <Route path="/">
 
         {/* PUBLIC ROUTES*/}
+        <Route path="" element={<Home />} />
         <Route path="login" element={<Login />} />
         <Route path="logout" element={<Logout />} />
 
@@ -45,11 +47,11 @@ function App() {
           <Route path="/players/formers" element={<FORMERS />} />
           <Route path="/players/:id/submits" element={<PLAYERS_VIEW />} />
 
-          <Route path="/hall" element={<Hall />} />
-          <Route path="/months" element={<Months_Past />} />
+          <Route path="/hall" element={<HALL />} />
+          <Route path="/months" element={<MONTHS_PAST />} />
 
-          <Route path="/months/:month" element={<Months_View />} />
-          <Route path="/years/:year" element={<Years_View />} />
+          <Route path="/months/:month" element={<MONTHS_VIEW />} />
+          <Route path="/years/:year" element={<YEARS_VIEW />} />
 
         </Route>
 
@@ -62,8 +64,8 @@ function App() {
           <Route path="/players/:id/edit" element={<PLAYERS_EDIT />} />
           <Route path="/players/add" element={<PLAYERS_ADD />} />
 
-          <Route path="/submits/:id/edit" element={<Submits_Edit />} />
-          <Route path="/data" element={<Table_Form />} />
+          <Route path="/submits/:id/edit" element={<SUBMITS_EDIT />} />
+          <Route path="/data" element={<TABLE_FORM />} />
 
         </Route>
 
