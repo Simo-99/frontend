@@ -19,22 +19,29 @@ const YEAR_VIEW = () => {
 
 
                     <thead>
-                        <tr className="text-warning">
-                            <Util.YearCell year={year} extraClasses="text-primary" />
-                            <Util.NumericCell value={data.totals.resources} />
-                            <Util.NumericCell value={data.totals.points} />
-                            <Util.NumericCell value={data.totals.trophies} />
+                        <tr>
+                            <Util.YearCell year={year - 1} cellClasses="text-warning" />
+                            <Util.YearCell year={year} cellClasses="text-center text-primary" colSpan={3} />
+                            <Util.YearCell year={parseInt(year) + 1} cellClasses="text-end text-warning" />
+                        </tr>
+                        <tr className="text-light">
+                            <th colSpan={2} className="text-muted" >Totals</th>
+                            <Util.NumericCell cellClasses='outline' value={data.totals.resources} />
+                            <Util.NumericCell cellClasses='outline' value={data.totals.points} />
+                            <Util.NumericCell cellClasses='outline' value={data.totals.trophies} />
                         </tr>
                         <tr className="clickable text-danger sorting">
-                            <Util.HeadersCreate headers={["Month", "New Resources", "New Points", "New Trophies"]} />
+                            <Util.HeadersCreate headers={["Year", "Month", "New Resources", "New Points", "New Trophies"]} />
                         </tr>
                     </thead>
                     <tbody>
                         {
+
                             Object.values(data.submits)?.map((submit) => (
 
 
                                 <tr key={submit.month}>
+                                    <Util.YearCell year={submit.year} />
                                     <Util.MonthCell month={submit.month} year={submit.year} />
                                     <Util.NumericCell value={submit.resources} />
                                     <Util.NumericCell value={submit.points} />
@@ -42,7 +49,6 @@ const YEAR_VIEW = () => {
                                 </tr>
 
                             ))
-
                         }
                     </tbody>
 
