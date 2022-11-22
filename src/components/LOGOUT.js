@@ -6,8 +6,8 @@ const LOGOUT = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        (async () => {
-            await UseAxios("/logout", "POST");
+        (() => {
+            UseAxios("/logout", "POST");
             localStorage.clear();
             navigate(0);
         })()
