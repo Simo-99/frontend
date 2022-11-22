@@ -1,6 +1,6 @@
 import { Number } from "./"
-function NumericCell({ value }) {
-    return (<td><Number value={value} /></td>)
+function NumericCell({ value, extraClasses = "", cellClasses = "" }) {
+    return (<td className={cellClasses}><Number className={extraClasses} value={value} /></td>)
 
 }
 
