@@ -3,7 +3,7 @@ import { getName } from "../../utility";
 
 
 function Month({ month, year, extraClasses = "" }) {
-    return (<NavLink className={"nav-link outline " + extraClasses} to={'/months/' + month + '?y=' + year}>{getName(month)}</NavLink>)
+    return (<NavLink className={"nav-link outline d-inline " + extraClasses} to={'/months/' + month + '?y=' + year}>{getName(month)}</NavLink>)
 }
 
 export default Month

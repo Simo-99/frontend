@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
-import { getName, canManage, UseAxios } from "../../utility";
-import { NavLink, useParams, useSearchParams } from 'react-router-dom';
-import { Icon } from '@mui/material';
+import { canManage, UseAxios } from "../../utility";
+import { useParams, useSearchParams } from 'react-router-dom';
 import * as Util from "../CUSTOM"
 
 const MONTHS_VIEW = () => {
@@ -49,11 +48,7 @@ const MONTHS_VIEW = () => {
                                     </Util.True>
                                 </th>
                                 <th className="text-primary  text-center" colSpan={canManage() ? '6' : '5'}>
-                                    <NavLink to={'/years/' + year} style={{ textDecoration: 'none' }}>
-                                        {year}
-                                    </NavLink>
-                                    -
-                                    <span>{getName(month)}</span>
+                                    <Util.Year year={year} /> - <Util.Month month={month} year={year} />
                                 </th>
                                 <th className="text-end">
                                     <Util.True condition={month < 12}>
@@ -103,12 +98,12 @@ const MONTHS_VIEW = () => {
                                         </td>
                                         <td>
                                             <Util.Number value={submit.new_trophies} />
-                                            <Util.True condition={submit.player_id === winner_t.player_id}><Util.Trophy /></Util.True>
+                                            <Util.True condition={submit.player_id === winner_t.player_id && submit.new_trophies > 0}><Util.Trophy /></Util.True>
                                         </td>
-                                        <Util.CanManage><td className="text-center">
-                                            <NavLink to={'/submits/' + submit.id + '/edit'}> <button type="button"
-                                                className="btn btn-success"><Icon fontSize='small'>edit</Icon></button></NavLink>
-                                        </td >
+                                        <Util.CanManage>
+                                            <td className="text-center">
+                                                <Util.Icon iconName="edit" to={'/submits/' + submit.id + '/edit'} />
+                                            </td >
                                         </Util.CanManage>
                                     </tr >
                                 ))

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { UseAxios, getName } from "../../utility";
 import { NavLink, useParams } from 'react-router-dom';
+import * as Util from "../CUSTOM"
 
 const YEAR_VIEW = () => {
 
@@ -18,15 +19,17 @@ const YEAR_VIEW = () => {
 
 
                     <thead>
-                        <tr>
-                            <th className="text-primary">{year}</th>
-                            <th className="text-warning">{Intl.NumberFormat('en-GB').format(data.totals.resources)}</th>
-                            <th className="text-warning">{Intl.NumberFormat('en-GB').format(data.totals.points)}</th>
+                        <tr className="text-warning">
+                            <th className="text-primary"><Util.Year year={year} /></th>
+                            <Util.NumericCell value={data.totals.resources} />
+                            <Util.NumericCell value={data.totals.points} />
+                            <Util.NumericCell value={data.totals.trophies} />
                         </tr>
                         <tr className="clickable text-danger sorting">
                             <th>Month</th>
                             <th>New Resources</th>
                             <th>New Points</th>
+                            <th>New Trophies</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -35,12 +38,10 @@ const YEAR_VIEW = () => {
 
 
                                 <tr key={submit.month}>
-                                    <td>
-                                        <NavLink className="nav-link outline" to={'/months/' + submit.month + '?y=' + submit.year}>
-                                            {getName(submit.month)}</NavLink>
-                                    </td>
-                                    <td>{Intl.NumberFormat('en-GB').format(submit.resources)}</td>
-                                    <td>{Intl.NumberFormat('en-GB').format(submit.points)}</td>
+                                    <Util.MonthCell month={submit.month} year={submit.year} />
+                                    <Util.NumericCell value={submit.resources} />
+                                    <Util.NumericCell value={submit.points} />
+                                    <Util.NumericCell value={submit.trophies} />
                                 </tr>
 
                             ))
