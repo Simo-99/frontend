@@ -4,6 +4,8 @@ import { getStorage } from "./storage"
 
 export function useClient() {
 
+    //let a = axios.create({ baseURL: 'http://localhost:3000' });
+
     let a = axios.create({ baseURL: process.env.REACT_APP_BACKEND_URL || "http://localhost:3000" });
 
     if (getToken()) a.defaults.headers.common["Authorization"] = "Bearer " + getToken();
