@@ -15,11 +15,8 @@ const FORMERS = () => {
                 <table id="table" className="table table-striped table-dark">
                     <thead>
                         <tr className=' clickable text-danger sorting'>
-                            <th >Name</th>
-                            <th >Color</th>
-                            <Util.CanManage>
-                                <th className="text-center">Actions</th>
-                            </Util.CanManage>
+                            <Util.HeadersCreate headers={["Name", "Color"]} />
+                            <Util.CanManage><th className="text-center">Actions</th></Util.CanManage>
                         </tr>
                     </thead>
                     <tbody>

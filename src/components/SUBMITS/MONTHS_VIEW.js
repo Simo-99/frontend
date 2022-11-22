@@ -35,49 +35,46 @@ const MONTHS_VIEW = () => {
     return (
 
         <div>
-            {data.submits?.length > 0 ?
 
-                < div className="container my-3" >
-                    <table id="table" className="table table-striped table-dark">
+            < div className="container my-3" >
+                <table id="table" className="table table-striped table-dark">
 
-                        <thead>
-                            <tr>
-                                <th className="text-start">
-                                    <Util.True condition={month > 1}>
-                                        <Util.Month month={month - 1} year={year} extraClasses="text-warning" />
-                                    </Util.True>
-                                </th>
-                                <th className="text-primary  text-center" colSpan={canManage() ? '6' : '5'}>
-                                    <Util.Year year={year} /> - <Util.Month month={month} year={year} />
-                                </th>
-                                <th className="text-end">
-                                    <Util.True condition={month < 12}>
-                                        <Util.Month month={parseInt(month) + 1} year={year} extraClasses="text-warning" />
-                                    </Util.True>
-                                </th>
-                            </tr>
-                            <tr className='text-light'>
-                                <th colSpan={4} className="text-muted">Totals</th>
-                                <th><Util.Number value={data.totals.resources} /></th>
-                                <th><Util.Number value={data.totals.points} /></th>
-                                <th><Util.Number value={data.totals.trophies} /></th>
-                                <Util.CanManage><th></th></Util.CanManage>
-                            </tr >
-                            <tr className="text-danger sorting">
-                                <th>Name</th>
-                                <th>Resources</th>
-                                <th>Points</th>
-                                <th>Trophies</th>
-                                <th>New Resources</th>
-                                <th>New Points</th>
-                                <th>New Trophies</th>
-                                <Util.CanManage><th className="text-center">Actions</th></Util.CanManage>
-                            </tr>
+                    <thead>
+                        <tr>
+                            <th>
+                                <Util.True condition={month > 1}>
+                                    <Util.Month month={month - 1} year={year} extraClasses="text-warning" />
+                                </Util.True>
+                            </th>
+                            <th className="text-primary  text-center" colSpan={canManage() ? '6' : '5'}>
+                                <Util.Year year={year} /> - <Util.Month month={month} year={year} />
+                            </th>
+                            <th className="text-end">
+                                <Util.True condition={month < 12}>
+                                    <Util.Month month={parseInt(month) + 1} year={year} extraClasses="text-warning" />
+                                </Util.True>
+                            </th>
+                        </tr>
+                        {data.submits?.length > 0 ?
+                            <>
+                                <tr className='text-light'>
+                                    <th colSpan={4} className="text-muted">Totals</th>
+                                    <th><Util.Number value={data.totals.resources} /></th>
+                                    <th><Util.Number value={data.totals.points} /></th>
+                                    <th><Util.Number value={data.totals.trophies} /></th>
+                                    <Util.CanManage><th></th></Util.CanManage>
+                                </tr >
+                                <tr className="text-danger sorting">
+                                    <Util.HeadersCreate headers={["Name", "Resources", "Points", "Trophies", "New Resources", "New Points", "New Trophies"]} />
+                                    <Util.CanManage><th className="text-center">Actions</th></Util.CanManage>
+                                </tr>
+                            </> : null}
 
-                        </thead >
+                    </thead >
 
-                        < tbody >
-                            {
+                    < tbody >
+                        {
+                            data.submits?.length > 0 ?
                                 Object.values(data.submits)?.map((submit) => (
 
                                     <tr key={JSON.stringify(submit)}>
@@ -107,13 +104,12 @@ const MONTHS_VIEW = () => {
                                         </Util.CanManage>
                                     </tr >
                                 ))
-                            }
-                        </tbody >
+                                : null
+                        }
+                    </tbody >
 
-                    </table >
-                </div > : null
-
-            }
+                </table >
+            </div >
         </div >
 
 

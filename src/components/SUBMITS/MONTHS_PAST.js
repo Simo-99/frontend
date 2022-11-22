@@ -19,11 +19,7 @@ const MONTH_PAST = () => {
                     <thead>
 
                         <tr className="text-danger sorting">
-                            <th>Year</th>
-                            <th>Month</th>
-                            <th>New Resources</th>
-                            <th>New Points</th>
-                            <th>New Trophies</th>
+                            <Util.HeadersCreate headers={["Year", "Month", "New Resources", "New Points", "New Trophies"]} />
                         </tr>
 
                     </thead>

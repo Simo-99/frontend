@@ -6,7 +6,7 @@ const RequireAuth = ({ allowedRoles }) => {
 
     const location = useLocation();
 
-    useEffect(() => UseSort(), [location])
+    useEffect(() => { setTimeout(() => UseSort(), 1000) }, [location])
 
     return (
 

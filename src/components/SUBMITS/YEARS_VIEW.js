@@ -26,10 +26,7 @@ const YEAR_VIEW = () => {
                             <Util.NumericCell value={data.totals.trophies} />
                         </tr>
                         <tr className="clickable text-danger sorting">
-                            <th>Month</th>
-                            <th>New Resources</th>
-                            <th>New Points</th>
-                            <th>New Trophies</th>
+                            <Util.HeadersCreate headers={["Month", "New Resources", "New Points", "New Trophies"]} />
                         </tr>
                     </thead>
                     <tbody>

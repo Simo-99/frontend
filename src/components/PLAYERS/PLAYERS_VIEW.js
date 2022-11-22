@@ -26,14 +26,7 @@ const PLAYERS_VIEW = () => {
                         </th>
                     </tr>
                     <tr className="text-danger sorting">
-                        <th>Year</th>
-                        <th>Month</th>
-                        <th>Resources</th>
-                        <th>Points</th>
-                        <th>Trophies</th>
-                        <th>New Resources</th>
-                        <th>New Points</th>
-                        <th>New Trophies</th>
+                        <Util.HeadersCreate headers={["Year", "Month", "Resources", "Points", "Trophies", "New Resources", "New Points", "New Trophies"]} />
                         <Util.CanManage><th className="text-center">Actions</th></Util.CanManage>
                     </tr>
                 </thead>

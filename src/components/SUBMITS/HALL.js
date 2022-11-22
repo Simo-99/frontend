@@ -16,10 +16,7 @@ const HALL = () => {
 
                 <thead>
                     <tr className="text-danger sorting">
-                        <th>Year</th>
-                        <th>Month</th>
-                        <th>New Resources</th>
-                        <th>New Points</th>
+                        <Util.HeadersCreate headers={["Year", "Month", "New Resources", "New Points"]} />
                     </tr>
                 </thead>
                 <tbody>
