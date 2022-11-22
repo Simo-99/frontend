@@ -12,7 +12,7 @@ const LOGOUT = () => {
             navigate(0);
         })()
     }, [navigate]);
-    return (<Navigate to={{ pathname: '/login' }} />);
+    return (<Navigate to='/login' />);
 
 }
 

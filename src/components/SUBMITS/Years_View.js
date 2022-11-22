@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import { UseAxios, getName } from "../../utility";
-import { NavLink, useParams } from 'react-router-dom';
+import { UseAxios } from "../../utility";
+import { useParams } from 'react-router-dom';
 import * as Util from "../CUSTOM"
 
 const YEAR_VIEW = () => {
@@ -20,7 +20,7 @@ const YEAR_VIEW = () => {
 
                     <thead>
                         <tr className="text-warning">
-                            <th className="text-primary"><Util.Year year={year} /></th>
+                            <Util.YearCell year={year} extraClasses="text-primary" />
                             <Util.NumericCell value={data.totals.resources} />
                             <Util.NumericCell value={data.totals.points} />
                             <Util.NumericCell value={data.totals.trophies} />
