@@ -31,7 +31,7 @@ const FORMERS = () => {
                                     <td className="text-center">
                                         <Util.Icon link={'/players/' + player.id + '/edit'} iconName="edit" />
                                         <Util.Icon link={'/players/' + player.id + '/show'} iconName="visibility" ButtonClass='btn btn-warning' />
-                                        <Util.Icon link={'/players/' + player.id + '/show'} iconName="delete" ButtonClass='btn btn-danger' />
+                                        <Util.Icon link={'/players/' + player.id + '/delete'} iconName="delete" ButtonClass='btn btn-danger' />
 
                                     </td>
                                 </Util.CanManage>

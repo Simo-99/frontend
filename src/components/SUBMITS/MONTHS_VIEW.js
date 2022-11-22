@@ -99,7 +99,7 @@ const MONTHS_VIEW = () => {
                                         </td>
                                         <Util.CanManage>
                                             <td className="text-center">
-                                                <Util.Icon iconName="edit" to={'/submits/' + submit.id + '/edit'} />
+                                                <Util.Icon iconName="edit" link={'/submits/' + submit.id + '/edit'} />
                                             </td >
                                         </Util.CanManage>
                                     </tr >
