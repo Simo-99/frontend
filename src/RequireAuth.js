@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useLocation, Navigate, Outlet } from "react-router-dom";
 import { getToken, getRole, UseSort } from "./utility"
 
@@ -5,16 +6,15 @@ const RequireAuth = ({ allowedRoles }) => {
 
     const location = useLocation();
 
+    useEffect(() => UseSort(), [location])
+
     return (
 
         allowedRoles.includes(getRole())
-            ? <><Outlet /> {
-                UseSort()
-            }  </>
+            ? <Outlet />
             : getToken()
-                ? <><Navigate to="/players" state={{ from: location }} replace /> {UseSort()}</>
+                ? <Navigate to="/players" state={{ from: location }} replace />
                 : <Navigate to="/login" state={{ from: location }} replace />
-
     );
 
 
