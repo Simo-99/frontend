@@ -15,9 +15,7 @@ const FORMERS = () => {
                 <table id="table" className="table table-striped table-dark">
                     <thead>
                         <tr>
-                            <th colSpan={3} className='text-center outline text-muted'>
-                                <Util.Number label="Former members: " value={players.length} />
-                            </th>
+                            <Util.NumericCell cellClasses='text-center outline text-muted' colSpan={3} label="Former members: " value={players.length} />
                         </tr>
                         <tr className=' clickable text-danger sorting'>
                             <Util.HeadersCreate headers={["Name", "Color"]} />
@@ -25,7 +23,7 @@ const FORMERS = () => {
                         </tr>
                     </thead>
                     <tbody>
-
+        
                         {players.map((player) => (
 
                             <tr key={player.id}>

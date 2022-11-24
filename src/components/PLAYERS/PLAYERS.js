@@ -15,9 +15,7 @@ const PLAYERS = () => {
                 <table id="table" className="table table-striped table-dark">
                     <thead>
                         <tr>
-                            <th colSpan={3} className='text-center outline text-muted'>
-                                <Util.Number label="Active members: " value={actives.length} />
-                            </th>
+                            <Util.NumericCell cellClasses='text-center outline text-muted' colSpan={3} label="Active Members: " value={actives.length} />
                         </tr>
                         <tr className="text-danger sorting">
                             <Util.HeadersCreate headers={["Name", "Color"]} />
