@@ -14,6 +14,11 @@ const PLAYERS = () => {
             <div className="container my-4" style={{ width: '50%' }}>
                 <table id="table" className="table table-striped table-dark">
                     <thead>
+                        <tr>
+                            <th colSpan={3} className='text-center outline text-muted'>
+                                <Util.Number label="Active members: " value={actives.length} />
+                            </th>
+                        </tr>
                         <tr className="text-danger sorting">
                             <Util.HeadersCreate headers={["Name", "Color"]} />
                             <Util.CanManage><th className="text-center">Actions</th></Util.CanManage>
