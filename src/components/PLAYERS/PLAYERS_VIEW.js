@@ -41,7 +41,11 @@ const PLAYERS_VIEW = () => {
                                 <Util.NumericCell value={submit.trophies} />
                                 <td>
                                     <Util.Number value={submit.new_resources} />
-                                    <Util.True condition={submit.new_resources < 280000}><Util.AngryFace /></Util.True>
+                                    <Util.True condition={submit.new_resources < 280000}>
+                                        <Util.True condition={submit.player_id == 6} otherwise={<Util.AngryFace />}>
+                                            <Util.Popcorn />
+                                        </Util.True>
+                                    </Util.True>
                                     <Util.True condition={submit.winner_r}><Util.Trophy /></Util.True>
                                 </td>
                                 <td>

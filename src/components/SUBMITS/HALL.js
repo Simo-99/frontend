@@ -26,7 +26,7 @@ const HALL = () => {
                             <Util.MonthCell month={submit.month} year={submit.year} />
                             <td>
                                 <Util.Number value={submit.res.new_resources} />
-                                <Util.PlayerName player={submit.res.player} />
+                                <Util.PlayerName player={submit.res.player} renderSpecialIcon={true} iconStyle />
                             </td>
                             <td>
                                 <Util.Number value={submit.points.new_points} />

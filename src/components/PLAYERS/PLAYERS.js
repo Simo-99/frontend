@@ -30,7 +30,7 @@ const PLAYERS = () => {
                                 <Util.CanManage>
                                     <td className="text-center">
                                         <Util.Icon link={'/players/' + player.id + '/edit'} iconName="edit" />
-                                        <Util.Icon link={'/players/' + player.id + '/hide'} iconName="visibility_off" ButtonClass='btn btn-warning' />
+                                        <Util.Icon link={'/players/' + player.id + '/hide'} iconName="visibility_off" ButtonClass='btn btn-outline-warning' />
                                     </td>
                                 </Util.CanManage>
                             </tr >
