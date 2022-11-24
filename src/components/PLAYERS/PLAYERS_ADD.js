@@ -4,9 +4,8 @@ import { UseAxios } from "../../utility";
 
 const PLAYERS_ADD = () => {
 
-    const [player, setPlayer] = useState({ username: "", color: "#000000" })
+    const [player, setPlayer] = useState({ username: "", color: "#8CC3C6" })
     const navigate = useNavigate()
-
 
     const handleSubmit = async (e) => {
 
