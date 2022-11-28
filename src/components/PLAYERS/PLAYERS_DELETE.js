@@ -6,10 +6,7 @@ const PLAYERS_DELETE = () => {
 
     const { id } = useParams()
     const navigate = useNavigate()
-
-    useEffect(() => { (async () => { await UseAxios('/players/' + id, "DELETE"); navigate(-1); })() }, []);
-
-    return (<></>)
+    useEffect(() => { (async () => { await UseAxios('/players/' + id, "DELETE"); navigate(-1); })() }, [id]);
 
 }
 export default PLAYERS_DELETE

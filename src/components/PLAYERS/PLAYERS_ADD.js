@@ -11,7 +11,6 @@ const PLAYERS_ADD = () => {
 
         e.preventDefault();
         await UseAxios("/players", "POST", { name: player.username, color: player.color, inside: 1 });
-
         navigate("/players");
 
     }

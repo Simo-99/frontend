@@ -5,7 +5,6 @@ import * as Util from "../CUSTOM"
 const HALL = () => {
 
     const [submits, setSubmits] = useState([]);
-
     useEffect(() => { (async () => { setSubmits(await UseAxios("/winners")); })() }, []);
 
     return (

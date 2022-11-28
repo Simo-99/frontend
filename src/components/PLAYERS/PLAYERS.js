@@ -5,7 +5,6 @@ import * as Util from "../CUSTOM"
 const PLAYERS = () => {
 
     const [actives, setActives] = useState([])
-
     useEffect(() => { (async () => setActives(await UseAxios("/players?s=active&o=asc")))() }, []);
 
     return (

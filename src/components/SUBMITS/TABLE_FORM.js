@@ -6,13 +6,9 @@ const TABLE_FORM = () => {
 
     const [tables, setTables] = useState([]);
     const day = new Date();
-
-    let [month, setMonth] = useState(day.getMonth());
-    let [year, setYear] = useState(day.getFullYear());
-
+    const [month, setMonth] = useState(day.getMonth());
+    const [year, setYear] = useState(day.getFullYear());
     const Navigate = useNavigate();
-
-
     useEffect(() => { (async function getPlayer() { setTables(await UseAxios("/tables")) })() }, []);
 
     const save = async (e) => {

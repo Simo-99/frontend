@@ -5,7 +5,6 @@ import * as Util from "../CUSTOM"
 const FORMERS = () => {
 
     const [players, setPlayers] = useState([])
-
     useEffect(() => { (async () => { setPlayers(await UseAxios("/players?s=hidden&o=asc")); })() }, []);
 
     return (
@@ -23,7 +22,7 @@ const FORMERS = () => {
                         </tr>
                     </thead>
                     <tbody>
-        
+
                         {players.map((player) => (
 
                             <tr key={player.id}>

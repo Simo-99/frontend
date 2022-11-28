@@ -7,7 +7,6 @@ const YEAR_VIEW = () => {
 
     const [data, setData] = useState({ totals: {}, submits: {} });
     const { year } = useParams();
-
     useEffect(() => { (async () => { setData(await UseAxios('/years/' + year + "?t=yes")); })() }, [year])
 
     return (

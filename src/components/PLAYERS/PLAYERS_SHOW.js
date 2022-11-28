@@ -6,10 +6,7 @@ const PLAYERS_SHOW = () => {
 
     const { id } = useParams()
     const navigate = useNavigate()
-
-    useEffect(() => { (async () => { await UseAxios("/players/" + id, "PUT", { inside: 1 }); navigate(-1); })() }, []);
-
-    return (<></>)
+    useEffect(() => { (async () => { await UseAxios("/players/" + id, "PUT", { inside: 1 }); navigate(-1); })() }, [id])
 
 }
 export default PLAYERS_SHOW

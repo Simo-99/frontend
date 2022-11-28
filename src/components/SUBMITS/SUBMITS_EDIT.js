@@ -6,7 +6,6 @@ const SUBMIT_EDIT = () => {
     const [submit, setSubmit] = useState({ player: {}, submit: {} });
     const { id } = useParams();
     const navigate = useNavigate()
-
     useEffect(() => { (async () => setSubmit(await UseAxios('/submits/' + id + "?p=yes")))() }, [id]);
 
     const handleSubmit = async (e) => {

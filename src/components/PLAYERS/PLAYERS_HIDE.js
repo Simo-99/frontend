@@ -6,10 +6,7 @@ const PLAYERS_HIDE = () => {
 
     const { id } = useParams()
     const navigate = useNavigate()
-
-    useEffect(() => { (async () => { await UseAxios("/players/" + id, "PUT", { inside: 0 }); navigate(-1); })() }, []);
-
-    return (<></>)
+    useEffect(() => { (async () => { await UseAxios("/players/" + id, "PUT", { inside: 0 }); navigate(-1); })() }, [id])
 
 }
 export default PLAYERS_HIDE

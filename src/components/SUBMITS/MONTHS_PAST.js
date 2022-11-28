@@ -5,8 +5,6 @@ import * as Util from "../CUSTOM"
 const MONTH_PAST = () => {
 
     const [submits, setSubmits] = useState([]);
-
-
     useEffect(() => { (async () => { setSubmits(await UseAxios("/months")); })() }, []);
 
     return (

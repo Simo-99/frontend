@@ -7,10 +7,7 @@ const PLAYERS_EDIT = () => {
     const [player, setPlayer] = useState({ name: "", color: "#000000", inside: 0 })
     const { id } = useParams()
     const navigate = useNavigate()
-
-
-    useEffect(() => { (async () => { setPlayer(await UseAxios('/players/' + id)); })() }, []);
-
+    useEffect(() => { (async () => { setPlayer(await UseAxios('/players/' + id)); })() }, [id]);
 
     const handleSubmit = async (e) => {
 

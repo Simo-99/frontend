@@ -5,11 +5,9 @@ import * as Util from "../CUSTOM"
 
 const PLAYERS_VIEW = () => {
 
-    const [data, setData] = useState({ player: {}, submits: {} });
-    const { id } = useParams();
-
-    useEffect(() => { (async () => setData(await UseAxios("/players/" + id + "?s=yes")))() }, [id]);
-
+    const [data, setData] = useState({ player: {}, submits: {} })
+    const { id } = useParams()
+    useEffect(() => { (async () => setData(await UseAxios("/players/" + id + "?s=yes")))() }, [id])
 
     return (
 
