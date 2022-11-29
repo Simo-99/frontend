@@ -5,7 +5,7 @@ function PlayerName({ player }) {
 
         <NavLink to={"/players/" + player.id + "/submits"} style={{ textDecoration: 'none' }}>
             <em className={player.color === "#000000" ? 'outline2' : 'outline'} style={{ color: player.color, display: "inline" }} >
-                {" " + player.name}
+                {player.name}
             </ em >
         </NavLink>
     )

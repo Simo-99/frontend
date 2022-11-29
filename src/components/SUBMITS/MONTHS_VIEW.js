@@ -80,7 +80,6 @@ const MONTHS_VIEW = () => {
                                     <tr key={JSON.stringify(submit)}>
 
                                         <td><Util.PlayerName player={{ color: submit.color, id: submit.player_id, name: submit.name }} /></td>
-
                                         <Util.NumericCell value={submit.resources} />
                                         <Util.NumericCell value={submit.points} />
                                         <Util.NumericCell value={submit.trophies} />
