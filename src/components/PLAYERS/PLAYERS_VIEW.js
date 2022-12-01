@@ -40,8 +40,14 @@ const PLAYERS_VIEW = () => {
                                 <td>
                                     <Util.Number value={submit.new_resources} />
                                     <Util.True condition={submit.new_resources < 280000}>
-                                        <Util.True condition={submit.player_id == 6} otherwise={<Util.AngryFace />}>
+                                        <Util.True condition={submit.player_id == 6}>
                                             <Util.Popcorn />
+                                        </Util.True>
+                                        <Util.True condition={submit.player_id == 3}>
+                                            <Util.Coffee />
+                                        </Util.True>
+                                        <Util.True condition={submit.player_id != 3 && submit.player_id != 6}>
+                                            <Util.AngryFace />
                                         </Util.True>
                                     </Util.True>
                                     <Util.True condition={submit.winner_r}><Util.Trophy /></Util.True>
