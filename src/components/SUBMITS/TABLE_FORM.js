@@ -25,7 +25,7 @@ const TABLE_FORM = () => {
         if (window.confirm("these data will be added into the DB, are you sure?")) {
             tables.map(async (table) => {
 
-                if (table.resources > 0 || table.points > 0 || table.trophies > 0)
+                if (table.resources > 0 && table.points > 0 && table.trophies > 0)
                     await UseAxios("/submits/", "POST", {
                         resources: table.resources, points: table.points, trophies: table.trophies,
                         player_id: table.player, month: month, year: year
