@@ -20,7 +20,7 @@ const TABLE_FORM = () => {
     }
     const executeSubmit = async (e) => {
         e.preventDefault();
-        save(e)
+        //save(e)
 
         if (window.confirm("these data will be added into the DB, are you sure?")) {
             tables.map(async (table) => {
