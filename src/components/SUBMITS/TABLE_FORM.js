@@ -14,12 +14,7 @@ const TABLE_FORM = () => {
     const save = async (e) => {
 
         e.preventDefault();
-        tables.map(async (table) => {
-
-            if (table.resources > 0 || table.points > 0 || table.trophies > 0)
-                await UseAxios("/tables/" + table.player, "PUT", { resources: table.resources, points: table.points, trophies: table.trophies });
-
-        });
+        tables.map(async (table) => { await saveRow(table); });
 
 
     }
