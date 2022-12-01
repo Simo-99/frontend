@@ -31,7 +31,7 @@ const TABLE_FORM = () => {
                         player_id: table.player, month: month, year: year
                     });
 
-                await delay(100)
+                await delay(300)
 
             });
 
