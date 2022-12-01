@@ -90,7 +90,7 @@ const MONTHS_VIEW = () => {
                                                     <Util.Popcorn />
                                                 </Util.True>
                                                 <Util.True condition={submit.player_id == 3}>
-                                                    <Util.Coffee />
+                                                    <Util.Icon iconName="Coffee" />
                                                 </Util.True>
                                                 <Util.True condition={submit.player_id != 3 && submit.player_id != 6}>
                                                     <Util.AngryFace />
