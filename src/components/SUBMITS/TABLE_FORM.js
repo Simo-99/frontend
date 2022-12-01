@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { UseAxios } from "../../utility";
+import { UseAxios, delay } from "../../utility";
 
 const TABLE_FORM = () => {
 
@@ -31,6 +31,7 @@ const TABLE_FORM = () => {
                         player_id: table.player, month: month, year: year
                     });
 
+                delay(100)
 
             });
 
