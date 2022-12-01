@@ -35,7 +35,7 @@ const TABLE_FORM = () => {
 
             });
 
-            await delay(1000)
+            await delay(4000)
             Navigate("/months/" + month + "?y=" + year);
         }
 
