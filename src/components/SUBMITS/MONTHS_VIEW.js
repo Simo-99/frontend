@@ -93,7 +93,7 @@ const MONTHS_VIEW = () => {
                                                     <Util.Coffee />
                                                 </Util.True>
                                                 <Util.True condition={submit.player_id != 3 && submit.player_id != 6}>
-                                                    <Util.Coffee />
+                                                    <Util.AngryFace />
                                                 </Util.True>
                                             </Util.True>
                                             <Util.True condition={submit.player_id === winner_r.player_id}><Util.Trophy /></Util.True>
