@@ -31,10 +31,11 @@ const TABLE_FORM = () => {
                         player_id: table.player, month: month, year: year
                     });
 
-                await delay(300)
+                await delay(600)
 
             });
 
+            await delay(1000)
             Navigate("/months/" + month + "?y=" + year);
         }
 
