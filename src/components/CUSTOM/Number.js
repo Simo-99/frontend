@@ -1,7 +1,7 @@
 
-function Number({ value, label = "" }) {
+function Number({ value, pre = "", post = "" }) {
 
-    return (<>{label + Intl.NumberFormat('en-GB').format(value)}</>)
+    return (<>{pre + Intl.NumberFormat('en-GB').format(value) + post}</>)
 }
 
 export default Number

@@ -24,11 +24,11 @@ const HALL = () => {
                             <Util.YearCell year={submit.year} />
                             <Util.MonthCell month={submit.month} year={submit.year} />
                             <td>
-                                <Util.Number value={submit.res.new_resources} />
-                                <Util.PlayerName player={submit.res.player} renderSpecialIcon={true} iconStyle />
+                                <Util.Number value={submit.res.new_resources} post=" " />
+                                <Util.PlayerName player={submit.res.player} />
                             </td>
                             <td>
-                                <Util.Number value={submit.points.new_points} />
+                                <Util.Number value={submit.points.new_points} post=" " />
                                 <Util.PlayerName player={submit.points.player} />
                             </td>
 
