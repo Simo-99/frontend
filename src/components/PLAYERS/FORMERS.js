@@ -14,7 +14,7 @@ const FORMERS = () => {
                 <table id="table" className="table table-striped table-dark">
                     <thead>
                         <tr>
-                            <Util.NumericCell cellClasses='text-center outline text-muted' colSpan={3} label="Former members: " value={players.length} />
+                            <Util.NumericCell cellClasses='text-center outline text-muted' colSpan={3} pre="Former members: " value={players.length} />
                         </tr>
                         <tr className=' clickable text-danger sorting'>
                             <Util.HeadersCreate headers={["Name", "Color"]} />
