@@ -4,13 +4,13 @@ import { UseAxios } from "../../utility";
 
 const PLAYERS_ADD = () => {
 
-    const [player, setPlayer] = useState({ username: "", color: "#8CC3C6" })
+    const [player, setPlayer] = useState({ name: "", color: "#8CC3C6", start_res: 0, start_points: 0, start_trophies: 0, inside: 1 })
     const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
 
         e.preventDefault();
-        await UseAxios("/players", "POST", { name: player.username, color: player.color, inside: 1 });
+        await UseAxios("/players", "POST", player);
         navigate("/players");
 
     }
@@ -32,8 +32,8 @@ const PLAYERS_ADD = () => {
                         <tr>
                             <td><input
                                 autoComplete="off"
-                                value={player.username}
-                                onChange={(e) => setPlayer(prev => ({ ...prev, username: e.target.value }))}
+                                value={player.name}
+                                onChange={(e) => setPlayer(prev => ({ ...prev, name: e.target.value }))}
                                 type="text"
                                 className="form-control bg-secondary border-dark outline text-white" /></td>
                             <td>
@@ -45,9 +45,41 @@ const PLAYERS_ADD = () => {
 
                         </tr>
                     </tbody>
-
-
                 </table>
+
+                <table id="table2" className="table table-striped table-dark">
+
+                    <thead>
+                        <tr className="text-danger">
+                            <th>Resources</th>
+                            <th>Points</th>
+                            <th>Trophies</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input
+                                autoComplete="off"
+                                value={player.start_res}
+                                onChange={(e) => setPlayer(prev => ({ ...prev, start_res: e.target.value }))}
+                                type="text"
+                                className="form-control bg-secondary border-dark outline text-white" /></td>
+                            <td>
+                                <input
+                                    value={player.start_points}
+                                    onChange={(e) => setPlayer(prev => ({ ...prev, start_points: e.target.value }))}
+                                    type="text"
+                                    className="form-control bg-secondary border-dark outline text-white" /></td>
+                            <td>
+                                <input
+                                    value={player.start_trophies}
+                                    onChange={(e) => setPlayer(prev => ({ ...prev, start_trophies: e.target.value }))}
+                                    type="text"
+                                    className="form-control bg-secondary border-dark outline text-white" /></td>
+                        </tr>
+                    </tbody>
+                </table>
+
                 <button onClick={handleSubmit} className="bg-dark bold btn outline text-success">Add</button>
             </div>
         </section>
