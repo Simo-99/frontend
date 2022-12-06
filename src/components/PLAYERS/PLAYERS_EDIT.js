@@ -4,7 +4,7 @@ import { UseAxios } from "../../utility";
 
 const PLAYERS_EDIT = () => {
 
-    const [player, setPlayer] = useState({ name: "", color: "", start_res: 0, start_points: 0, start_trophies: 0, inside: 1 })
+    const [player, setPlayer] = useState({ name: "", color: "", start_res: 0, start_points: 0, start_trophies: 0, inside: 1, date: new Date().toJSON().slice(0, 10) })
     const { id } = useParams()
     const navigate = useNavigate()
     useEffect(() => { (async () => { setPlayer(await UseAxios('/players/' + id)); })() }, [id]);
