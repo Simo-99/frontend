@@ -3,16 +3,16 @@ import { activateSorting } from "./sorting"
 import { getStorage } from "./storage"
 
 export function useClient() {
-
-    //let a = axios.create({ baseURL: 'http://localhost:3000' });
-
+    
     let a = axios.create({ baseURL: process.env.REACT_APP_TRIAL_BACKEND_URL });
+    a = axios.create({ baseURL: 'http://localhost:3000' });
 
     if (getToken()) a.defaults.headers.common["Authorization"] = "Bearer " + getToken();
 
     return a;
 
 }
+
 
 export async function UseAxios(url, method = 'GET', params = {}) {
 
