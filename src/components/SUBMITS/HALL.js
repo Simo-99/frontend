@@ -18,8 +18,8 @@ const HALL = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {data.map((submit) => (
-                            < tr key={JSON.stringify(submit)} >
+                        {data.map((submit, cont) => (
+                            < tr key={cont} >
                                 <Util.YearCell year={submit.year} />
                                 <Util.MonthCell month={submit.month} year={submit.year} />
                                 <td>
