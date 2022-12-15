@@ -5,7 +5,7 @@ import * as Hooks from "../../hooks"
 
 const PLAYERS_EDIT = () => {
 
-    const [player, setPlayer] = useState({ name: "", color: "", start_res: 0, start_points: 0, start_trophies: 0, inside: 1, date: new Date().toJSON().slice(0, 10) })
+    const [player, setPlayer] = useState({ name: "", color: "", start_res: 0, start_points: 0, start_trophies: 0, inside: 1, wrong_names: [], date: new Date().toJSON().slice(0, 10) })
     const { id } = useParams()
     const navigate = useNavigate()
     Hooks.useBind(13, "submit")
