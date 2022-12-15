@@ -1,12 +1,5 @@
-import { useEffect } from 'react'
-import { UseAxios } from "../../utility";
-import { useNavigate, useParams } from 'react-router-dom';
+import * as Hooks from '../../hooks';
 
-const PLAYERS_DELETE = () => {
+const PLAYERS_DELETE = () => { Hooks.useFetch('/players/' + Hooks.useFind().id, "DELETE", {}, -1) }
 
-    const { id } = useParams()
-    const navigate = useNavigate()
-    useEffect(() => { (async () => { await UseAxios('/players/' + id, "DELETE"); navigate(-1); })() }, [id]);
-
-}
 export default PLAYERS_DELETE

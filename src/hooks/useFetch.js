@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
-import { useClient } from './utility';
+import { useClient } from '../utility';
+import { Navigate, useNavigate } from 'react-router-dom';
 
-function useFetch(url, method = 'GET', params = {}) {
+function useFetch(url, method = 'GET', params = {}, nav = null) {
     const [data, setData] = useState({});
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const axios = useClient()
+    const navigate = useNavigate()
 
     useEffect(() => {
         setLoading(true)
@@ -25,6 +27,9 @@ function useFetch(url, method = 'GET', params = {}) {
 
     }, [url])
 
+    if (nav != null && !loading) navigate(nav)
+
     return { data, loading, error }
+
 }
 export default useFetch

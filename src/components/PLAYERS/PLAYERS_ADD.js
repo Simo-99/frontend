@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UseAxios } from "../../utility";
+import * as Hooks from "../../hooks"
 
 const PLAYERS_ADD = () => {
 
     const [player, setPlayer] = useState({ name: "", color: "#8CC3C6", start_res: 0, start_points: 0, start_trophies: 0, inside: 1 })
     const navigate = useNavigate()
+    Hooks.useBind(13, "submit")
 
     const handleSubmit = async (e) => {
 
@@ -80,7 +82,7 @@ const PLAYERS_ADD = () => {
                     </tbody>
                 </table>
 
-                <button onClick={handleSubmit} className="bg-dark bold btn outline text-success">Add</button>
+                <button onClick={handleSubmit} className="bg-dark bold btn outline text-success submit">Add</button>
             </div>
         </section>
 

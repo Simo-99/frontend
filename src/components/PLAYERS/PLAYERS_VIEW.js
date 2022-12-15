@@ -1,10 +1,9 @@
-import useFetch from '../../useFetch';
-import { useParams } from 'react-router-dom';
+import * as Hooks from '../../hooks';
 import * as Util from "../CUSTOM"
 
 const PLAYERS_VIEW = () => {
-    const { id } = useParams()
-    const { data, loading } = useFetch("/players/" + id + "?s=yes")
+    const { id } = Hooks.useFind()
+    const { data, loading } = Hooks.useFetch("/players/" + id + "?s=yes")
 
     if (!loading)
         return (

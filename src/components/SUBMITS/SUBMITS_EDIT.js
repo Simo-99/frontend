@@ -1,11 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getName, UseAxios } from "../../utility";
+import * as Hooks from "../../hooks"
 
 const SUBMIT_EDIT = () => {
     const [submit, setSubmit] = useState({ player: {}, submit: {} });
     const { id } = useParams();
     const navigate = useNavigate()
+    Hooks.useBind(13, "submit")
+
     useEffect(() => { (async () => setSubmit(await UseAxios('/submits/' + id + "?p=yes")))() }, [id]);
 
     const handleSubmit = async (e) => {
@@ -56,7 +59,7 @@ const SUBMIT_EDIT = () => {
                         </tr>
                     </tbody>
                 </table>
-                <button onClick={handleSubmit} className="outline btn btn-dark text-success">Edit</button>
+                <button onClick={handleSubmit} className="outline btn btn-dark text-success submit">Edit</button>
             </div>
         </>
     )

@@ -1,9 +1,9 @@
-import useFetch from '../../useFetch';
+import * as Hooks from '../../hooks';
 import * as Util from "../CUSTOM"
 
 const PLAYERS = () => {
 
-    const { data, loading } = useFetch('/players?s=active&o=asc')
+    const { data, loading } = Hooks.useFetch('/players?s=active&o=asc')
 
     if (!loading)
         return (

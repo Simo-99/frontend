@@ -1,20 +1,20 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UseAxios, delay } from "../../utility";
+import * as Hooks from "../../hooks"
 
 const TABLE_FORM = () => {
 
-    const [tables, setTables] = useState([]);
+    const { data, loading } = Hooks.useFetch("/tables/");
     const day = new Date();
     const [month, setMonth] = useState(day.getMonth());
     const [year, setYear] = useState(day.getFullYear());
     const Navigate = useNavigate();
-    useEffect(() => { (async function getPlayer() { setTables(await UseAxios("/tables")) })() }, []);
 
     const save = async (e) => {
 
         e.preventDefault();
-        tables.map(async (table) => { await saveRow(table); });
+        data.map(async (table) => { await saveRow(table); });
 
 
     }
@@ -23,7 +23,7 @@ const TABLE_FORM = () => {
         //save(e)
 
         if (window.confirm("these data will be added into the DB, are you sure?")) {
-            tables.map(async (table) => {
+            data.map(async (table) => {
 
                 if (table.resources > 0 && table.points > 0 && table.trophies > 0)
                     await UseAxios("/submits/", "POST", {
@@ -44,66 +44,67 @@ const TABLE_FORM = () => {
 
     const saveRow = async (table) => await UseAxios("/tables/" + table.player, "PUT", { resources: table.resources, points: table.points, trophies: table.trophies })
 
-    return (
-        <>
-            <br /><br />
+    if (!loading)
+        return (
+            <>
+                <br /><br />
 
 
-            <div className="d-flex flex-column mx-auto w-25 justify-content-center">
-                <table id="table" className="table table-striped table-dark">
-                    <thead className="text-primary"><tr><th>Year</th><th>Month</th></tr></thead>
-                    <tbody><tr>
-                        <td><input onChange={(e) => setYear(e.target.value)} type="text" className="form-control bg-secondary border-dark outline text-white" defaultValue={year} /> </td>
-                        <td> <input onChange={(e) => setMonth(e.target.value)} type="text" className="form-control bg-secondary border-dark outline text-white" defaultValue={month} /></td>
-                    </tr></tbody>
-                </table>
-            </div>
-            <div className="d-flex flex-column mx-auto w-75 justify-content-center">
+                <div className="d-flex flex-column mx-auto w-25 justify-content-center">
+                    <table id="table" className="table table-striped table-dark">
+                        <thead className="text-primary"><tr><th>Year</th><th>Month</th></tr></thead>
+                        <tbody><tr>
+                            <td><input onChange={(e) => setYear(e.target.value)} type="text" className="form-control bg-secondary border-dark outline text-white" defaultValue={year} /> </td>
+                            <td> <input onChange={(e) => setMonth(e.target.value)} type="text" className="form-control bg-secondary border-dark outline text-white" defaultValue={month} /></td>
+                        </tr></tbody>
+                    </table>
+                </div>
+                <div className="d-flex flex-column mx-auto w-75 justify-content-center">
 
 
-                <table id="table" className="table table-striped table-dark">
+                    <table id="table" className="table table-striped table-dark">
 
-                    <thead className="text-danger">
-                        <tr>
-                            <th>Player</th>
-                            <th>Resources</th>
-                            <th>Points</th>
-                            <th>Trophies</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {tables.map((table, index) => (
-
-                            <tr key={JSON.stringify(table)}>
-
-                                <td className={table.color === '#000000' ? "outline2" : "outline"} style={{ color: table.color }}>{table.name}</td>
-                                <td><input onChange={(e) => tables[index].resources = e.target.value}
-                                    onBlur={() => saveRow(table)}
-                                    type="text" className="form-control bg-secondary border-dark outline text-white" defaultValue={table.resources} />
-                                </td>
-
-                                <td><input onChange={(e) => tables[index].points = e.target.value}
-                                    onBlur={() => saveRow(table)}
-                                    type="text" className="form-control bg-secondary border-dark outline text-white" defaultValue={table.points} />
-                                </td>
-
-                                <td><input onChange={(e) => tables[index].trophies = e.target.value}
-                                    onBlur={() => saveRow(table)}
-                                    type="text" className="form-control bg-secondary border-dark outline text-white" defaultValue={table.trophies} />
-                                </td>
-
+                        <thead className="text-danger">
+                            <tr>
+                                <th>Player</th>
+                                <th>Resources</th>
+                                <th>Points</th>
+                                <th>Trophies</th>
                             </tr>
+                        </thead>
+                        <tbody>
+                            {data.map((table, index) => (
 
-                        ))}
-                    </tbody>
-                </table>
-                <button onClick={save} className=" bg outline btn btn-secondary text-success border border-2 border-dark">Save</button>
-                <button onClick={executeSubmit} className=" bg outline btn btn-secondary text-success border border-2 border-dark">Add Into DB</button>
+                                <tr key={index}>
 
-                <br />
-            </div>
-        </>
-    )
+                                    <td className={table.color === '#000000' ? "outline2" : "outline"} style={{ color: table.color }}>{table.name}</td>
+                                    <td><input onChange={(e) => table.resources = e.target.value}
+                                        onBlur={() => saveRow(table)}
+                                        type="text" className="form-control bg-secondary border-dark outline text-white" defaultValue={table.resources} />
+                                    </td>
+
+                                    <td><input onChange={(e) => table.points = e.target.value}
+                                        onBlur={() => saveRow(table)}
+                                        type="text" className="form-control bg-secondary border-dark outline text-white" defaultValue={table.points} />
+                                    </td>
+
+                                    <td><input onChange={(e) => table.trophies = e.target.value}
+                                        onBlur={() => saveRow(table)}
+                                        type="text" className="form-control bg-secondary border-dark outline text-white" defaultValue={table.trophies} />
+                                    </td>
+
+                                </tr>
+
+                            ))}
+                        </tbody>
+                    </table>
+                    <button onClick={save} className=" bg outline btn btn-secondary text-success border border-2 border-dark">Save</button>
+                    <button onClick={executeSubmit} className=" bg outline btn btn-secondary text-success border border-2 border-dark">Add Into DB</button>
+
+                    <br />
+                </div>
+            </>
+        )
 
 }
 export default TABLE_FORM

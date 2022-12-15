@@ -1,9 +1,9 @@
-import useFetch from '../../useFetch';
+import * as Hooks from '../../hooks';
 import * as Util from "../CUSTOM"
 
 const HALL = () => {
 
-    const { data, loading } = useFetch("/winners")
+    const { data, loading } = Hooks.useFetch("/winners")
 
     if (!loading)
         return (

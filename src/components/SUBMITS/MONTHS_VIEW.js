@@ -1,14 +1,15 @@
-import useFetch from '../../useFetch';
-import { canManage } from "../../utility";
-import { useParams, useSearchParams } from 'react-router-dom';
+import * as Hooks from '../../hooks';
 import * as Util from "../CUSTOM"
+import { canManage } from "../../utility";
+
 
 const MONTHS_VIEW = () => {
 
-    const { month } = useParams();
-    const [search] = useSearchParams();
-    const year = search.get("y");
-    const { data, loading } = useFetch('/months/' + month + "?t=yes&b=yes&y=" + year)
+    const { month, y } = Hooks.useFind()
+    const { data, loading } = Hooks.useFetch('/months/' + month + "?t=yes&b=yes&y=" + y)
+
+    Hooks.useBind(39, "post")
+    Hooks.useBind(37, "pre")
 
     if (!loading)
         return (
@@ -21,16 +22,16 @@ const MONTHS_VIEW = () => {
                         <thead>
                             <tr>
                                 <th>
-                                    <Util.True condition={month > 1} otherwise={<Util.Month month={12} year={year - 1} extraClasses="text-warning" />}>
-                                        <Util.Month month={month - 1} year={year} extraClasses="text-warning" />
+                                    <Util.True condition={month > 1} otherwise={<Util.Month month={12} year={y - 1} extraClasses="text-warning pre" />}>
+                                        <Util.Month month={month - 1} year={y} extraClasses="text-warning pre" />
                                     </Util.True>
                                 </th>
                                 <th className="text-primary  text-center" colSpan={canManage() ? '6' : '5'}>
-                                    <Util.Year year={year} /> - <Util.Month month={month} year={year} />
+                                    <Util.Year year={y} /> - <Util.Month month={month} year={y} />
                                 </th>
                                 <th className="text-end">
-                                    <Util.True condition={month < 12} otherwise={<Util.Month month={1} year={parseInt(year) + 1} extraClasses="text-warning" />}>
-                                        <Util.Month month={parseInt(month) + 1} year={year} extraClasses="text-warning" />
+                                    <Util.True condition={month < 12} otherwise={<Util.Month month={1} year={parseInt(y) + 1} extraClasses="text-warning post" />}>
+                                        <Util.Month month={parseInt(month) + 1} year={y} extraClasses="text-warning post" />
                                     </Util.True>
                                 </th>
                             </tr>

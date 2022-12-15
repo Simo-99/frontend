@@ -1,9 +1,9 @@
-import useFetch from "../../useFetch";
+import * as Hooks from '../../hooks';
 import * as Util from "../CUSTOM"
 
 const MONTH_PAST = () => {
 
-    const { data, loading } = useFetch("/months/")
+    const { data, loading } = Hooks.useFetch("/months/")
 
     if (!loading)
         return (

@@ -1,11 +1,13 @@
-import useFetch from "../../useFetch";
-import { useParams } from 'react-router-dom';
+import * as Hooks from '../../hooks';
 import * as Util from "../CUSTOM"
 
 const YEAR_VIEW = () => {
 
-    const { year } = useParams();
-    const { data, loading } = useFetch('/years/' + year + "?t=yes")
+    const { year } = Hooks.useFind();
+    const { data, loading } = Hooks.useFetch('/years/' + year + "?t=yes")
+
+    Hooks.useBind(39, "post")
+    Hooks.useBind(37, "pre")
 
     if (!loading)
         return (
@@ -18,9 +20,9 @@ const YEAR_VIEW = () => {
 
                         <thead>
                             <tr>
-                                <Util.YearCell year={year - 1} cellClasses="text-warning" />
+                                <Util.YearCell year={year - 1} cellClasses="text-warning" extraClasses='pre' />
                                 <Util.YearCell year={year} cellClasses="text-center text-primary" colSpan={3} />
-                                <Util.YearCell year={parseInt(year) + 1} cellClasses="text-end text-warning" />
+                                <Util.YearCell year={parseInt(year) + 1} cellClasses="text-end text-warning" extraClasses='post' />
                             </tr>
                             <Util.True condition={data?.totals}>
                                 <tr className="text-light">
