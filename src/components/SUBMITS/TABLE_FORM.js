@@ -14,13 +14,15 @@ const TABLE_FORM = () => {
     const save = async (e) => {
 
         e.preventDefault();
-        data.map(async (table) => { await saveRow(table); });
-
+        data.map(async (table) => { await saveRow(table); delay(100) });
+        alert("saved")
 
     }
-    const executeSubmit = async (e) => {
+
+    const executeSubmit2 = async (e) => {
         e.preventDefault();
         //save(e)
+
 
         if (window.confirm("these data will be added into the DB, are you sure?")) {
             data.map(async (table) => {
@@ -31,11 +33,25 @@ const TABLE_FORM = () => {
                         player_id: table.player, month: month, year: year
                     });
 
-                await delay(600)
+                await delay(800)
 
             });
 
             await delay(4000)
+            Navigate("/months/" + month + "?y=" + year);
+        }
+
+
+    }
+
+    const executeSubmit = async (e) => {
+        e.preventDefault();
+        save(e)
+
+        if (window.confirm("these data will be added into the DB, are you sure?")) {
+
+            await UseAxios("/submits/confirmTables", "POST", { month: month, year: year });
+            await delay(2000)
             Navigate("/months/" + month + "?y=" + year);
         }
 
