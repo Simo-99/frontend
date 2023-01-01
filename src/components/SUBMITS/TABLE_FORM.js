@@ -26,8 +26,8 @@ const TABLE_FORM = () => {
         if (window.confirm("these data will be added into the DB, are you sure? (you will be redirected to the month page after the data will be added into the DB")) {
 
             await UseAxios("/submits/confirmTables", "POST", { month: month, year: year });
-            await delay(10000)
-            redirect("/months/" + month + "?y=" + year);
+            await delay(5000)
+            redirect(0);
         }
 
 
