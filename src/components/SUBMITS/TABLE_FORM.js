@@ -14,7 +14,7 @@ const TABLE_FORM = () => {
     const save = async (e) => {
 
         e.preventDefault();
-        data.map(async (table) => { await saveRow(table); delay(100) });
+        data.map(async (table) => { await saveRow(table); await delay(100) });
         alert("saved")
 
     }
