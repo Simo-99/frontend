@@ -15,6 +15,7 @@ const TABLE_FORM = () => {
 
         e.preventDefault();
         data.map(async (table) => { await saveRow(table); await delay(300) });
+        await delay(5000)
         alert("saved")
 
     }
