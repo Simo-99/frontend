@@ -7,8 +7,8 @@ const TABLE_FORM = () => {
 
     const { data, loading } = Hooks.useFetch("/tables/");
     const day = new Date();
-    const [month, setMonth] = useState(day.getMonth());
-    const [year, setYear] = useState(day.getFullYear());
+    const [month, setMonth] = useState(day.getMonth() == 0 ? 12 : day.getMonth());
+    const [year, setYear] = useState(day.getMonth() == 0 ? day.getFullYear() - 1 : day.getFullYear());
     const Navigate = useNavigate();
 
     const save = async (e) => {
@@ -74,8 +74,8 @@ const TABLE_FORM = () => {
                     <table id="table" className="table table-striped table-dark">
                         <thead className="text-primary"><tr><th>Year</th><th>Month</th></tr></thead>
                         <tbody><tr>
-                            <td><input onChange={(e) => setYear(e.target.value)} type="text" className="form-control bg-secondary border-dark outline text-white" defaultValue={month == 0 ? year - 1 : year} /> </td>
-                            <td> <input onChange={(e) => setMonth(e.target.value)} type="text" className="form-control bg-secondary border-dark outline text-white" defaultValue={month == 0 ? 12 : month} /></td>
+                            <td><input onChange={(e) => setYear(e.target.value)} type="text" className="form-control bg-secondary border-dark outline text-white" defaultValue={year} /> </td>
+                            <td> <input onChange={(e) => setMonth(e.target.value)} type="text" className="form-control bg-secondary border-dark outline text-white" defaultValue={month} /></td>
                         </tr></tbody>
                     </table>
                 </div>
