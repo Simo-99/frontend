@@ -44,7 +44,7 @@ const TABLE_FORM = () => {
 
     const saveRow = async (table) => await UseAxios("/tables/" + table.player, "PUT", { resources: table.resources, points: table.points, trophies: table.trophies })
 
-    if (!loading)
+    if (!loading) {
         return (
             <>
                 <br /><br />
@@ -54,8 +54,8 @@ const TABLE_FORM = () => {
                     <table id="table" className="table table-striped table-dark">
                         <thead className="text-primary"><tr><th>Year</th><th>Month</th></tr></thead>
                         <tbody><tr>
-                            <td><input onChange={(e) => setYear(e.target.value)} type="text" className="form-control bg-secondary border-dark outline text-white" defaultValue={year} /> </td>
-                            <td> <input onChange={(e) => setMonth(e.target.value)} type="text" className="form-control bg-secondary border-dark outline text-white" defaultValue={month} /></td>
+                            <td><input onChange={(e) => setYear(e.target.value)} type="text" className="form-control bg-secondary border-dark outline text-white" defaultValue={month == 0 ? year - 1 : year} /> </td>
+                            <td> <input onChange={(e) => setMonth(e.target.value)} type="text" className="form-control bg-secondary border-dark outline text-white" defaultValue={month == 0 ? 12 : month} /></td>
                         </tr></tbody>
                     </table>
                 </div>
@@ -105,6 +105,6 @@ const TABLE_FORM = () => {
                 </div>
             </>
         )
-
+    }
 }
 export default TABLE_FORM
