@@ -24,7 +24,7 @@ const TABLE_FORM = () => {
         e.preventDefault();
         //save(e)
 
-        if (window.confirm("these data will be added into the DB, are you sure? (you will be redirected to the month page after the data will be added into the DB")) {
+        if (window.confirm("these data will be added into the DB, are you sure?")) {
 
             console.log(month, year)
             await UseAxios("/submits/confirmTables", "POST", { month: month, year: year });
