@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UseAxios, delay } from "../../utility";
 import * as Hooks from "../../hooks"
@@ -52,8 +52,8 @@ const TABLE_FORM = () => {
         if (window.confirm("these data will be added into the DB, are you sure?")) {
 
             await UseAxios("/submits/confirmTables", "POST", { month: month, year: year });
-            await delay(2000)
-            Navigate("/months/" + month + "?y=" + year);
+            await delay(1000)
+            Navigate("/months");
         }
 
 
