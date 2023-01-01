@@ -19,31 +19,6 @@ const TABLE_FORM = () => {
 
     }
 
-    const executeSubmit2 = async (e) => {
-        e.preventDefault();
-        //save(e)
-
-
-        if (window.confirm("these data will be added into the DB, are you sure?")) {
-            data.map(async (table) => {
-
-                if (table.resources > 0 && table.points > 0 && table.trophies > 0)
-                    await UseAxios("/submits/", "POST", {
-                        resources: table.resources, points: table.points, trophies: table.trophies,
-                        player_id: table.player, month: month, year: year
-                    });
-
-                await delay(800)
-
-            });
-
-            await delay(4000)
-            Navigate("/months/" + month + "?y=" + year);
-        }
-
-
-    }
-
     const executeSubmit = async (e) => {
         e.preventDefault();
         //save(e)
