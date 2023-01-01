@@ -52,7 +52,7 @@ const TABLE_FORM = () => {
         if (window.confirm("these data will be added into the DB, are you sure?")) {
 
             await UseAxios("/submits/confirmTables", "POST", { month: month, year: year });
-            await delay(2000)
+            await delay(5000)
             Navigate("/months/" + month + "?y=" + year);
         }
 
