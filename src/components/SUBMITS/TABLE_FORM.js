@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { redirect } from 'react-router-dom';
 import { UseAxios, delay } from "../../utility";
 import * as Hooks from "../../hooks"
 
@@ -9,7 +9,6 @@ const TABLE_FORM = () => {
     const day = new Date();
     const [month, setMonth] = useState(day.getMonth() == 0 ? 12 : day.getMonth());
     const [year, setYear] = useState(day.getMonth() == 0 ? day.getFullYear() - 1 : day.getFullYear());
-    const Navigate = useNavigate();
 
     const save = async (e) => {
 
@@ -53,7 +52,7 @@ const TABLE_FORM = () => {
 
             await UseAxios("/submits/confirmTables", "POST", { month: month, year: year });
             await delay(5000)
-            Navigate("/months/" + month + "?y=" + year);
+            redirect("/months/" + month + "?y=" + year);
         }
 
 
