@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useClient } from '../utility';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function useFetch(url, method = 'GET', params = {}, nav = null) {
     const [data, setData] = useState({});
@@ -25,7 +25,7 @@ function useFetch(url, method = 'GET', params = {}, nav = null) {
                 setError('An error occurred. Awkward..')
             })
 
-    }, [url])
+    }, url)
 
     if (nav != null && !loading) navigate(nav)
 
